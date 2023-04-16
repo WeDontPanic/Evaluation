@@ -1,0 +1,318 @@
+items:
+- query: Essen
+  relevant:
+  - kanji: 食べる
+  - kanji: 食べ物
+  - kanji: 食事
+- query: Musik
+  relevant:
+  - kanji: 音楽
+- query: gehen
+  relevant:
+  - kanji: 行く
+- query: trinken
+  relevant:
+  - kanji: 飲む
+- query: Fahrzeug
+  relevant:
+  - kanji: 乗り物
+- query: gefährlich
+  relevant:
+  - kanji: 危ない
+  - kanji: 危険
+- query: klein
+  relevant:
+  - kanji: 小さい
+  - kanji: 小さな
+- query: Karate
+  relevant:
+  - kanji: 空手
+- query: aufräumen
+  relevant:
+  - kanji: 片付ける
+- query: Tagebuch
+  relevant:
+  - kanji: 日記
+- query: Insekt
+  relevant:
+  - kanji: 虫
+- query: Miete
+  relevant:
+  - kanji: 家賃
+- query: Kühlschrank
+  relevant:
+  - kanji: 冷蔵庫
+- query: kaputt machen
+  relevant:
+  - kanji: 壊す
+- query: taifun
+  relevant:
+  - kanji: 台風
+- query: Straße
+  relevant:
+  - kanji: 道
+  - kanji: 道路
+- query: dreckig
+  relevant:
+  - kanji: 汚い
+- query: korrigieren
+  relevant:
+  - kanji: 直す
+  - kanji: 訂正
+  - kanji: 修正
+  - kanji: 添削
+- query: sich verlaufen
+  relevant:
+  - kanji: 道に迷う
+  - kanji: 迷う
+- query: Verwandter
+  relevant:
+  - kanji: 親戚
+- query: Forschung
+  relevant:
+  - kanji: 研究
+- query: Zucker
+  relevant:
+  - kanji: 砂糖
+- query: übersetzen
+  relevant:
+  - kanji: 訳す
+  - kanji: 翻訳
+- query: Abschlussfeier
+  relevant:
+  - kanji: 卒業式
+- query: Möbel
+  relevant:
+  - kanji: 家具
+- query: Deadline
+  relevant:
+  - kanji: 締め切り
+- query: Garten
+  relevant:
+  - kanji: 庭
+- query: Präsentation
+  relevant:
+  - kanji: 発表
+- query: Versicherung
+  relevant:
+  - kanji: 保険
+- query: verkaufen
+  relevant:
+  - kanji: 売る
+- query: einladen
+  relevant:
+  - kanji: 誘う
+  - kanji: 招待
+- query: Krankenhaus
+  relevant:
+  - kanji: 病院
+- query: Krankheit
+  relevant:
+  - kanji: 病気
+- query: Gelb
+  relevant:
+  - kanji: 黄色
+  - kanji: 黄色い
+- query: Grün
+  relevant:
+  - kanji: 緑
+- query: Blau
+  relevant:
+  - kanji: 青い
+- query: Nacht
+  relevant:
+  - kanji: 夜
+- query: Steuer
+  relevant:
+  - kanji: 税金
+- query: Erfahrung
+  relevant:
+  - kanji: 経験
+- query: Erdbeben
+  relevant:
+  - kanji: 地震
+- query: swimming pool
+  relevant:
+  - kanji: プール
+- query: karaoke
+  relevant:
+  - kanji: 空オケ
+- query: Geld
+  relevant:
+  - kanji: お金
+  - kanji: 金
+  num_relevant: 1
+- query: langweilig
+  relevant:
+  - kanji: 退屈
+  - kanji: 詰まらない
+- query: Japanisch
+  relevant:
+  - kanji: 日本語
+- query: Japan
+  relevant:
+  - kanji: 日本
+- query: Selbstvertrauen
+  relevant:
+  - kanji: 自信
+- query: glücklich
+  relevant:
+  - kanji: 嬉しい
+  - kanji: 幸せ
+- query: brechen
+  relevant:
+  - kanji: 折る
+  - kanji: 折れる
+  num_relevant: 1
+- query: Herz
+  relevant:
+  - kanji: 心臓
+  num_relevant: 1
+- query: Brust
+  relevant:
+  - kanji: 胸
+  num_relevant: 1
+- query: Haus
+  relevant:
+  - kanji: 家
+- query: Feuerwerk
+  relevant:
+  - kanji: 花火
+- query: Zukunft
+  relevant:
+  - kanji: 将来
+  - kanji: 未来
+  num_relevant: 1
+- query: morgen
+  relevant:
+  - kanji: 明日
+  - kanji: 朝
+  num_relevant: 2
+- query: Morgen
+  relevant:
+  - kanji: 朝
+  - kanji: 明日
+  num_relevant: 2
+- query: Lied
+  relevant:
+  - kanji: 曲
+  - kanji: 歌
+- query: Schultafel
+  relevant:
+  - kanji: 黒板
+  num_relevant: 1
+- query: schild
+  relevant:
+  - kanji: 看板
+  - kanji: 標識
+- query: Spiel
+  relevant:
+  - kanji: ゲーム
+  - kanji: 競技
+  - kanji: 遊び
+  num_relevant: 2
+- query: Hund
+  relevant:
+  - kanji: 犬
+- query: Katze
+  relevant:
+  - kanji: 猫
+- query: Kind
+  relevant:
+  - kanji: 子供
+- query: Schreibtisch
+  relevant:
+  - kanji: 机
+  - kanji: 卓
+  num_relevant: 1
+- query: Bild
+  relevant:
+  - kanji: 絵
+  - kanji: 写真
+  num_relevant: 1
+- query: Aussicht
+  relevant:
+  - kanji: 風景
+  - kanji: 眺め
+  num_relevant: 1
+- query: Aussichtsturm
+  relevant:
+  - kanji: 展望塔
+- query: Blume
+  relevant:
+  - kanji: 花
+- query: Reis
+  relevant:
+  - kanji: お米
+  - kanji: 米
+  num_relevant: 1
+- query: Krankenhaus
+  relevant:
+  - kanji: 病院
+- query: Hotel
+  relevant:
+  - kanji: ホテル
+- query: Stadt
+  relevant:
+  - kanji: 町
+  - kanji: 街
+  - kanji: 都市
+  - kanji: 都会
+- query: gestern
+  relevant:
+  - kanji: 昨日
+- query: verstehen
+  relevant:
+  - kanji: 分かる
+- query: schreiben
+  relevant:
+  - kanji: 書く
+  num_relevant: 1
+- query: Wörterbuch
+  relevant:
+  - kanji: 辞書
+  - kanji: 辞典
+- query: Niederlande
+  relevant:
+  - kanji: 阿蘭陀
+- query: See
+  relevant:
+  - kanji: 湖
+- query: Meer
+  relevant:
+  - kanji: 海
+- query: Fluss
+  relevant:
+  - kanji: 川
+- query: Fußabdruck
+  relevant:
+  - kanji: 足跡
+- query: Fußspur
+  relevant:
+  - kanji: 足跡
+- query: Hilfe
+  relevant:
+  - kanji: 手伝い
+  - kanji: 手伝う
+  - kanji: 助け
+  - kanji: 助ける
+- query: Kindergarten
+  relevant:
+  - kanji: 幼稚園
+- query: kinder
+  relevant:
+  - kanji: 子供たち
+  - kanji: 児童
+- query: eltern
+  relevant:
+  - kanji: 両親
+  - kanji: 親
+- query: Liedtext
+  relevant:
+  - kanji: 歌詞
+- query: wenn überhaupt
+  relevant:
+  - kanji: どちらかと言うと
+- query: Buch
+  relevant:
+  - kanji: 本
