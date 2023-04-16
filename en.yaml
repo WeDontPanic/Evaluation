@@ -17,7 +17,6 @@ items:
 - query: food
   relevant:
   - kanji: 食べ物
-  num_relevant: 1
 - query: dangerous
   relevant:
   - kanji: 危ない
@@ -166,14 +165,12 @@ items:
 - query: heart
   relevant:
   - kanji: 心臓
-  num_relevant: 1
 - query: chest
   relevant:
   - kanji: 胸
 - query: feeling
   relevant:
   - kanji: 気持ち
-  num_relevant: 1
 - query: fireworks
   relevant:
   - kanji: 花火
@@ -181,7 +178,6 @@ items:
   relevant:
   - kanji: 未来
   - kanji: 将来
-  num_relevant: 1
 - query: friend
   relevant:
   - kanji: 友人
@@ -189,8 +185,7 @@ items:
 - query: game
   relevant:
   - kanji: ゲーム
-  - kanji: 競技
-  num_relevant: 1
+  - kanji: 試合
 - query: dog
   relevant:
   - kanji: 犬
@@ -237,11 +232,9 @@ items:
 - query: to write
   relevant:
   - kanji: 書く
-  num_relevant: 1
 - query: buy
   relevant:
   - kanji: 買う
-  num_relevant: 1
 - query: dictionary
   relevant:
   - kanji: 辞典
@@ -278,3 +271,41 @@ items:
 - query: if anything
   relevant:
   - kanji: どちらかと言うと
+- query: to worry
+  relevant:
+  - kanji: 心配
+- query: word
+  relevant:
+  - kanji: 言葉
+  - kanji: 単語
+- query: weird
+  relevant:
+  - kanji: 変
+    kana: へん
+- query: relation
+  relevant:
+  - kanji: 関係
+- query: time
+  relevant:
+  - kanji: 時間
+  - kanji: 時刻
+  - kanji: 時
+- query: timetable
+  relevant:
+  - kanji: 時刻表
+  - kanji: 時間割
+- query: world
+  relevant:
+  - kanji: 世界
+- query: wind
+  relevant:
+  - kanji: 風
+- query: transparent
+  relevant:
+  - kanji: 透明
+- query: "see through"
+  relevant:
+  - kanji: 透明
+- query: ladybug
+  relevant:
+  - kanji: てんとう虫

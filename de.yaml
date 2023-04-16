@@ -167,11 +167,9 @@ items:
 - query: Herz
   relevant:
   - kanji: 心臓
-  num_relevant: 1
 - query: Brust
   relevant:
   - kanji: 胸
-  num_relevant: 1
 - query: Haus
   relevant:
   - kanji: 家
@@ -182,17 +180,14 @@ items:
   relevant:
   - kanji: 将来
   - kanji: 未来
-  num_relevant: 1
 - query: morgen
   relevant:
   - kanji: 明日
   - kanji: 朝
-  num_relevant: 2
 - query: Morgen
   relevant:
   - kanji: 朝
   - kanji: 明日
-  num_relevant: 2
 - query: Lied
   relevant:
   - kanji: 曲
@@ -200,7 +195,6 @@ items:
 - query: Schultafel
   relevant:
   - kanji: 黒板
-  num_relevant: 1
 - query: schild
   relevant:
   - kanji: 看板
@@ -208,9 +202,7 @@ items:
 - query: Spiel
   relevant:
   - kanji: ゲーム
-  - kanji: 競技
   - kanji: 遊び
-  num_relevant: 2
 - query: Hund
   relevant:
   - kanji: 犬
@@ -223,7 +215,6 @@ items:
 - query: Schreibtisch
   relevant:
   - kanji: 机
-  - kanji: 卓
   num_relevant: 1
 - query: Bild
   relevant:
@@ -267,14 +258,13 @@ items:
 - query: schreiben
   relevant:
   - kanji: 書く
-  num_relevant: 1
 - query: Wörterbuch
   relevant:
   - kanji: 辞書
   - kanji: 辞典
 - query: Niederlande
   relevant:
-  - kanji: 阿蘭陀
+  - kana: おらんだ
 - query: See
   relevant:
   - kanji: 湖
@@ -316,3 +306,32 @@ items:
 - query: Buch
   relevant:
   - kanji: 本
+- query: anime
+  relevant:
+  - kanji: アニメ
+- query: Sorgen
+  relevant:
+  - kanji: 心配
+- query: "Sich nicht entscheiden können"
+  relevant:
+  - kanji: 迷う
+- query: Wort
+  relevant:
+  - kanji: 言葉
+  - kanji: 単語
+- query: stundenplan
+  relevant:
+  - kanji: 時刻表
+  - kanji: 時間割
+- query: welt
+  relevant:
+  - kanji: 世界
+- query: wind
+  relevant:
+  - kanji: 風
+- query: durchsichtig
+  relevant:
+  - kanji: 透明
+- query: Marienkäfer
+  relevant:
+  - kanji: てんとう虫
