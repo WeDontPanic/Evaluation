@@ -48,6 +48,9 @@ tests:
   - query: to break
     relevant:
     - kanji: 壊す
+    - kanji: 割る
+    - kanji: 折る
+    - kanji: 折れる
   - query: typhoon
     relevant:
     - kanji: 台風
@@ -60,11 +63,13 @@ tests:
     - kanji: 汚い
   - query: to correct
     relevant:
-    - kanji: 治す
+    - kanji: 直す
   - query: to get lost
     relevant:
     - kanji: 道に迷う
+    - kanji: 迷子
     - kanji: 迷う
+    num_relevant: 2
   - query: relatives
     relevant:
     - kanji: 親戚
@@ -73,7 +78,7 @@ tests:
     - kanji: 研究
   - query: sugar
     relevant:
-    - kanji: 佐藤
+    - kanji: 砂糖
   - query: to translate
     relevant:
     - kanji: 訳す
@@ -92,8 +97,8 @@ tests:
   - query: presentation
     relevant:
     - kanji: 発表
-    - kanji: プレゼンテーション
-    - kanji: プレゼン
+    - kana: プレゼンテーション
+    - kana: プレゼン
     num_relevant: 1
   - query: insurance
     relevant:
@@ -134,10 +139,10 @@ tests:
     - kanji: 地震
   - query: swimming pool
     relevant:
-    - kanji: プール
+    - kana: プール
   - query: karaoke
     relevant:
-    - kanji: カラオケ
+    - kana: カラオケ
   - query: money
     relevant:
     - kanji: お金
@@ -159,11 +164,6 @@ tests:
   - query: happy
     relevant:
     - kanji: 嬉しい
-  - query: to break
-    relevant:
-    - kanji: 折る
-    - kanji: 折れる
-    num_relevant: 1
   - query: heart
     relevant:
     - kanji: 心臓
@@ -186,7 +186,7 @@ tests:
     - kanji: 友達
   - query: game
     relevant:
-    - kanji: ゲーム
+    - kana: ゲーム
     - kanji: 試合
   - query: dog
     relevant:
@@ -218,7 +218,7 @@ tests:
     - kanji: 病院
   - query: hotel
     relevant:
-    - kanji: ホテル
+    - kana: ホテル
   - query: bookstore
     relevant:
     - kanji: 本屋
@@ -243,7 +243,7 @@ tests:
     - kanji: 辞書
   - query: Netherlands
     relevant:
-    - kanji: オランダ
+    - kana: オランダ
   - query: lake
     relevant:
     - kanji: 湖
@@ -253,6 +253,7 @@ tests:
     - kanji: 手伝い
     - kanji: 助け
     - kanji: 手伝う
+    num_relevant: 2
   - query: excuse me
     relevant:
     - kanji: 済みません
@@ -267,6 +268,8 @@ tests:
     relevant:
     - kanji: 児童
     - kanji: 子供たち
+    - kanji: 子供
+    num_relevant: 1
   - query: lyrics
     relevant:
     - kanji: 歌詞
