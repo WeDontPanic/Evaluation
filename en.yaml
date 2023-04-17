@@ -1,311 +1,313 @@
-items:
-- query: eat
-  relevant:
-  - kanji: 食べる
-- query: music
-  relevant:
-  - kanji: 音楽
-- query: go
-  relevant:
-  - kanji: 行く
-- query: to drink
-  relevant:
-  - kanji: 飲む
-- query: vehicle
-  relevant:
-  - kanji: 車
-- query: food
-  relevant:
-  - kanji: 食べ物
-- query: dangerous
-  relevant:
-  - kanji: 危ない
-- query: small
-  relevant:
-  - kanji: 小さい
-  - kanji: 小さな
-- query: Karate
-  relevant:
-  - kanji: 空手
-- query: tidy up
-  relevant:
-  - kanji: 片付ける
-- query: diary
-  relevant:
-  - kanji: 日記
-- query: insect
-  relevant:
-  - kanji: 虫
-  - kanji: 昆虫
-- query: rent
-  relevant:
-  - kanji: 家賃
-- query: refrigerator
-  relevant:
-  - kanji: 冷蔵庫
-- query: to break
-  relevant:
-  - kanji: 壊す
-- query: typhoon
-  relevant:
-  - kanji: 台風
-- query: road
-  relevant:
-  - kanji: 道
-  - kanji: 道路
-- query: dirty
-  relevant:
-  - kanji: 汚い
-- query: to correct
-  relevant:
-  - kanji: 治す
-- query: to get lost
-  relevant:
-  - kanji: 道に迷う
-  - kanji: 迷う
-- query: relatives
-  relevant:
-  - kanji: 親戚
-- query: research
-  relevant:
-  - kanji: 研究
-- query: sugar
-  relevant:
-  - kanji: 佐藤
-- query: to translate
-  relevant:
-  - kanji: 訳す
-- query: graduation ceremony
-  relevant:
-  - kanji: 卒業式
-- query: furniture
-  relevant:
-  - kanji: 家具
-- query: deadline
-  relevant:
-  - kanji: 締め切り
-- query: garden
-  relevant:
-  - kanji: 庭
-- query: presentation
-  relevant:
-  - kanji: 発表
-  - kanji: プレゼンテーション
-  - kanji: プレゼン
-  num_relevant: 1
-- query: insurance
-  relevant:
-  - kanji: 保険
-- query: to sell
-  relevant:
-  - kanji: 売る
-- query: to invite
-  relevant:
-  - kanji: 誘う
-- query: hospital
-  relevant:
-  - kanji: 病院
-- query: illness
-  relevant:
-  - kanji: 病気
-- query: yellow
-  relevant:
-  - kanji: 黄色
-  - kanji: 黄色い
-- query: green
-  relevant:
-  - kanji: 緑
-- query: blue
-  relevant:
-  - kanji: 青い
-- query: night
-  relevant:
-  - kanji: 夜
-- query: tax
-  relevant:
-  - kanji: 税金
-- query: experience
-  relevant:
-  - kanji: 経験
-- query: earthquake
-  relevant:
-  - kanji: 地震
-- query: swimming pool
-  relevant:
-  - kanji: プール
-- query: karaoke
-  relevant:
-  - kanji: カラオケ
-- query: money
-  relevant:
-  - kanji: お金
-  - kanji: 金
-  num_relevant: 1
-- query: boring
-  relevant:
-  - kanji: 詰まらない
-  - kanji: 退屈
-- query: Japanese
-  relevant:
-  - kanji: 日本語
-- query: Japan
-  relevant:
-  - kanji: 日本
-- query: self confidence
-  relevant:
-  - kanji: 自信
-- query: happy
-  relevant:
-  - kanji: 嬉しい
-- query: to break
-  relevant:
-  - kanji: 折る
-  - kanji: 折れる
-  num_relevant: 1
-- query: heart
-  relevant:
-  - kanji: 心臓
-- query: chest
-  relevant:
-  - kanji: 胸
-- query: feeling
-  relevant:
-  - kanji: 気持ち
-- query: fireworks
-  relevant:
-  - kanji: 花火
-- query: future
-  relevant:
-  - kanji: 未来
-  - kanji: 将来
-- query: friend
-  relevant:
-  - kanji: 友人
-  - kanji: 友達
-- query: game
-  relevant:
-  - kanji: ゲーム
-  - kanji: 試合
-- query: dog
-  relevant:
-  - kanji: 犬
-- query: cat
-  relevant:
-  - kanji: 猫
-- query: child
-  relevant:
-  - kanji: 子供
-- query: desk
-  relevant:
-  - kanji: 机
-- query: picture
-  relevant:
-  - kanji: 絵
-  - kanji: 写真
-  num_relevant: 1
-- query: flower
-  relevant:
-  - kanji: 花
-- query: rice
-  relevant:
-  - kanji: お米
-  - kanji: 米
-  num_relevant: 1
-- query: hospital
-  relevant:
-  - kanji: 病院
-- query: hotel
-  relevant:
-  - kanji: ホテル
-- query: bookstore
-  relevant:
-  - kanji: 本屋
-- query: town
-  relevant:
-  - kanji: 町
-- query: yesterday
-  relevant:
-  - kanji: 昨日
-- query: understand
-  relevant:
-  - kanji: 分かる
-- query: to write
-  relevant:
-  - kanji: 書く
-- query: buy
-  relevant:
-  - kanji: 買う
-- query: dictionary
-  relevant:
-  - kanji: 辞典
-  - kanji: 辞書
-- query: Netherlands
-  relevant:
-  - kanji: オランダ
-- query: lake
-  relevant:
-  - kanji: 湖
-- query: to help
-  relevant:
-  - kanji: 助ける
-  - kanji: 手伝い
-  - kanji: 助け
-  - kanji: 手伝う
-- query: excuse me
-  relevant:
-  - kanji: 済みません
-  - kanji: 失礼
-- query: listen
-  relevant:
-  - kanji: 聞く
-- query: tired
-  relevant:
-  - kanji: 疲れる
-- query: children
-  relevant:
-  - kanji: 児童
-  - kanji: 子供たち
-- query: lyrics
-  relevant:
-  - kanji: 歌詞
-- query: if anything
-  relevant:
-  - kanji: どちらかと言うと
-- query: to worry
-  relevant:
-  - kanji: 心配
-- query: word
-  relevant:
-  - kanji: 言葉
-  - kanji: 単語
-- query: weird
-  relevant:
-  - kanji: 変
-    kana: へん
-- query: relation
-  relevant:
-  - kanji: 関係
-- query: time
-  relevant:
-  - kanji: 時間
-  - kanji: 時刻
-  - kanji: 時
-- query: timetable
-  relevant:
-  - kanji: 時刻表
-  - kanji: 時間割
-- query: world
-  relevant:
-  - kanji: 世界
-- query: wind
-  relevant:
-  - kanji: 風
-- query: transparent
-  relevant:
-  - kanji: 透明
-- query: "see through"
-  relevant:
-  - kanji: 透明
-- query: ladybug
-  relevant:
-  - kanji: てんとう虫
+language: English
+tests:
+  items:
+  - query: eat
+    relevant:
+    - kanji: 食べる
+  - query: music
+    relevant:
+    - kanji: 音楽
+  - query: go
+    relevant:
+    - kanji: 行く
+  - query: to drink
+    relevant:
+    - kanji: 飲む
+  - query: vehicle
+    relevant:
+    - kanji: 車
+  - query: food
+    relevant:
+    - kanji: 食べ物
+  - query: dangerous
+    relevant:
+    - kanji: 危ない
+  - query: small
+    relevant:
+    - kanji: 小さい
+    - kanji: 小さな
+  - query: Karate
+    relevant:
+    - kanji: 空手
+  - query: tidy up
+    relevant:
+    - kanji: 片付ける
+  - query: diary
+    relevant:
+    - kanji: 日記
+  - query: insect
+    relevant:
+    - kanji: 虫
+    - kanji: 昆虫
+  - query: rent
+    relevant:
+    - kanji: 家賃
+  - query: refrigerator
+    relevant:
+    - kanji: 冷蔵庫
+  - query: to break
+    relevant:
+    - kanji: 壊す
+  - query: typhoon
+    relevant:
+    - kanji: 台風
+  - query: road
+    relevant:
+    - kanji: 道
+    - kanji: 道路
+  - query: dirty
+    relevant:
+    - kanji: 汚い
+  - query: to correct
+    relevant:
+    - kanji: 治す
+  - query: to get lost
+    relevant:
+    - kanji: 道に迷う
+    - kanji: 迷う
+  - query: relatives
+    relevant:
+    - kanji: 親戚
+  - query: research
+    relevant:
+    - kanji: 研究
+  - query: sugar
+    relevant:
+    - kanji: 佐藤
+  - query: to translate
+    relevant:
+    - kanji: 訳す
+  - query: graduation ceremony
+    relevant:
+    - kanji: 卒業式
+  - query: furniture
+    relevant:
+    - kanji: 家具
+  - query: deadline
+    relevant:
+    - kanji: 締め切り
+  - query: garden
+    relevant:
+    - kanji: 庭
+  - query: presentation
+    relevant:
+    - kanji: 発表
+    - kanji: プレゼンテーション
+    - kanji: プレゼン
+    num_relevant: 1
+  - query: insurance
+    relevant:
+    - kanji: 保険
+  - query: to sell
+    relevant:
+    - kanji: 売る
+  - query: to invite
+    relevant:
+    - kanji: 誘う
+  - query: hospital
+    relevant:
+    - kanji: 病院
+  - query: illness
+    relevant:
+    - kanji: 病気
+  - query: yellow
+    relevant:
+    - kanji: 黄色
+    - kanji: 黄色い
+  - query: green
+    relevant:
+    - kanji: 緑
+  - query: blue
+    relevant:
+    - kanji: 青い
+  - query: night
+    relevant:
+    - kanji: 夜
+  - query: tax
+    relevant:
+    - kanji: 税金
+  - query: experience
+    relevant:
+    - kanji: 経験
+  - query: earthquake
+    relevant:
+    - kanji: 地震
+  - query: swimming pool
+    relevant:
+    - kanji: プール
+  - query: karaoke
+    relevant:
+    - kanji: カラオケ
+  - query: money
+    relevant:
+    - kanji: お金
+    - kanji: 金
+    num_relevant: 1
+  - query: boring
+    relevant:
+    - kanji: 詰まらない
+    - kanji: 退屈
+  - query: Japanese
+    relevant:
+    - kanji: 日本語
+  - query: Japan
+    relevant:
+    - kanji: 日本
+  - query: self confidence
+    relevant:
+    - kanji: 自信
+  - query: happy
+    relevant:
+    - kanji: 嬉しい
+  - query: to break
+    relevant:
+    - kanji: 折る
+    - kanji: 折れる
+    num_relevant: 1
+  - query: heart
+    relevant:
+    - kanji: 心臓
+  - query: chest
+    relevant:
+    - kanji: 胸
+  - query: feeling
+    relevant:
+    - kanji: 気持ち
+  - query: fireworks
+    relevant:
+    - kanji: 花火
+  - query: future
+    relevant:
+    - kanji: 未来
+    - kanji: 将来
+  - query: friend
+    relevant:
+    - kanji: 友人
+    - kanji: 友達
+  - query: game
+    relevant:
+    - kanji: ゲーム
+    - kanji: 試合
+  - query: dog
+    relevant:
+    - kanji: 犬
+  - query: cat
+    relevant:
+    - kanji: 猫
+  - query: child
+    relevant:
+    - kanji: 子供
+  - query: desk
+    relevant:
+    - kanji: 机
+  - query: picture
+    relevant:
+    - kanji: 絵
+    - kanji: 写真
+    num_relevant: 1
+  - query: flower
+    relevant:
+    - kanji: 花
+  - query: rice
+    relevant:
+    - kanji: お米
+    - kanji: 米
+    num_relevant: 1
+  - query: hospital
+    relevant:
+    - kanji: 病院
+  - query: hotel
+    relevant:
+    - kanji: ホテル
+  - query: bookstore
+    relevant:
+    - kanji: 本屋
+  - query: town
+    relevant:
+    - kanji: 町
+  - query: yesterday
+    relevant:
+    - kanji: 昨日
+  - query: understand
+    relevant:
+    - kanji: 分かる
+  - query: to write
+    relevant:
+    - kanji: 書く
+  - query: buy
+    relevant:
+    - kanji: 買う
+  - query: dictionary
+    relevant:
+    - kanji: 辞典
+    - kanji: 辞書
+  - query: Netherlands
+    relevant:
+    - kanji: オランダ
+  - query: lake
+    relevant:
+    - kanji: 湖
+  - query: to help
+    relevant:
+    - kanji: 助ける
+    - kanji: 手伝い
+    - kanji: 助け
+    - kanji: 手伝う
+  - query: excuse me
+    relevant:
+    - kanji: 済みません
+    - kanji: 失礼
+  - query: listen
+    relevant:
+    - kanji: 聞く
+  - query: tired
+    relevant:
+    - kanji: 疲れる
+  - query: children
+    relevant:
+    - kanji: 児童
+    - kanji: 子供たち
+  - query: lyrics
+    relevant:
+    - kanji: 歌詞
+  - query: if anything
+    relevant:
+    - kanji: どちらかと言うと
+  - query: to worry
+    relevant:
+    - kanji: 心配
+  - query: word
+    relevant:
+    - kanji: 言葉
+    - kanji: 単語
+  - query: weird
+    relevant:
+    - kanji: 変
+      kana: へん
+  - query: relation
+    relevant:
+    - kanji: 関係
+  - query: time
+    relevant:
+    - kanji: 時間
+    - kanji: 時刻
+    - kanji: 時
+  - query: timetable
+    relevant:
+    - kanji: 時刻表
+    - kanji: 時間割
+  - query: world
+    relevant:
+    - kanji: 世界
+  - query: wind
+    relevant:
+    - kanji: 風
+  - query: transparent
+    relevant:
+    - kanji: 透明
+  - query: see through
+    relevant:
+    - kanji: 透明
+  - query: ladybug
+    relevant:
+    - kanji: てんとう虫
