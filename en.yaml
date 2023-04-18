@@ -109,6 +109,8 @@ tests:
   - query: to invite
     relevant:
     - kanji: 誘う
+    - kanji: 招く
+    - kanji: 招待
   - query: hospital
     relevant:
     - kanji: 病院
