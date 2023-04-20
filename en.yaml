@@ -4,9 +4,13 @@ tests:
   - query: eat
     relevant:
     - kanji: 食べる
+    - kanji: 食事
   - query: music
     relevant:
     - kanji: 音楽
+  - query: to go
+    relevant:
+    - kanji: 行く
   - query: go
     relevant:
     - kanji: 行く
@@ -316,3 +320,12 @@ tests:
   - query: ladybug
     relevant:
     - kanji: てんとう虫
+  - query: dark
+    relevant:
+    - kanji: 暗い
+  - query: to borrow
+    relevant:
+    - kanji: 借りる
+  - query: to lend
+    relevant:
+    - kanji: 貸す

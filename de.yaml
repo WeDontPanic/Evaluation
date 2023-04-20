@@ -337,3 +337,12 @@ tests:
   - query: Marienkäfer
     relevant:
     - kanji: てんとう虫
+  - query: dunkel
+    relevant:
+    - kanji: 暗い
+  - query: ausleihen
+    relevant:
+    - kanji: 借りる
+  - query: verleihen
+    relevant:
+    - kanji: 貸す
