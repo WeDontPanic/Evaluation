@@ -1,6 +1,9 @@
 language: English
 tests:
   items:
+  - query: to eat
+    relevant:
+    - kanji: 食べる
   - query: eat
     relevant:
     - kanji: 食べる
@@ -36,6 +39,7 @@ tests:
   - query: tidy up
     relevant:
     - kanji: 片付ける
+    - kanji: 整える
   - query: diary
     relevant:
     - kanji: 日記
@@ -161,6 +165,9 @@ tests:
   - query: Japanese
     relevant:
     - kanji: 日本語
+  - query: Japanese person
+    relevant:
+    - kanji: 日本人
   - query: Japan
     relevant:
     - kanji: 日本
@@ -264,6 +271,7 @@ tests:
     relevant:
     - kanji: 済みません
     - kanji: 失礼
+    - kanji: 失礼します
   - query: listen
     relevant:
     - kanji: 聞く
@@ -300,7 +308,6 @@ tests:
     relevant:
     - kanji: 時間
     - kanji: 時刻
-    - kanji: 時
   - query: timetable
     relevant:
     - kanji: 時刻表
@@ -312,9 +319,6 @@ tests:
     relevant:
     - kanji: 風
   - query: transparent
-    relevant:
-    - kanji: 透明
-  - query: see through
     relevant:
     - kanji: 透明
   - query: ladybug
@@ -329,3 +333,93 @@ tests:
   - query: to lend
     relevant:
     - kanji: 貸す
+  - query: woman
+    relevant:
+    - kanji: 女の子
+    - kanji: 女の人
+    - kanji: 女子
+    - kanji: 女性
+    - kanji: 婦人
+  - query: man
+    relevant:
+    - kanji: 男の子
+    - kanji: 男の人
+    - kanji: 男子
+    - kanji: 男性
+    - kanji: 人間
+    - kanji: 人
+  - query: wall
+    relevant:
+    - kanji: 壁
+  - query: sad
+    relevant:
+    - kanji: 悲しい
+    - kanji: 悲しむ
+  - query: nose
+    relevant:
+    - kanji: 鼻
+  - query: heavy
+    relevant:
+    - kanji: 重い
+  - query: bad
+    relevant:
+    - kanji: 悪い
+  - query: take a shower
+    relevant:
+    - kanji: お風呂に入る
+    - kanji: シャワーを浴びる
+  - query: take a bath
+    relevant:
+    - kanji: お風呂に入る
+  - query: shower
+    relevant:
+    - kana: シャワー
+  - query: smart
+    relevant:
+    - kanji: 頭がいい
+    - kanji: 賢い
+    - kana: スマート
+  - query: surprise
+    relevant:
+    - kanji: 驚き
+    - kanji: 吃驚
+    - kanji: サプライズ
+    - kanji: 驚かす
+  - query: result
+    relevant:
+    - kanji: 結果
+  - query: embarrassing
+    relevant:
+    - kanji: 恥ずかしい
+  - query: embarrassed
+    relevant:
+    - kanji: 恥ずかしい
+  - query: suddenly
+    relevant:
+    - kana: いきなり
+    - kanji: 急に
+    - kanji: 突然
+  - query: body
+    relevant:
+    - kanji: 体
+    - kanji: 身体
+  - query: of course
+    relevant:
+    - kanji: 勿論
+  - query: ticklish
+    relevant:
+    - kanji: 擽ったい
+  - query: laundry
+    relevant:
+    - kanji: 洗濯
+    - kana: ランドリー
+    - kanji: 洗濯物
+  - query: wash
+    relevant:
+    - kanji: 洗う
+  - query: to wash
+    relevant:
+    - kanji: 洗う
+  - query: weak
+    relevant:
+    - kanji: 弱い
