@@ -346,3 +346,114 @@ tests:
   - query: verleihen
     relevant:
     - kanji: 貸す
+  - query: Dunkelheit
+    relevant:
+    - kanji: 闇
+    - kanji: 暗闇
+    - kanji: 暗さ
+  - query: Frau
+    relevant:
+    - kanji: 女の子
+    - kanji: 女の人
+    - kanji: 女子
+    - kanji: 女性
+    - kanji: 婦人
+  - query: Mann
+    relevant:
+    - kanji: 男の子
+    - kanji: 男の人
+    - kanji: 男子
+    - kanji: 男性
+    - kanji: 人間
+    - kanji: 人
+  - query: Wand
+    relevant:
+    - kanji: 壁
+  - query: Nase
+    relevant:
+    - kanji: 鼻
+  - query: Dusche
+    relevant:
+    - kana: シャワー
+  - query: Überraschung
+    relevant:
+    - kanji: 驚き
+    - kanji: 吃驚
+    - kanji: サプライズ
+    - kanji: 驚かす
+  - query: Ergebnis
+    relevant:
+    - kanji: 結果
+  - query: Körper
+    relevant:
+    - kanji: 体
+    - kanji: 身体
+  - query: Wäsche
+    relevant:
+    - kanji: 洗濯物
+  - query: Liebhaber
+    relevant:
+      - kanji: 恋人
+  - query: Computer
+    relevant:
+      - kana: コンピュータ
+      - kana: パソコン
+      - kanji: 電子計算機
+  - query: Taschenrechner
+    relevant:
+      - kanji: 電卓
+  - query: Brille
+    relevant:
+      - kanji: 眼鏡
+  - query: Entfernung
+    relevant:
+      - kanji: 距離
+  - query: Durchschnitt
+    relevant:
+      - kanji: 平均
+  - query: Sightseeing
+    relevant:
+      - kanji: 観光
+  - query: Tourist
+    relevant:
+      - kanji: 観光客
+  - query: Lehrer
+    relevant:
+      - kanji: 先生
+      - kanji: 教師
+  - query: Sonne
+    relevant:
+      - kanji: 太陽
+  - query: Schatten
+    relevant:
+      - kanji: 影
+      - kanji: 陰
+      - kanji: 日陰
+  - query: Medizin
+    relevant:
+      - kanji: 薬
+  - query: Regen
+    relevant:
+      - kanji: 雨
+  - query: Schnee
+    relevant:
+      - kanji: 雪
+  - query: Schneeman
+    relevant:
+      - kanji: 雪だるま
+  - query: Mathematik
+    relevant:
+      - kanji: 数学
+  - query: Haus
+    relevant:
+      - kanji: 家
+  - query: Tag
+    relevant:
+      - kanji: 日
+      - kanji: 日にち
+  - query: Monat
+    relevant:
+      - kanji: 月
+  - query: Jahr
+    relevant:
+      - kanji: 年
