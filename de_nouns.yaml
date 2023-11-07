@@ -1,251 +1,287 @@
-language: English
+language: German
 tests:
   items:
-  - query: music
-    relevant:
-    - kanji: 音楽
-  - query: vehicle
-    relevant:
-    - kanji: 車
-  - query: food
+  - query: Essen
     relevant:
     - kanji: 食べ物
+    - kanji: 食事
+  - query: Musik
+    relevant:
+    - kanji: 音楽
+  - query: Fahrzeug
+    relevant:
+    - kanji: 乗り物
   - query: Karate
     relevant:
     - kanji: 空手
-  - query: diary
+  - query: Tagebuch
     relevant:
     - kanji: 日記
-  - query: insect
+  - query: Insekt
     relevant:
     - kanji: 虫
-    - kanji: 昆虫
-  - query: rent
+  - query: Miete
     relevant:
     - kanji: 家賃
-  - query: refrigerator
+  - query: Kühlschrank
     relevant:
     - kanji: 冷蔵庫
-  - query: typhoon
+  - query: taifun
     relevant:
     - kanji: 台風
-  - query: road
+  - query: Straße
     relevant:
     - kanji: 道
     - kanji: 道路
-  - query: relatives
+  - query: Verwandter
     relevant:
     - kanji: 親戚
-  - query: research
+  - query: Forschung
     relevant:
     - kanji: 研究
-  - query: sugar
+  - query: Zucker
     relevant:
     - kanji: 砂糖
-  - query: graduation ceremony
+  - query: Übersetzung
+    relevant:
+    - kanji: 翻訳
+  - query: Abschlussfeier
     relevant:
     - kanji: 卒業式
-  - query: furniture
+  - query: Möbel
     relevant:
     - kanji: 家具
-  - query: deadline
+  - query: Deadline
     relevant:
     - kanji: 締め切り
-  - query: garden
+  - query: Garten
     relevant:
     - kanji: 庭
-  - query: presentation
+  - query: Präsentation
     relevant:
     - kanji: 発表
-    - kana: プレゼンテーション
-    - kana: プレゼン
-    num_relevant: 1
-  - query: insurance
+  - query: Versicherung
     relevant:
     - kanji: 保険
-  - query: hospital
+  - query: Krankenhaus
     relevant:
     - kanji: 病院
-  - query: illness
+  - query: Krankheit
     relevant:
     - kanji: 病気
-  - query: yellow
+  - query: Gelb
     relevant:
     - kanji: 黄色
     - kanji: 黄色い
-  - query: green
+  - query: Grün
     relevant:
     - kanji: 緑
-  - query: blue
+  - query: Blau
     relevant:
     - kanji: 青い
-  - query: night
+  - query: Nacht
     relevant:
     - kanji: 夜
-  - query: tax
+  - query: Steuer
     relevant:
     - kanji: 税金
-  - query: experience
+  - query: Erfahrung
     relevant:
     - kanji: 経験
-  - query: earthquake
+  - query: Erdbeben
     relevant:
     - kanji: 地震
   - query: swimming pool
     relevant:
-    - kana: プール
+    - kanji: プール
   - query: karaoke
     relevant:
-    - kana: カラオケ
-  - query: money
+    - kanji: 空オケ
+  - query: Geld
     relevant:
     - kanji: お金
     - kanji: 金
     num_relevant: 1
-  - query: Japanese
+  - query: Japanisch
     relevant:
     - kanji: 日本語
-  - query: Japanese person
-    relevant:
-    - kanji: 日本人
   - query: Japan
     relevant:
     - kanji: 日本
-  - query: self confidence
+  - query: Selbstvertrauen
     relevant:
     - kanji: 自信
-  - query: heart
+  - query: Herz
     relevant:
     - kanji: 心臓
-  - query: chest
+  - query: Brust
     relevant:
     - kanji: 胸
-  - query: feeling
+  - query: Haus
     relevant:
-    - kanji: 気持ち
-  - query: fireworks
+    - kanji: 家
+  - query: Feuerwerk
     relevant:
     - kanji: 花火
-  - query: future
+  - query: Zukunft
     relevant:
-    - kanji: 未来
     - kanji: 将来
-  - query: friend
+    - kanji: 未来
+  - query: morgen
     relevant:
-    - kanji: 友人
-    - kanji: 友達
-  - query: game
+    - kanji: 明日
+    - kanji: 朝
+  - query: Morgen
     relevant:
-    - kana: ゲーム
-    - kanji: 試合
-  - query: dog
+    - kanji: 朝
+    - kanji: 明日
+  - query: Lied
+    relevant:
+    - kanji: 曲
+    - kanji: 歌
+  - query: Schultafel
+    relevant:
+    - kanji: 黒板
+  - query: schild
+    relevant:
+    - kanji: 看板
+    - kanji: 標識
+  - query: Spiel
+    relevant:
+    - kanji: ゲーム
+    - kanji: 遊び
+  - query: Hund
     relevant:
     - kanji: 犬
-  - query: cat
+  - query: Katze
     relevant:
     - kanji: 猫
-  - query: child
+  - query: Kind
     relevant:
     - kanji: 子供
-  - query: desk
+  - query: Schreibtisch
     relevant:
     - kanji: 机
-  - query: picture
+    num_relevant: 1
+  - query: Bild
     relevant:
     - kanji: 絵
     - kanji: 写真
     num_relevant: 1
-  - query: flower
+  - query: Aussicht
+    relevant:
+    - kanji: 風景
+    - kanji: 眺め
+    num_relevant: 1
+  - query: Aussichtsturm
+    relevant:
+    - kanji: 展望塔
+  - query: Blume
     relevant:
     - kanji: 花
-  - query: rice
+  - query: Reis
     relevant:
     - kanji: お米
     - kanji: 米
     num_relevant: 1
-  - query: hospital
+  - query: Krankenhaus
     relevant:
     - kanji: 病院
-  - query: hotel
+  - query: Hotel
     relevant:
-    - kana: ホテル
-  - query: bookstore
-    relevant:
-    - kanji: 本屋
-  - query: town
+    - kanji: ホテル
+  - query: Stadt
     relevant:
     - kanji: 町
-  - query: yesterday
+    - kanji: 街
+    - kanji: 都市
+    - kanji: 都会
+  - query: gestern
     relevant:
     - kanji: 昨日
-  - query: to write
+  - query: Wörterbuch
     relevant:
-    - kanji: 書く
-  - query: buy
-    relevant:
-    - kanji: 買う
-  - query: dictionary
-    relevant:
-    - kanji: 辞典
     - kanji: 辞書
-  - query: Netherlands
+    - kanji: 辞典
+  - query: Niederlande
     relevant:
-    - kana: オランダ
-  - query: lake
+    - kana: おらんだ
+  - query: See
     relevant:
     - kanji: 湖
-  - query: children
+  - query: Meer
     relevant:
-    - kanji: 子供
-    - kanji: 児童
+    - kanji: 海
+  - query: Fluss
+    relevant:
+    - kanji: 川
+  - query: Fußabdruck
+    relevant:
+    - kanji: 足跡
+  - query: Fußspur
+    relevant:
+    - kanji: 足跡
+  - query: Hilfe
+    relevant:
+    - kanji: 手伝い
+    - kanji: 援助
+    - kanji: 助け
+  - query: Kindergarten
+    relevant:
+    - kanji: 幼稚園
+  - query: kinder
+    relevant:
     - kanji: 子供たち
-    num_relevant: 1
-  - query: lyrics
+    - kanji: 児童
+  - query: eltern
+    relevant:
+    - kanji: 両親
+    - kanji: 親
+  - query: Liedtext
     relevant:
     - kanji: 歌詞
-  - query: to worry
+  - query: Buch
+    relevant:
+    - kanji: 本
+  - query: anime
+    relevant:
+    - kanji: アニメ
+  - query: Sorgen
     relevant:
     - kanji: 心配
-  - query: word
+  - query: Wort
     relevant:
     - kanji: 言葉
     - kanji: 単語
-  - query: relation
-    relevant:
-    - kanji: 関係
-  - query: time
-    relevant:
-    - kanji: 時間
-    - kanji: 時刻
-  - query: timetable
+  - query: stundenplan
     relevant:
     - kanji: 時刻表
     - kanji: 時間割
-  - query: world
+  - query: welt
     relevant:
     - kanji: 世界
   - query: wind
     relevant:
     - kanji: 風
-  - query: transparent
+  - query: durchsichtig
     relevant:
     - kanji: 透明
-  - query: ladybug
+  - query: Marienkäfer
     relevant:
     - kanji: てんとう虫
-  - query: darkness
+  - query: Dunkelheit
     relevant:
     - kanji: 闇
     - kanji: 暗闇
     - kanji: 暗さ
-  - query: woman
+  - query: Frau
     relevant:
     - kanji: 女の子
     - kanji: 女の人
     - kanji: 女子
     - kanji: 女性
     - kanji: 婦人
-  - query: man
+  - query: Mann
     relevant:
     - kanji: 男の子
     - kanji: 男の人
@@ -253,107 +289,94 @@ tests:
     - kanji: 男性
     - kanji: 人間
     - kanji: 人
-  - query: wall
+  - query: Wand
     relevant:
     - kanji: 壁
-  - query: nose
+  - query: Nase
     relevant:
     - kanji: 鼻
-  - query: shower
+  - query: Dusche
     relevant:
     - kana: シャワー
-  - query: surprise
+  - query: Überraschung
     relevant:
     - kanji: 驚き
     - kanji: 吃驚
     - kanji: サプライズ
     - kanji: 驚かす
-  - query: result
+  - query: Ergebnis
     relevant:
     - kanji: 結果
-  - query: body
+  - query: Körper
     relevant:
     - kanji: 体
     - kanji: 身体
-  - query: laundry
+  - query: Wäsche
     relevant:
-    - kanji: 洗濯
-    - kana: ランドリー
     - kanji: 洗濯物
-  - query: boyfriend
-    relevant:
-    - kanji: 彼氏
-  - query: girlfriend
-    relevant:
-    - kanji: 彼女
-    - kana: ガールフレンド
-  - query: lover
+  - query: Liebhaber
     relevant:
       - kanji: 恋人
-  - query: computer
+  - query: Computer
     relevant:
       - kana: コンピュータ
       - kana: パソコン
       - kanji: 電子計算機
-  - query: calculator
+  - query: Taschenrechner
     relevant:
       - kanji: 電卓
-  - query: distance
-    relevant:
-      - kanji: 距離
-  - query: glasses
+  - query: Brille
     relevant:
       - kanji: 眼鏡
-  - query: average
+  - query: Entfernung
+    relevant:
+      - kanji: 距離
+  - query: Durchschnitt
     relevant:
       - kanji: 平均
-  - query: sightseeing
+  - query: Sightseeing
     relevant:
       - kanji: 観光
-  - query: tourist
+  - query: Tourist
     relevant:
       - kanji: 観光客
-  - query: town
-    relevant:
-      - kanji: 町
-      - kanji: 都市
-  - query: teacher
+  - query: Lehrer
     relevant:
       - kanji: 先生
       - kanji: 教師
-  - query: sun
+  - query: Sonne
     relevant:
       - kanji: 太陽
-  - query: shadow
+  - query: Schatten
     relevant:
       - kanji: 影
       - kanji: 陰
       - kanji: 日陰
-  - query: medicine
+  - query: Medizin
     relevant:
       - kanji: 薬
-  - query: rain
+  - query: Regen
     relevant:
       - kanji: 雨
-  - query: snow
+  - query: Schnee
     relevant:
       - kanji: 雪
-  - query: snowman
+  - query: Schneeman
     relevant:
       - kanji: 雪だるま
-  - query: mathemaics
+  - query: Mathematik
     relevant:
       - kanji: 数学
-  - query: house
+  - query: Haus
     relevant:
       - kanji: 家
-  - query: day
+  - query: Tag
     relevant:
       - kanji: 日
       - kanji: 日にち
-  - query: month
+  - query: Monat
     relevant:
       - kanji: 月
-  - query: year
+  - query: Jahr
     relevant:
       - kanji: 年
