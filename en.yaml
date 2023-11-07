@@ -472,4 +472,28 @@ tests:
   - query: medicine
     relevant:
       - kanji: 薬
-
+  - query: rain
+    relevant:
+      - kanji: 雨
+  - query: snow
+    relevant:
+      - kanji: 雪
+  - query: snowman
+    relevant:
+      - kanji: 雪だるま
+  - query: mathemaics
+    relevant:
+      - kanji: 数学
+  - query: house
+    relevant:
+      - kanji: 家
+  - query: day
+    relevant:
+      - kanji: 日
+      - kanji: 日にち
+  - query: month
+    relevant:
+      - kanji: 月
+  - query: year
+    relevant:
+      - kanji: 年
