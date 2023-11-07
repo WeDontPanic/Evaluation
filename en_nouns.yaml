@@ -308,4 +308,30 @@ tests:
     relevant:
       - kanji: 眼鏡
   - query: average
-    relevant: 平均
+    relevant:
+      - kanji: 平均
+  - query: sightseeing
+    relevant:
+      - kanji: 観光
+  - query: tourist
+    relevant:
+      - kanji: 観光客
+  - query: town
+    relevant:
+      - kanji: 町
+      - kanji: 都市
+  - query: teacher
+    relevant:
+      - kanji: 先生
+      - kanji: 教師
+  - query: sun
+    relevant:
+      - kanji: 太陽
+  - query: shadow
+    relevant:
+      - kanji: 影
+      - kanji: 陰
+      - kanji: 日陰
+  - query: medicine
+    relevant:
+      - kanji: 薬

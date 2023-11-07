@@ -423,3 +423,53 @@ tests:
   - query: weak
     relevant:
     - kanji: 弱い
+  - query: boyfriend
+    relevant:
+    - kanji: 彼氏
+  - query: girlfriend
+    relevant:
+    - kanji: 彼女
+    - kana: ガールフレンド
+  - query: lover
+    relevant:
+      - kanji: 恋人
+  - query: computer
+    relevant:
+      - kana: コンピュータ
+      - kana: パソコン
+      - kanji: 電子計算機
+  - query: calculator
+    relevant:
+      - kanji: 電卓
+  - query: glasses
+    relevant:
+      - kanji: 眼鏡
+  - query: average
+    relevant:
+      - kanji: 平均
+  - query: sightseeing
+    relevant:
+      - kanji: 観光
+  - query: tourist
+    relevant:
+      - kanji: 観光客
+  - query: town
+    relevant:
+      - kanji: 町
+      - kanji: 都市
+  - query: teacher
+    relevant:
+      - kanji: 先生
+      - kanji: 教師
+  - query: sun
+    relevant:
+      - kanji: 太陽
+  - query: shadow
+    relevant:
+      - kanji: 影
+      - kanji: 陰
+      - kanji: 日陰
+  - query: medicine
+    relevant:
+      - kanji: 薬
+
