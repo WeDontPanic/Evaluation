@@ -1,0 +1,311 @@
+language: English
+tests:
+  items:
+  - query: music
+    relevant:
+    - kanji: 音楽
+  - query: vehicle
+    relevant:
+    - kanji: 車
+  - query: food
+    relevant:
+    - kanji: 食べ物
+  - query: Karate
+    relevant:
+    - kanji: 空手
+  - query: diary
+    relevant:
+    - kanji: 日記
+  - query: insect
+    relevant:
+    - kanji: 虫
+    - kanji: 昆虫
+  - query: rent
+    relevant:
+    - kanji: 家賃
+  - query: refrigerator
+    relevant:
+    - kanji: 冷蔵庫
+  - query: typhoon
+    relevant:
+    - kanji: 台風
+  - query: road
+    relevant:
+    - kanji: 道
+    - kanji: 道路
+  - query: relatives
+    relevant:
+    - kanji: 親戚
+  - query: research
+    relevant:
+    - kanji: 研究
+  - query: sugar
+    relevant:
+    - kanji: 砂糖
+  - query: graduation ceremony
+    relevant:
+    - kanji: 卒業式
+  - query: furniture
+    relevant:
+    - kanji: 家具
+  - query: deadline
+    relevant:
+    - kanji: 締め切り
+  - query: garden
+    relevant:
+    - kanji: 庭
+  - query: presentation
+    relevant:
+    - kanji: 発表
+    - kana: プレゼンテーション
+    - kana: プレゼン
+    num_relevant: 1
+  - query: insurance
+    relevant:
+    - kanji: 保険
+  - query: hospital
+    relevant:
+    - kanji: 病院
+  - query: illness
+    relevant:
+    - kanji: 病気
+  - query: yellow
+    relevant:
+    - kanji: 黄色
+    - kanji: 黄色い
+  - query: green
+    relevant:
+    - kanji: 緑
+  - query: blue
+    relevant:
+    - kanji: 青い
+  - query: night
+    relevant:
+    - kanji: 夜
+  - query: tax
+    relevant:
+    - kanji: 税金
+  - query: experience
+    relevant:
+    - kanji: 経験
+  - query: earthquake
+    relevant:
+    - kanji: 地震
+  - query: swimming pool
+    relevant:
+    - kana: プール
+  - query: karaoke
+    relevant:
+    - kana: カラオケ
+  - query: money
+    relevant:
+    - kanji: お金
+    - kanji: 金
+    num_relevant: 1
+  - query: Japanese
+    relevant:
+    - kanji: 日本語
+  - query: Japanese person
+    relevant:
+    - kanji: 日本人
+  - query: Japan
+    relevant:
+    - kanji: 日本
+  - query: self confidence
+    relevant:
+    - kanji: 自信
+  - query: heart
+    relevant:
+    - kanji: 心臓
+  - query: chest
+    relevant:
+    - kanji: 胸
+  - query: feeling
+    relevant:
+    - kanji: 気持ち
+  - query: fireworks
+    relevant:
+    - kanji: 花火
+  - query: future
+    relevant:
+    - kanji: 未来
+    - kanji: 将来
+  - query: friend
+    relevant:
+    - kanji: 友人
+    - kanji: 友達
+  - query: game
+    relevant:
+    - kana: ゲーム
+    - kanji: 試合
+  - query: dog
+    relevant:
+    - kanji: 犬
+  - query: cat
+    relevant:
+    - kanji: 猫
+  - query: child
+    relevant:
+    - kanji: 子供
+  - query: desk
+    relevant:
+    - kanji: 机
+  - query: picture
+    relevant:
+    - kanji: 絵
+    - kanji: 写真
+    num_relevant: 1
+  - query: flower
+    relevant:
+    - kanji: 花
+  - query: rice
+    relevant:
+    - kanji: お米
+    - kanji: 米
+    num_relevant: 1
+  - query: hospital
+    relevant:
+    - kanji: 病院
+  - query: hotel
+    relevant:
+    - kana: ホテル
+  - query: bookstore
+    relevant:
+    - kanji: 本屋
+  - query: town
+    relevant:
+    - kanji: 町
+  - query: yesterday
+    relevant:
+    - kanji: 昨日
+  - query: to write
+    relevant:
+    - kanji: 書く
+  - query: buy
+    relevant:
+    - kanji: 買う
+  - query: dictionary
+    relevant:
+    - kanji: 辞典
+    - kanji: 辞書
+  - query: Netherlands
+    relevant:
+    - kana: オランダ
+  - query: lake
+    relevant:
+    - kanji: 湖
+  - query: children
+    relevant:
+    - kanji: 子供
+    - kanji: 児童
+    - kanji: 子供たち
+    num_relevant: 1
+  - query: lyrics
+    relevant:
+    - kanji: 歌詞
+  - query: to worry
+    relevant:
+    - kanji: 心配
+  - query: word
+    relevant:
+    - kanji: 言葉
+    - kanji: 単語
+  - query: relation
+    relevant:
+    - kanji: 関係
+  - query: time
+    relevant:
+    - kanji: 時間
+    - kanji: 時刻
+  - query: timetable
+    relevant:
+    - kanji: 時刻表
+    - kanji: 時間割
+  - query: world
+    relevant:
+    - kanji: 世界
+  - query: wind
+    relevant:
+    - kanji: 風
+  - query: transparent
+    relevant:
+    - kanji: 透明
+  - query: ladybug
+    relevant:
+    - kanji: てんとう虫
+  - query: darkness
+    relevant:
+    - kanji: 闇
+    - kanji: 暗闇
+    - kanji: 暗さ
+  - query: woman
+    relevant:
+    - kanji: 女の子
+    - kanji: 女の人
+    - kanji: 女子
+    - kanji: 女性
+    - kanji: 婦人
+  - query: man
+    relevant:
+    - kanji: 男の子
+    - kanji: 男の人
+    - kanji: 男子
+    - kanji: 男性
+    - kanji: 人間
+    - kanji: 人
+  - query: wall
+    relevant:
+    - kanji: 壁
+  - query: nose
+    relevant:
+    - kanji: 鼻
+  - query: heavy
+    relevant:
+    - kanji: 重い
+  - query: bad
+    relevant:
+    - kanji: 悪い
+  - query: shower
+    relevant:
+    - kana: シャワー
+  - query: surprise
+    relevant:
+    - kanji: 驚き
+    - kanji: 吃驚
+    - kanji: サプライズ
+    - kanji: 驚かす
+  - query: result
+    relevant:
+    - kanji: 結果
+  - query: body
+    relevant:
+    - kanji: 体
+    - kanji: 身体
+  - query: laundry
+    relevant:
+    - kanji: 洗濯
+    - kana: ランドリー
+    - kanji: 洗濯物
+  - query: boyfriend
+    relevant:
+    - kanji: 彼氏
+  - query: girlfriend
+    relevant:
+    - kanji: 彼女
+    - kana: ガールフレンド
+  - query: lover
+    relevant:
+      - kanji: 恋人
+  - query: computer
+    relevant:
+      - kana: コンピュータ
+      - kana: パソコン
+      - kanji: 電子計算機
+  - query: calculator
+    relevant:
+      - kanji: 電卓
+  - query: glasses
+    relevant:
+      - kanji: 眼鏡
+  - query: average
+    relevant: 平均
