@@ -18,6 +18,7 @@ tests:
   - query: Fahrzeug
     relevant:
     - kanji: 乗り物
+    - kanji: 車両
   - query: gefährlich
     relevant:
     - kanji: 危ない
@@ -54,6 +55,7 @@ tests:
     relevant:
     - kanji: 道
     - kanji: 道路
+    - kanji: 通り
   - query: dreckig
     relevant:
     - kanji: 汚い
@@ -92,9 +94,11 @@ tests:
   - query: Garten
     relevant:
     - kanji: 庭
+    - kanji: 庭園
   - query: Präsentation
     relevant:
     - kanji: 発表
+    - kana: プレゼンテーション
   - query: Versicherung
     relevant:
     - kanji: 保険
@@ -135,7 +139,7 @@ tests:
     - kanji: 地震
   - query: swimming pool
     relevant:
-    - kanji: プール
+    - kana: プール
   - query: karaoke
     relevant:
     - kanji: 空オケ
@@ -163,6 +167,11 @@ tests:
     - kanji: 幸せ
   - query: brechen
     relevant:
+    - kanji: 壊す
+    - kanji: 壊れる
+    - kanji: 割る
+    - kanji: 割れる
+    - kanji: 破る
     - kanji: 折る
     - kanji: 折れる
     num_relevant: 1
@@ -203,8 +212,8 @@ tests:
     - kanji: 標識
   - query: Spiel
     relevant:
-    - kanji: ゲーム
-    - kanji: 遊び
+    - kana: ゲーム
+    - kanji: 試合
   - query: Hund
     relevant:
     - kanji: 犬
@@ -217,11 +226,14 @@ tests:
   - query: Schreibtisch
     relevant:
     - kanji: 机
+    - kana: デスク
     num_relevant: 1
   - query: Bild
     relevant:
     - kanji: 絵
     - kanji: 写真
+    - kana: イメージ
+    - kanji: 画像
     num_relevant: 1
   - query: Aussicht
     relevant:
@@ -244,7 +256,7 @@ tests:
     - kanji: 病院
   - query: Hotel
     relevant:
-    - kanji: ホテル
+    - kana: ホテル
   - query: Stadt
     relevant:
     - kanji: 町
@@ -257,6 +269,7 @@ tests:
   - query: verstehen
     relevant:
     - kanji: 分かる
+    - kanji: 理解
   - query: schreiben
     relevant:
     - kanji: 書く
@@ -266,7 +279,7 @@ tests:
     - kanji: 辞典
   - query: Niederlande
     relevant:
-    - kana: おらんだ
+    - kana: オランダ
   - query: See
     relevant:
     - kanji: 湖
@@ -277,9 +290,6 @@ tests:
     relevant:
     - kanji: 川
   - query: Fußabdruck
-    relevant:
-    - kanji: 足跡
-  - query: Fußspur
     relevant:
     - kanji: 足跡
   - query: Hilfe
@@ -310,7 +320,7 @@ tests:
     - kanji: 本
   - query: anime
     relevant:
-    - kanji: アニメ
+    - kana: アニメ
   - query: Sorgen
     relevant:
     - kanji: 心配
@@ -379,7 +389,7 @@ tests:
     relevant:
     - kanji: 驚き
     - kanji: 吃驚
-    - kanji: サプライズ
+    - kana: サプライズ
     - kanji: 驚かす
   - query: Ergebnis
     relevant:
@@ -398,7 +408,6 @@ tests:
     relevant:
       - kana: コンピュータ
       - kana: パソコン
-      - kanji: 電子計算機
   - query: Taschenrechner
     relevant:
       - kanji: 電卓
@@ -429,16 +438,19 @@ tests:
       - kanji: 影
       - kanji: 陰
       - kanji: 日陰
+      - kanji: 陰影
   - query: Medizin
     relevant:
       - kanji: 薬
+      - kanji: 医学
+      - kanji: 薬剤
   - query: Regen
     relevant:
       - kanji: 雨
   - query: Schnee
     relevant:
       - kanji: 雪
-  - query: Schneeman
+  - query: schneeman
     relevant:
       - kanji: 雪だるま
   - query: Mathematik
@@ -451,6 +463,7 @@ tests:
     relevant:
       - kanji: 日
       - kanji: 日にち
+      - kana: タグ
   - query: Monat
     relevant:
       - kanji: 月

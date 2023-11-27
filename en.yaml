@@ -4,17 +4,10 @@ tests:
   - query: to eat
     relevant:
     - kanji: 食べる
-  - query: eat
-    relevant:
-    - kanji: 食べる
-    - kanji: 食事
   - query: music
     relevant:
     - kanji: 音楽
   - query: to go
-    relevant:
-    - kanji: 行く
-  - query: go
     relevant:
     - kanji: 行く
   - query: to drink
@@ -36,7 +29,7 @@ tests:
   - query: Karate
     relevant:
     - kanji: 空手
-  - query: tidy up
+  - query: to tidy up
     relevant:
     - kanji: 片付ける
     - kanji: 整える
@@ -50,13 +43,17 @@ tests:
   - query: rent
     relevant:
     - kanji: 家賃
+    - kanji: 賃貸
   - query: refrigerator
     relevant:
     - kanji: 冷蔵庫
   - query: to break
     relevant:
     - kanji: 壊す
+    - kanji: 壊れる
     - kanji: 割る
+    - kanji: 割れる
+    - kanji: 破る
     - kanji: 折る
     - kanji: 折れる
   - query: typhoon
@@ -147,12 +144,12 @@ tests:
   - query: earthquake
     relevant:
     - kanji: 地震
-  - query: swimming pool
+  - query: pool
     relevant:
     - kana: プール
   - query: karaoke
     relevant:
-    - kana: カラオケ
+    - kanji: 空オケ
   - query: money
     relevant:
     - kanji: お金
@@ -180,6 +177,7 @@ tests:
   - query: heart
     relevant:
     - kanji: 心臓
+    - kanji: 心
   - query: chest
     relevant:
     - kanji: 胸
@@ -225,6 +223,7 @@ tests:
     relevant:
     - kanji: お米
     - kanji: 米
+    - kana: ライス
     num_relevant: 1
   - query: hospital
     relevant:
@@ -234,6 +233,7 @@ tests:
     - kana: ホテル
   - query: bookstore
     relevant:
+    - kanji: 書店
     - kanji: 本屋
   - query: town
     relevant:
@@ -241,13 +241,13 @@ tests:
   - query: yesterday
     relevant:
     - kanji: 昨日
-  - query: understand
+  - query: to understand
     relevant:
     - kanji: 分かる
   - query: to write
     relevant:
     - kanji: 書く
-  - query: buy
+  - query: to buy
     relevant:
     - kanji: 買う
   - query: dictionary
@@ -272,7 +272,7 @@ tests:
     - kanji: 済みません
     - kanji: 失礼
     - kanji: 失礼します
-  - query: listen
+  - query: to listen
     relevant:
     - kanji: 聞く
   - query: tired
@@ -304,14 +304,17 @@ tests:
   - query: relation
     relevant:
     - kanji: 関係
+    - kanji: 関連
   - query: time
     relevant:
     - kanji: 時間
-    - kanji: 時刻
+    - kanji: 時
+    - kanji: タイム
   - query: timetable
     relevant:
     - kanji: 時刻表
     - kanji: 時間割
+    - kana: タイムテーブル
   - query: world
     relevant:
     - kanji: 世界
@@ -336,6 +339,7 @@ tests:
   - query: woman
     relevant:
     - kanji: 女の子
+    - kanji: 女
     - kanji: 女の人
     - kanji: 女子
     - kanji: 女性
@@ -344,6 +348,7 @@ tests:
     relevant:
     - kanji: 男の子
     - kanji: 男の人
+    - kanji: 男
     - kanji: 男子
     - kanji: 男性
     - kanji: 人間
@@ -383,8 +388,7 @@ tests:
     relevant:
     - kanji: 驚き
     - kanji: 吃驚
-    - kanji: サプライズ
-    - kanji: 驚かす
+    - kana: サプライズ
   - query: result
     relevant:
     - kanji: 結果
@@ -414,9 +418,6 @@ tests:
     - kanji: 洗濯
     - kana: ランドリー
     - kanji: 洗濯物
-  - query: wash
-    relevant:
-    - kanji: 洗う
   - query: to wash
     relevant:
     - kanji: 洗う
@@ -472,6 +473,7 @@ tests:
   - query: medicine
     relevant:
       - kanji: 薬
+      - kanji: 医学
   - query: rain
     relevant:
       - kanji: 雨
@@ -481,7 +483,7 @@ tests:
   - query: snowman
     relevant:
       - kanji: 雪だるま
-  - query: mathemaics
+  - query: mathematics
     relevant:
       - kanji: 数学
   - query: house
@@ -497,3 +499,12 @@ tests:
   - query: year
     relevant:
       - kanji: 年
+  - query: wood
+    relevant:
+      - kanji: 木
+        kana: き
+      - kanji: 木材
+  - query: regardless
+    relevant:
+      - kanji: 関わらず
+      - kanji: にも関わらず

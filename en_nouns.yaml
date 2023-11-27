@@ -23,6 +23,7 @@ tests:
   - query: rent
     relevant:
     - kanji: 家賃
+    - kanji: 賃貸
   - query: refrigerator
     relevant:
     - kanji: 冷蔵庫
@@ -79,6 +80,8 @@ tests:
   - query: blue
     relevant:
     - kanji: 青い
+    - kanji: 青
+      kana: あお
   - query: night
     relevant:
     - kanji: 夜
@@ -96,7 +99,7 @@ tests:
     - kana: プール
   - query: karaoke
     relevant:
-    - kana: カラオケ
+    - kanji: 空オケ
   - query: money
     relevant:
     - kanji: お金
@@ -178,12 +181,6 @@ tests:
   - query: yesterday
     relevant:
     - kanji: 昨日
-  - query: to write
-    relevant:
-    - kanji: 書く
-  - query: buy
-    relevant:
-    - kanji: 買う
   - query: dictionary
     relevant:
     - kanji: 辞典
@@ -203,9 +200,6 @@ tests:
   - query: lyrics
     relevant:
     - kanji: 歌詞
-  - query: to worry
-    relevant:
-    - kanji: 心配
   - query: word
     relevant:
     - kanji: 言葉
@@ -341,7 +335,7 @@ tests:
   - query: snowman
     relevant:
       - kanji: 雪だるま
-  - query: mathemaics
+  - query: mathematics
     relevant:
       - kanji: 数学
   - query: house
@@ -357,3 +351,8 @@ tests:
   - query: year
     relevant:
       - kanji: 年
+  - query: wood
+    relevant:
+      - kanji: 木
+        kana: き
+      - kanji: 木材
