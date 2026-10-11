@@ -1,0 +1,1475 @@
+# Sentence reader evaluation set.
+#
+# Each item is a sentence with its expected split (`words[].surface`, in order, concatenating to
+# the sentence) and, per word, the dictionary entries the search should return when that word is
+# selected (`relevant`, matched by `kanji` (main written form) and/or `kana`). Words without
+# `relevant` (punctuation) only count for split scoring. With `ordered: true` the labels must be
+# found in the given order and hit@1 needs the first one: when JMdict has an entry for the
+# inflected form itself (早く, 知らない, ございます), it has to rank before the normalized word.
+# Exception: a verb stem before に (買いに行く) is the verb, not the noun 買い.
+# A phrase JMdict lists as an expression verb (見に行く, 雨が降る, 風邪を引く) is one word, labelled with
+# that entry; te-form + auxiliary (ている, てみる) stays split.
+#
+# Split conventions: inflections stay attached to their verb/adjective (食べませんでした), particles
+# and the copula are separate words, JMdict grammar expressions are their own word and split off
+# the preceding verb stem (食べ | なければならない).
+#
+# Evaluated by `lib/search/tests/sentence_reader_eval.rs` (Jotoba/Search).
+items:
+  # ---------------------------------------------------------------- basic
+  - sentence: 私は学生です。
+    category: basic
+    words:
+      - { surface: 私, relevant: [{ kanji: 私, kana: わたし }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 学生, relevant: [{ kanji: 学生 }] }
+      - { surface: です, relevant: [{ kana: です }] }
+      - { surface: 。 }
+  - sentence: 猫が好きです
+    category: basic
+    words:
+      - { surface: 猫, relevant: [{ kanji: 猫 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 好き, relevant: [{ kanji: 好き }] }
+      - { surface: です, relevant: [{ kana: です }] }
+  - sentence: 毎日日本語を読みます
+    category: basic
+    words:
+      - { surface: 毎日, relevant: [{ kanji: 毎日 }] }
+      - { surface: 日本語, relevant: [{ kanji: 日本語 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 読みます, relevant: [{ kanji: 読む }] }
+  - sentence: 昨日友達と映画を見ました
+    category: basic
+    words:
+      - { surface: 昨日, relevant: [{ kanji: 昨日 }] }
+      - { surface: 友達, relevant: [{ kanji: 友達 }] }
+      - { surface: と, relevant: [{ kana: と }] }
+      - { surface: 映画, relevant: [{ kanji: 映画 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 見ました, relevant: [{ kanji: 見る }] }
+  - sentence: 駅はどこですか
+    category: basic
+    words:
+      - { surface: 駅, relevant: [{ kanji: 駅 }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: どこ, relevant: [{ kanji: 何処, kana: どこ }] }
+      - { surface: ですか, relevant: [{ kana: ですか }] }
+  - sentence: 水を飲みたい
+    category: basic
+    words:
+      - { surface: 水, relevant: [{ kanji: 水 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 飲みたい, relevant: [{ kanji: 飲む }] }
+  - sentence: 本を買いに行った
+    category: basic
+    words:
+      - { surface: 本, relevant: [{ kanji: 本 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 買い, relevant: [{ kanji: 買う }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 行った, relevant: [{ kanji: 行く }] }
+  - sentence: 東京に住んでいます
+    category: basic
+    words:
+      - { surface: 東京, relevant: [{ kanji: 東京 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 住んでいます, relevant: [{ kanji: 住む }] }
+  - sentence: 雨が降っている
+    category: basic
+    words:
+      - { surface: 雨が降っている, relevant: [{ kanji: 雨が降る }] }
+  - sentence: 窓を開けた
+    category: basic
+    words:
+      - { surface: 窓, relevant: [{ kanji: 窓 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 開けた, relevant: [{ kanji: 開ける }] }
+  - sentence: 彼女は医者だ
+    category: basic
+    words:
+      - { surface: 彼女, relevant: [{ kanji: 彼女 }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 医者, relevant: [{ kanji: 医者 }] }
+      - { surface: だ, relevant: [{ kana: だ }] }
+  - sentence: 電車で学校へ行きます
+    category: basic
+    words:
+      - { surface: 電車, relevant: [{ kanji: 電車 }] }
+      - { surface: で, relevant: [{ kana: で }] }
+      - { surface: 学校, relevant: [{ kanji: 学校 }] }
+      - { surface: へ, relevant: [{ kana: へ }] }
+      - { surface: 行きます, relevant: [{ kanji: 行く }] }
+  - sentence: この本は面白い
+    category: basic
+    words:
+      - { surface: この, relevant: [{ kanji: 此の, kana: この }] }
+      - { surface: 本, relevant: [{ kanji: 本 }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 面白い, relevant: [{ kanji: 面白い }] }
+  - sentence: 母が料理を作った
+    category: basic
+    words:
+      - { surface: 母, relevant: [{ kanji: 母 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 料理, relevant: [{ kanji: 料理 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 作った, relevant: [{ kanji: 作る }] }
+  - sentence: 子供たちが公園で遊んでいる
+    category: basic
+    words:
+      - { surface: 子供, relevant: [{ kanji: 子供 }] }
+      - { surface: たち, relevant: [{ kanji: 達, kana: たち }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 公園, relevant: [{ kanji: 公園 }] }
+      - { surface: で, relevant: [{ kana: で }] }
+      - { surface: 遊んでいる, relevant: [{ kanji: 遊ぶ }] }
+  - sentence: 明日は早く起きる
+    category: basic
+    words:
+      - { surface: 明日, relevant: [{ kanji: 明日 }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 早く, relevant: [{ kanji: 早く }, { kanji: 早い }], ordered: true }
+      - { surface: 起きる, relevant: [{ kanji: 起きる }] }
+  - sentence: 時間がない
+    category: basic
+    words:
+      - { surface: 時間, relevant: [{ kanji: 時間 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: ない, relevant: [{ kanji: 無い, kana: ない }] }
+  - sentence: 犬と猫
+    category: basic
+    words:
+      - { surface: 犬, relevant: [{ kanji: 犬 }] }
+      - { surface: と, relevant: [{ kana: と }] }
+      - { surface: 猫, relevant: [{ kanji: 猫 }] }
+  - sentence: 先生に手紙を書きました
+    category: basic
+    words:
+      - { surface: 先生, relevant: [{ kanji: 先生 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 手紙, relevant: [{ kanji: 手紙 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 書きました, relevant: [{ kanji: 書く }] }
+  - sentence: 日本の夏は暑い
+    category: basic
+    words:
+      - { surface: 日本, relevant: [{ kanji: 日本 }] }
+      - { surface: の, relevant: [{ kanji: 乃, kana: の }] }
+      - { surface: 夏, relevant: [{ kanji: 夏 }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 暑い, relevant: [{ kanji: 暑い }] }
+
+  # ---------------------------------------------------------------- verb inflections
+  - sentence: 食べなかった
+    category: verb
+    words:
+      - { surface: 食べなかった, relevant: [{ kanji: 食べる }] }
+  - sentence: 行きませんでした
+    category: verb
+    words:
+      - { surface: 行きませんでした, relevant: [{ kanji: 行く }] }
+  - sentence: 読まれた
+    category: verb
+    words:
+      - { surface: 読まれた, relevant: [{ kanji: 読む }] }
+  - sentence: 書かせる
+    category: verb
+    words:
+      - { surface: 書かせる, relevant: [{ kanji: 書く }] }
+  - sentence: 飲んでしまった
+    category: verb
+    words:
+      - { surface: 飲んでしまった, relevant: [{ kanji: 飲む }] }
+  - sentence: 見てみたい
+    category: verb
+    words:
+      - { surface: 見てみたい, relevant: [{ kanji: 見る }] }
+  - sentence: 話しておいた
+    category: verb
+    words:
+      - { surface: 話しておいた, relevant: [{ kanji: 話す }] }
+  - sentence: 待っていた
+    category: verb
+    words:
+      - { surface: 待っていた, relevant: [{ kanji: 待つ }] }
+  - sentence: 泳げば
+    category: verb
+    words:
+      - { surface: 泳げば, relevant: [{ kanji: 泳ぐ }] }
+  - sentence: 来なければ
+    category: verb
+    words:
+      - { surface: 来なければ, relevant: [{ kanji: 来る }] }
+  - sentence: 会いたかった
+    category: verb
+    words:
+      - { surface: 会いたかった, relevant: [{ kanji: 会う }] }
+  - sentence: 帰ろう
+    category: verb
+    words:
+      - { surface: 帰ろう, relevant: [{ kanji: 帰る }] }
+  - sentence: 歌ったり踊ったりする
+    category: verb
+    words:
+      - { surface: 歌ったり, relevant: [{ kanji: 歌う }] }
+      - { surface: 踊ったり, relevant: [{ kanji: 踊る }] }
+      - { surface: する, relevant: [{ kanji: 為る, kana: する }] }
+  - sentence: 知らない人
+    category: verb
+    words:
+      - { surface: 知らない, relevant: [{ kanji: 知らない }, { kanji: 知る }], ordered: true }
+      - { surface: 人, relevant: [{ kanji: 人, kana: ひと }] }
+  - sentence: 走っている犬
+    category: verb
+    words:
+      - { surface: 走っている, relevant: [{ kanji: 走る }] }
+      - { surface: 犬, relevant: [{ kanji: 犬 }] }
+  - sentence: 食べられない
+    category: verb
+    words:
+      - { surface: 食べられない, relevant: [{ kanji: 食べる }] }
+  - sentence: 起きなさい
+    category: verb
+    words:
+      - { surface: 起きなさい, relevant: [{ kanji: 起きる }] }
+  - sentence: 使わないで
+    category: verb
+    words:
+      - { surface: 使わないで, relevant: [{ kanji: 使う }] }
+  - sentence: 来られる
+    category: verb
+    words:
+      - { surface: 来られる, relevant: [{ kanji: 来る }] }
+  - sentence: 読んだら
+    category: verb
+    words:
+      - { surface: 読んだら, relevant: [{ kanji: 読む }] }
+
+  # ---------------------------------------------------------------- adjectives
+  - sentence: 高くない
+    category: adjective
+    words:
+      - { surface: 高くない, relevant: [{ kanji: 高い }] }
+  - sentence: 寒かった
+    category: adjective
+    words:
+      - { surface: 寒かった, relevant: [{ kanji: 寒い }] }
+  - sentence: 安くて美味しい
+    category: adjective
+    words:
+      - { surface: 安くて, relevant: [{ kanji: 安い }] }
+      - { surface: 美味しい, relevant: [{ kanji: 美味しい }] }
+  - sentence: 大きければ
+    category: adjective
+    words:
+      - { surface: 大きければ, relevant: [{ kanji: 大きい }] }
+  - sentence: 高ければ
+    category: adjective
+    words:
+      - { surface: 高ければ, relevant: [{ kanji: 高い }] }
+  - sentence: 新しい車が欲しい
+    category: adjective
+    words:
+      - { surface: 新しい, relevant: [{ kanji: 新しい }] }
+      - { surface: 車, relevant: [{ kanji: 車 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 欲しい, relevant: [{ kanji: 欲しい }] }
+  - sentence: とても楽しかったです
+    category: adjective
+    words:
+      - { surface: とても, relevant: [{ kanji: 迚も, kana: とても }] }
+      - { surface: 楽しかった, relevant: [{ kanji: 楽しい }] }
+      - { surface: です, relevant: [{ kana: です }] }
+  - sentence: 部屋が暗くなった
+    category: adjective
+    words:
+      - { surface: 部屋, relevant: [{ kanji: 部屋 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 暗く, relevant: [{ kanji: 暗い }] }
+      - { surface: なった, relevant: [{ kanji: 成る, kana: なる }] }
+  - sentence: いい天気ですね
+    category: adjective
+    words:
+      - { surface: いい, relevant: [{ kana: いい }, { kanji: 良い }] }
+      - { surface: 天気, relevant: [{ kanji: 天気 }] }
+      - { surface: です, relevant: [{ kana: です }] }
+      - { surface: ね, relevant: [{ kana: ね }] }
+  - sentence: 静かな部屋
+    category: adjective
+    words:
+      - { surface: 静か, relevant: [{ kanji: 静か }] }
+      - { surface: な, relevant: [{ kana: な }] }
+      - { surface: 部屋, relevant: [{ kanji: 部屋 }] }
+
+  # ---------------------------------------------------------------- copula / nouns
+  - sentence: 学生だった
+    category: copula
+    words:
+      - { surface: 学生, relevant: [{ kanji: 学生 }] }
+      - { surface: だった, relevant: [{ kana: だった }, { kana: だ }], ordered: true }
+  - sentence: 元気でした
+    category: copula
+    words:
+      - { surface: 元気, relevant: [{ kanji: 元気 }] }
+      - { surface: でした, relevant: [{ kana: です }] }
+  - sentence: 簡単じゃない
+    category: copula
+    words:
+      - { surface: 簡単, relevant: [{ kanji: 簡単 }] }
+      - { surface: じゃない, relevant: [{ kanji: じゃ無い, kana: じゃない }] }
+  - sentence: 有名ではない
+    category: copula
+    words:
+      - { surface: 有名, relevant: [{ kanji: 有名 }] }
+      - { surface: ではない, relevant: [{ kanji: では無い, kana: ではない }] }
+  - sentence: 先生じゃありませんでした
+    category: copula
+    words:
+      - { surface: 先生, relevant: [{ kanji: 先生 }] }
+      - { surface: じゃありませんでした, relevant: [{ kanji: じゃ無い, kana: じゃない }] }
+  - sentence: 間違いではありません
+    category: copula
+    words:
+      - { surface: 間違い, relevant: [{ kanji: 間違い }] }
+      - { surface: ではありません, relevant: [{ kanji: では無い, kana: ではない }] }
+  - sentence: 学生ではないか
+    category: copula
+    words:
+      - { surface: 学生, relevant: [{ kanji: 学生 }] }
+      - { surface: ではないか, relevant: [{ kanji: では無いか, kana: ではないか }] }
+  - sentence: 私のです
+    category: copula
+    words:
+      - { surface: 私, relevant: [{ kanji: 私, kana: わたし }] }
+      - { surface: の, relevant: [{ kanji: 乃, kana: の }] }
+      - { surface: です, relevant: [{ kana: です }] }
+
+  # ---------------------------------------------------------------- JMdict expressions
+  - sentence: 行くかもしれない
+    category: expression
+    words:
+      - { surface: 行く, relevant: [{ kanji: 行く }] }
+      - { surface: かもしれない, relevant: [{ kanji: かも知れない, kana: かもしれない }] }
+  - sentence: 雨かもしれません
+    category: expression
+    words:
+      - { surface: 雨, relevant: [{ kanji: 雨 }] }
+      - surface: かもしれません
+        relevant: [{ kanji: かも知れない, kana: かもしれない }, { kanji: かも知れません, kana: かもしれません }]
+  - sentence: 食べなければならない
+    category: expression
+    words:
+      - { surface: 食べ, relevant: [{ kanji: 食べる }] }
+      - { surface: なければならない, relevant: [{ kana: なければならない }] }
+  - sentence: 早く寝なければなりません
+    category: expression
+    words:
+      - { surface: 早く, relevant: [{ kanji: 早く }, { kanji: 早い }], ordered: true }
+      - { surface: 寝, relevant: [{ kanji: 寝る }] }
+      - { surface: なければなりません, relevant: [{ kana: なければならない }] }
+  - sentence: 薬を飲まなくてはいけない
+    category: expression
+    words:
+      - { surface: 薬, relevant: [{ kanji: 薬 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 飲ま, relevant: [{ kanji: 飲む }] }
+      - { surface: なくてはいけない, relevant: [{ kana: なくてはいけない }] }
+  - sentence: 宿題をやらなきゃいけない
+    category: expression
+    words:
+      - { surface: 宿題, relevant: [{ kanji: 宿題 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: やら, relevant: [{ kanji: 遣る, kana: やる }] }
+      - { surface: なきゃいけない, relevant: [{ kana: なきゃいけない }] }
+  - sentence: 帰らなくちゃ
+    category: expression
+    words:
+      - { surface: 帰ら, relevant: [{ kanji: 帰る }] }
+      # JMdict has なくちゃ, but it isn't in the built resources: closest existing entry
+      - { surface: なくちゃ, relevant: [{ kanji: 無くちゃいけない, kana: なくちゃいけない }] }
+  - sentence: ここで写真を撮ってもいいですか
+    category: expression
+    words:
+      - { surface: ここ, relevant: [{ kanji: 此処, kana: ここ }] }
+      - { surface: で, relevant: [{ kana: で }] }
+      - { surface: 写真を撮っ, relevant: [{ kanji: 写真を撮る }] }
+      - { surface: てもいい, relevant: [{ kana: てもいい }] }
+      - { surface: ですか, relevant: [{ kana: ですか }] }
+  - sentence: 日本語を話すことができる
+    category: expression
+    words:
+      - { surface: 日本語, relevant: [{ kanji: 日本語 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 話す, relevant: [{ kanji: 話す }] }
+      - { surface: ことができる, relevant: [{ kana: ことができる }] }
+  - sentence: 話せるようになった
+    category: expression
+    words:
+      - { surface: 話せる, relevant: [{ kanji: 話せる }, { kanji: 話す }] }
+      - { surface: ようになった, relevant: [{ kana: ようになる }] }
+  - sentence: 遅れないようにする
+    category: expression
+    words:
+      - { surface: 遅れない, relevant: [{ kanji: 遅れる }] }
+      - { surface: ようにする, relevant: [{ kana: ようにする }] }
+  - sentence: 来るかどうか分からない
+    category: expression
+    words:
+      - { surface: 来る, relevant: [{ kanji: 来る }] }
+      - { surface: かどうか, relevant: [{ kanji: か如何か, kana: かどうか }] }
+      - { surface: 分からない, relevant: [{ kanji: 分かる }] }
+  - sentence: 嫌いなわけではない
+    category: expression
+    words:
+      - { surface: 嫌い, relevant: [{ kanji: 嫌い }] }
+      - { surface: な, relevant: [{ kana: な }] }
+      - { surface: わけではない, relevant: [{ kanji: 訳ではない, kana: わけではない }] }
+  - sentence: 早く寝たほうがいい
+    category: expression
+    words:
+      - { surface: 早く, relevant: [{ kanji: 早く }, { kanji: 早い }], ordered: true }
+      - { surface: 寝た, relevant: [{ kanji: 寝る }] }
+      - { surface: ほうがいい, relevant: [{ kanji: 方がいい, kana: ほうがいい }] }
+  - sentence: どうしたんですか
+    category: expression
+    words:
+      # JMdict has どうしたん as its own expression ("what's the matter?")
+      - { surface: どうしたん, relevant: [{ kana: どうしたん }] }
+      - { surface: ですか, relevant: [{ kana: ですか }] }
+  - sentence: 彼について話した
+    category: expression
+    words:
+      - { surface: 彼, relevant: [{ kanji: 彼, kana: かれ }] }
+      - { surface: について, relevant: [{ kanji: に就いて, kana: について }] }
+      - { surface: 話した, relevant: [{ kanji: 話す }] }
+  - sentence: 私にとって大切だ
+    category: expression
+    words:
+      - { surface: 私, relevant: [{ kanji: 私, kana: わたし }] }
+      - { surface: にとって, relevant: [{ kanji: に取って, kana: にとって }] }
+      - { surface: 大切, relevant: [{ kanji: 大切 }] }
+      - { surface: だ, relevant: [{ kana: だ }] }
+  - sentence: 明日は休みだろう
+    category: expression
+    words:
+      - { surface: 明日, relevant: [{ kanji: 明日 }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 休み, relevant: [{ kanji: 休み }] }
+      - { surface: だろう, relevant: [{ kana: だろう }] }
+  - sentence: 明日は晴れるでしょう
+    category: expression
+    words:
+      - { surface: 明日, relevant: [{ kanji: 明日 }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 晴れる, relevant: [{ kanji: 晴れる }] }
+      - { surface: でしょう, relevant: [{ kana: でしょう }] }
+  - sentence: 雨なので
+    category: expression
+    words:
+      - { surface: 雨, relevant: [{ kanji: 雨 }] }
+      - { surface: なので, relevant: [{ kana: なので }] }
+  - sentence: 便利なのです
+    category: expression
+    words:
+      - { surface: 便利, relevant: [{ kanji: 便利 }] }
+      - { surface: な, relevant: [{ kana: な }] }
+      - { surface: のです, relevant: [{ kana: のです }] }
+  - sentence: 意味が分からないのだ
+    category: expression
+    words:
+      - { surface: 意味, relevant: [{ kanji: 意味 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 分からない, relevant: [{ kanji: 分かる }] }
+      - { surface: のだ, relevant: [{ kana: のだ }] }
+  - sentence: 行こうじゃないか
+    category: expression
+    words:
+      - { surface: 行こう, relevant: [{ kanji: 行く }] }
+      - { surface: じゃないか, relevant: [{ kanji: じゃ無いか, kana: じゃないか }] }
+  - sentence: 仕方ない
+    category: expression
+    words:
+      - { surface: 仕方ない, relevant: [{ kanji: 仕方ない, kana: しかたない }] }
+
+  # ---------------------------------------------------------------- colloquial / contracted
+  - sentence: 分からん
+    category: colloquial
+    words:
+      - { surface: 分からん, relevant: [{ kanji: 分からん }, { kanji: 分かる }], ordered: true }
+  - sentence: 知らん
+    category: colloquial
+    words:
+      - { surface: 知らん, relevant: [{ kanji: 知る }] }
+  - sentence: 書いとこう
+    category: colloquial
+    words:
+      - { surface: 書いとこう, relevant: [{ kanji: 書く }] }
+  - sentence: 買っとこう
+    category: colloquial
+    words:
+      - { surface: 買っとこう, relevant: [{ kanji: 買う }] }
+  - sentence: 見ちゃった
+    category: colloquial
+    words:
+      - { surface: 見ちゃった, relevant: [{ kanji: 見る }] }
+  - sentence: 飲んじゃった
+    category: colloquial
+    words:
+      - { surface: 飲んじゃった, relevant: [{ kanji: 飲む }] }
+  - sentence: 食べてる
+    category: colloquial
+    words:
+      - { surface: 食べてる, relevant: [{ kanji: 食べる }] }
+  - sentence: 待ってる
+    category: colloquial
+    words:
+      - { surface: 待ってる, relevant: [{ kanji: 待つ }] }
+  - sentence: 遊んでた
+    category: colloquial
+    words:
+      - { surface: 遊んでた, relevant: [{ kanji: 遊ぶ }] }
+  - sentence: 忘れちゃった
+    category: colloquial
+    words:
+      - { surface: 忘れちゃった, relevant: [{ kanji: 忘れる }] }
+  - sentence: 言っちゃいけない
+    category: colloquial
+    words:
+      - { surface: 言っちゃ, relevant: [{ kanji: 言う }] }
+      - { surface: いけない, relevant: [{ kanji: 行けない, kana: いけない }] }
+  - sentence: 食べれる
+    category: colloquial
+    words:
+      - { surface: 食べれる, relevant: [{ kanji: 食べる }] }
+  - sentence: 寝てました
+    category: colloquial
+    words:
+      - { surface: 寝てました, relevant: [{ kanji: 寝る }] }
+  - sentence: 会ってる
+    category: colloquial
+    words:
+      - { surface: 会ってる, relevant: [{ kanji: 会う }] }
+
+  # ---------------------------------------------------------------- tokenizer traps
+  - sentence: 外出なければならない
+    category: trap
+    words:
+      - { surface: 外, relevant: [{ kanji: 外, kana: そと }] }
+      - { surface: 出, relevant: [{ kanji: 出る }] }
+      - { surface: なければならない, relevant: [{ kana: なければならない }] }
+  - sentence: 電車でもいい
+    category: trap
+    words:
+      - { surface: 電車, relevant: [{ kanji: 電車 }] }
+      - { surface: でも, relevant: [{ kana: でも }] }
+      - { surface: いい, relevant: [{ kana: いい }, { kanji: 良い }] }
+
+  # ---------------------------------------------------------------- longer sentences
+  - sentence: 雨が降ったら、家にいます
+    category: long
+    words:
+      - { surface: 雨が降ったら, relevant: [{ kanji: 雨が降る }] }
+      - { surface: 、 }
+      - { surface: 家, relevant: [{ kanji: 家 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: います, relevant: [{ kanji: 居る, kana: いる }] }
+  - sentence: 疲れたので早く寝ました
+    category: long
+    words:
+      - { surface: 疲れた, relevant: [{ kanji: 疲れた }, { kanji: 疲れる }], ordered: true }
+      - { surface: ので, relevant: [{ kana: ので }] }
+      - { surface: 早く, relevant: [{ kanji: 早く }, { kanji: 早い }], ordered: true }
+      - { surface: 寝ました, relevant: [{ kanji: 寝る }] }
+  - sentence: 彼が来なかったので帰った
+    category: long
+    words:
+      - { surface: 彼, relevant: [{ kanji: 彼, kana: かれ }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 来なかった, relevant: [{ kanji: 来る }] }
+      - { surface: ので, relevant: [{ kana: ので }] }
+      - { surface: 帰った, relevant: [{ kanji: 帰る }] }
+  - sentence: 本を読んでいる人がいる
+    category: long
+    words:
+      - { surface: 本, relevant: [{ kanji: 本 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 読んでいる, relevant: [{ kanji: 読む }] }
+      - { surface: 人, relevant: [{ kanji: 人, kana: ひと }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: いる, relevant: [{ kanji: 居る, kana: いる }] }
+  - sentence: 友達と一緒に映画を見に行きたい
+    category: long
+    words:
+      - { surface: 友達, relevant: [{ kanji: 友達 }] }
+      - { surface: と, relevant: [{ kana: と }] }
+      - { surface: 一緒, relevant: [{ kanji: 一緒 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 映画, relevant: [{ kanji: 映画 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 見に行きたい, relevant: [{ kanji: 見に行く }] }
+  - sentence: 新しい仕事は大変だけど楽しい
+    category: long
+    words:
+      - { surface: 新しい, relevant: [{ kanji: 新しい }] }
+      - { surface: 仕事, relevant: [{ kanji: 仕事 }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 大変, relevant: [{ kanji: 大変 }] }
+      - { surface: だ, relevant: [{ kana: だ }] }
+      - { surface: けど, relevant: [{ kana: けど }] }
+      - { surface: 楽しい, relevant: [{ kanji: 楽しい }] }
+  - sentence: 駅まで歩いて十分かかります
+    category: long
+    words:
+      - { surface: 駅, relevant: [{ kanji: 駅 }] }
+      - { surface: まで, relevant: [{ kana: まで }] }
+      - { surface: 歩いて, relevant: [{ kanji: 歩く }] }
+      - { surface: 十分, relevant: [{ kanji: 十分, kana: じっぷん }] }
+      - { surface: かかります, relevant: [{ kanji: 掛かる, kana: かかる }] }
+  - sentence: 窓が開いているから寒い
+    category: long
+    words:
+      - { surface: 窓, relevant: [{ kanji: 窓 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 開いている, relevant: [{ kanji: 開く }] }
+      - { surface: から, relevant: [{ kana: から }] }
+      - { surface: 寒い, relevant: [{ kanji: 寒い }] }
+
+  # ================================================================ batch 2 (2026-10-10)
+  # ---------------------------------------------------------------- more verb classes / forms
+  - sentence: 海で泳いだ
+    category: verb
+    words:
+      - { surface: 海, relevant: [{ kanji: 海 }] }
+      - { surface: で, relevant: [{ kana: で }] }
+      - { surface: 泳いだ, relevant: [{ kanji: 泳ぐ }] }
+  - sentence: 金魚が死んだ
+    category: verb
+    words:
+      - { surface: 金魚, relevant: [{ kanji: 金魚 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 死んだ, relevant: [{ kanji: 死ぬ }] }
+  - sentence: 名前を呼ばれました
+    category: verb
+    words:
+      - { surface: 名前, relevant: [{ kanji: 名前 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 呼ばれました, relevant: [{ kanji: 呼ぶ }] }
+  - sentence: 友達を待たせた
+    category: verb
+    words:
+      - { surface: 友達, relevant: [{ kanji: 友達 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 待たせた, relevant: [{ kanji: 待つ }] }
+  - sentence: 彼は来ない
+    category: verb
+    words:
+      - { surface: 彼, relevant: [{ kanji: 彼, kana: かれ }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 来ない, relevant: [{ kanji: 来る }] }
+  - sentence: 何もしない
+    category: verb
+    words:
+      - { surface: 何, relevant: [{ kanji: 何, kana: なに }] }
+      - { surface: も, relevant: [{ kana: も }] }
+      - { surface: しない, relevant: [{ kanji: 為る, kana: する }] }
+  - sentence: 漢字が読めない
+    category: verb
+    words:
+      - { surface: 漢字, relevant: [{ kanji: 漢字 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 読めない, relevant: [{ kanji: 読める }, { kanji: 読む }] }
+  - sentence: 朝早く起きられなかった
+    category: verb
+    words:
+      - { surface: 朝, relevant: [{ kanji: 朝 }] }
+      - { surface: 早く, relevant: [{ kanji: 早く }, { kanji: 早い }], ordered: true }
+      - { surface: 起きられなかった, relevant: [{ kanji: 起きる }] }
+  - sentence: そう言われた
+    category: verb
+    words:
+      - { surface: そう言われた, relevant: [{ kanji: そう言われる }] }
+  - sentence: 壁に書かれていた
+    category: verb
+    words:
+      - { surface: 壁, relevant: [{ kanji: 壁 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 書かれていた, relevant: [{ kanji: 書く }] }
+  - sentence: 答えを覚えていない
+    category: verb
+    words:
+      - { surface: 答え, relevant: [{ kanji: 答え }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 覚えていない, relevant: [{ kanji: 覚える }] }
+  - sentence: 服を着替えた
+    category: verb
+    words:
+      - { surface: 服, relevant: [{ kanji: 服 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 着替えた, relevant: [{ kanji: 着替える }] }
+  - sentence: 次の駅で降ります
+    category: verb
+    words:
+      - { surface: 次, relevant: [{ kanji: 次 }] }
+      - { surface: の, relevant: [{ kanji: 乃, kana: の }] }
+      - { surface: 駅, relevant: [{ kanji: 駅 }] }
+      - { surface: で, relevant: [{ kana: で }] }
+      - { surface: 降ります, relevant: [{ kanji: 降りる }] }
+  - sentence: 試合に勝てる
+    category: verb
+    words:
+      - { surface: 試合, relevant: [{ kanji: 試合 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 勝てる, relevant: [{ kanji: 勝つ }] }
+  - sentence: 皿を洗わなかった
+    category: verb
+    words:
+      - { surface: 皿, relevant: [{ kanji: 皿 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 洗わなかった, relevant: [{ kanji: 洗う }] }
+  - sentence: そう思います
+    category: verb
+    words:
+      - { surface: そう, relevant: [{ kana: そう }] }
+      - { surface: 思います, relevant: [{ kanji: 思う }] }
+  - sentence: 彼の名前を知っています
+    category: verb
+    words:
+      - { surface: 彼, relevant: [{ kanji: 彼, kana: かれ }] }
+      - { surface: の, relevant: [{ kanji: 乃, kana: の }] }
+      - { surface: 名前, relevant: [{ kanji: 名前 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 知っています, relevant: [{ kanji: 知る }] }
+  - sentence: ドアを閉めて
+    category: verb
+    words:
+      - { surface: ドア, relevant: [{ kana: ドア }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 閉めて, relevant: [{ kanji: 閉める }] }
+  - sentence: 電気を消しましょう
+    category: verb
+    words:
+      - { surface: 電気, relevant: [{ kanji: 電気 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 消しましょう, relevant: [{ kanji: 消す }] }
+  - sentence: 窓を開けないでください
+    category: verb
+    words:
+      - { surface: 窓, relevant: [{ kanji: 窓 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 開けないで, relevant: [{ kanji: 開ける }] }
+      - { surface: ください, relevant: [{ kanji: 下さい, kana: ください }] }
+  - sentence: ちょっと待ってください
+    category: verb
+    words:
+      - { surface: ちょっと, relevant: [{ kana: ちょっと }] }
+      - { surface: 待って, relevant: [{ kanji: 待つ }] }
+      - { surface: ください, relevant: [{ kanji: 下さい, kana: ください }] }
+  - sentence: 手伝ってくれた
+    category: verb
+    words:
+      - { surface: 手伝って, relevant: [{ kanji: 手伝う }] }
+      - { surface: くれた, relevant: [{ kanji: 呉れる, kana: くれる }] }
+
+  # ---------------------------------------------------------------- more adjectives
+  - sentence: 昨日の料理は美味しくなかった
+    category: adjective
+    words:
+      - { surface: 昨日, relevant: [{ kanji: 昨日 }] }
+      - { surface: の, relevant: [{ kanji: 乃, kana: の }] }
+      - { surface: 料理, relevant: [{ kanji: 料理 }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 美味しくなかった, relevant: [{ kanji: 美味しい }] }
+  - sentence: 寒くて眠い
+    category: adjective
+    words:
+      - { surface: 寒くて, relevant: [{ kanji: 寒い }] }
+      - { surface: 眠い, relevant: [{ kanji: 眠い }] }
+  - sentence: 試験が難しくなった
+    category: adjective
+    words:
+      - { surface: 試験, relevant: [{ kanji: 試験 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 難しく, relevant: [{ kanji: 難しい }] }
+      - { surface: なった, relevant: [{ kanji: 成る, kana: なる }] }
+  - sentence: このケーキは甘くない
+    category: adjective
+    words:
+      - { surface: この, relevant: [{ kanji: 此の, kana: この }] }
+      - { surface: ケーキ, relevant: [{ kana: ケーキ }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 甘くない, relevant: [{ kanji: 甘い }] }
+  - sentence: 若い頃は元気だった
+    category: adjective
+    words:
+      - { surface: 若い, relevant: [{ kanji: 若い }] }
+      - { surface: 頃, relevant: [{ kanji: 頃 }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 元気, relevant: [{ kanji: 元気 }] }
+      - { surface: だった, relevant: [{ kana: だった }, { kana: だ }], ordered: true }
+  - sentence: 部屋をきれいにした
+    category: adjective
+    words:
+      - { surface: 部屋, relevant: [{ kanji: 部屋 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: きれい, relevant: [{ kanji: 綺麗, kana: きれい }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: した, relevant: [{ kanji: 為る, kana: する }] }
+  - sentence: 大きな家に住みたい
+    category: adjective
+    words:
+      - { surface: 大きな, relevant: [{ kanji: 大きな }] }
+      - { surface: 家, relevant: [{ kanji: 家 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 住みたい, relevant: [{ kanji: 住む }] }
+  - sentence: 色が白くて綺麗です
+    category: adjective
+    words:
+      - { surface: 色, relevant: [{ kanji: 色 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 白くて, relevant: [{ kanji: 白い }] }
+      - { surface: 綺麗, relevant: [{ kanji: 綺麗 }] }
+      - { surface: です, relevant: [{ kana: です }] }
+
+  # ---------------------------------------------------------------- kana-only writing
+  - sentence: わたしはがくせいです
+    category: kana
+    words:
+      - { surface: わたし, relevant: [{ kanji: 私, kana: わたし }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: がくせい, relevant: [{ kanji: 学生 }] }
+      - { surface: です, relevant: [{ kana: です }] }
+  - sentence: きのうえいがをみました
+    category: kana
+    words:
+      - { surface: きのう, relevant: [{ kanji: 昨日, kana: きのう }] }
+      - { surface: えいが, relevant: [{ kanji: 映画 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: みました, relevant: [{ kanji: 見る }] }
+  - sentence: ごはんをたべる
+    category: kana
+    words:
+      - { surface: ごはん, relevant: [{ kanji: ご飯 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: たべる, relevant: [{ kanji: 食べる }] }
+  - sentence: ねこがすきです
+    category: kana
+    words:
+      - { surface: ねこ, relevant: [{ kanji: 猫 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: すき, relevant: [{ kanji: 好き }] }
+      - { surface: です, relevant: [{ kana: です }] }
+  - sentence: あしたがっこうへいく
+    category: kana
+    words:
+      - { surface: あした, relevant: [{ kanji: 明日, kana: あした }] }
+      - { surface: がっこう, relevant: [{ kanji: 学校 }] }
+      - { surface: へ, relevant: [{ kana: へ }] }
+      - { surface: いく, relevant: [{ kanji: 行く }] }
+  - sentence: みずをのみたい
+    category: kana
+    words:
+      - { surface: みず, relevant: [{ kanji: 水 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: のみたい, relevant: [{ kanji: 飲む }] }
+  - sentence: やまにのぼった
+    category: kana
+    words:
+      - { surface: やま, relevant: [{ kanji: 山 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: のぼった, relevant: [{ kanji: 登る }] }
+  - sentence: おなかがすいた
+    category: kana
+    words:
+      - { surface: おなか, relevant: [{ kanji: お腹, kana: おなか }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: すいた, relevant: [{ kanji: 空く, kana: すく }] }
+
+  # ---------------------------------------------------------------- katakana / loanwords
+  - sentence: コーヒーを飲みます
+    category: katakana
+    words:
+      - { surface: コーヒー, relevant: [{ kanji: 珈琲, kana: コーヒー }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 飲みます, relevant: [{ kanji: 飲む }] }
+  - sentence: パソコンが壊れた
+    category: katakana
+    words:
+      - { surface: パソコン, relevant: [{ kana: パソコン }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 壊れた, relevant: [{ kanji: 壊れる }] }
+  - sentence: スーパーで野菜を買った
+    category: katakana
+    words:
+      - { surface: スーパー, relevant: [{ kana: スーパー }] }
+      - { surface: で, relevant: [{ kana: で }] }
+      - { surface: 野菜, relevant: [{ kanji: 野菜 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 買った, relevant: [{ kanji: 買う }] }
+  - sentence: テレビを見ながらご飯を食べる
+    category: katakana
+    words:
+      - { surface: テレビ, relevant: [{ kana: テレビ }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 見, relevant: [{ kanji: 見る }] }
+      - { surface: ながら, relevant: [{ kana: ながら }] }
+      - { surface: ご飯, relevant: [{ kanji: ご飯 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 食べる, relevant: [{ kanji: 食べる }] }
+  - sentence: アメリカから来ました
+    category: katakana
+    words:
+      - { surface: アメリカ, relevant: [{ kana: アメリカ }] }
+      - { surface: から, relevant: [{ kana: から }] }
+      - { surface: 来ました, relevant: [{ kanji: 来る }] }
+  - sentence: メールを送ってください
+    category: katakana
+    words:
+      - { surface: メール, relevant: [{ kana: メール }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 送って, relevant: [{ kanji: 送る }] }
+      - { surface: ください, relevant: [{ kanji: 下さい, kana: ください }] }
+  - sentence: ホテルの予約をキャンセルした
+    category: katakana
+    words:
+      - { surface: ホテル, relevant: [{ kana: ホテル }] }
+      - { surface: の, relevant: [{ kanji: 乃, kana: の }] }
+      - { surface: 予約, relevant: [{ kanji: 予約 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: キャンセル, relevant: [{ kana: キャンセル }] }
+      - { surface: した, relevant: [{ kanji: 為る, kana: する }] }
+
+  # ---------------------------------------------------------------- keigo / polite
+  - sentence: 先生はいらっしゃいますか
+    category: keigo
+    words:
+      - { surface: 先生, relevant: [{ kanji: 先生 }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: いらっしゃいます, relevant: [{ kanji: 居らっしゃる, kana: いらっしゃる }] }
+      - { surface: か, relevant: [{ kana: か }] }
+  - sentence: 社長がおっしゃいました
+    category: keigo
+    words:
+      - { surface: 社長, relevant: [{ kanji: 社長 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: おっしゃいました, relevant: [{ kanji: 仰る, kana: おっしゃる }] }
+  - sentence: 何を召し上がりますか
+    category: keigo
+    words:
+      - { surface: 何, relevant: [{ kanji: 何, kana: なに }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 召し上がります, relevant: [{ kanji: 召し上がる }] }
+      - { surface: か, relevant: [{ kana: か }] }
+  - sentence: 田中と申します
+    category: keigo
+    words:
+      # family name, not in the word dictionary: split-only
+      - { surface: 田中 }
+      - { surface: と, relevant: [{ kana: と }] }
+      - { surface: 申します, relevant: [{ kanji: 申す }] }
+  - sentence: 明日伺います
+    category: keigo
+    words:
+      - { surface: 明日, relevant: [{ kanji: 明日 }] }
+      - { surface: 伺います, relevant: [{ kanji: 伺う }] }
+  - sentence: 少々お待ちください
+    category: keigo
+    words:
+      - { surface: 少々, relevant: [{ kanji: 少々 }] }
+      # honorific お + verb stem: no JMdict entry for お待ち, so the verb is what to look up
+      - { surface: お待ち, relevant: [{ kanji: 待つ }] }
+      - { surface: ください, relevant: [{ kanji: 下さい, kana: ください }] }
+  - sentence: こちらでございます
+    category: keigo
+    words:
+      - { surface: こちら, relevant: [{ kanji: 此方, kana: こちら }] }
+      - { surface: で, relevant: [{ kana: で }] }
+      - { surface: ございます, relevant: [{ kanji: 御座います, kana: ございます }, { kanji: 御座る, kana: ござる }], ordered: true }
+  - sentence: 資料を拝見しました
+    category: keigo
+    words:
+      - { surface: 資料, relevant: [{ kanji: 資料 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 拝見, relevant: [{ kanji: 拝見 }] }
+      - { surface: しました, relevant: [{ kanji: 為る, kana: する }] }
+
+  # ---------------------------------------------------------------- numbers / counters / time
+  - sentence: りんごを三つ買った
+    category: number
+    words:
+      - { surface: りんご, relevant: [{ kanji: 林檎, kana: りんご }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 三つ, relevant: [{ kanji: 三つ }] }
+      - { surface: 買った, relevant: [{ kanji: 買う }] }
+  - sentence: 学生が五人いる
+    category: number
+    words:
+      - { surface: 学生, relevant: [{ kanji: 学生 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 五, relevant: [{ kanji: 五 }] }
+      - { surface: 人, relevant: [{ kanji: 人, kana: にん }] }
+      - { surface: いる, relevant: [{ kanji: 居る, kana: いる }] }
+  - sentence: 毎朝七時に起きる
+    category: number
+    words:
+      - { surface: 毎朝, relevant: [{ kanji: 毎朝 }] }
+      - { surface: 七, relevant: [{ kanji: 七 }] }
+      - { surface: 時, relevant: [{ kanji: 時, kana: じ }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 起きる, relevant: [{ kanji: 起きる }] }
+  - sentence: 一人で行った
+    category: number
+    words:
+      - { surface: 一人, relevant: [{ kanji: 一人 }] }
+      - { surface: で, relevant: [{ kana: で }] }
+      - { surface: 行った, relevant: [{ kanji: 行く }] }
+  - sentence: 二年前に結婚した
+    category: number
+    words:
+      - { surface: 二, relevant: [{ kanji: 二 }] }
+      - { surface: 年, relevant: [{ kanji: 年, kana: ねん }] }
+      - { surface: 前, relevant: [{ kanji: 前, kana: まえ }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 結婚, relevant: [{ kanji: 結婚 }] }
+      - { surface: した, relevant: [{ kanji: 為る, kana: する }] }
+  - sentence: 紙を二枚ください
+    category: number
+    words:
+      - { surface: 紙, relevant: [{ kanji: 紙 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 二, relevant: [{ kanji: 二 }] }
+      - { surface: 枚, relevant: [{ kanji: 枚 }] }
+      - { surface: ください, relevant: [{ kanji: 下さい, kana: ください }] }
+  - sentence: 今日は三月三日です
+    category: number
+    words:
+      - { surface: 今日, relevant: [{ kanji: 今日, kana: きょう }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 三月, relevant: [{ kanji: 三月 }] }
+      - { surface: 三日, relevant: [{ kanji: 三日 }] }
+      - { surface: です, relevant: [{ kana: です }] }
+
+  # ---------------------------------------------------------------- questions
+  - sentence: なぜ泣いているの
+    category: question
+    words:
+      - { surface: なぜ, relevant: [{ kanji: 何故, kana: なぜ }] }
+      - { surface: 泣いている, relevant: [{ kanji: 泣く }] }
+      - { surface: の, relevant: [{ kanji: 乃, kana: の }] }
+  - sentence: 誰が来ましたか
+    category: question
+    words:
+      - { surface: 誰, relevant: [{ kanji: 誰, kana: だれ }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 来ました, relevant: [{ kanji: 来る }] }
+      - { surface: か, relevant: [{ kana: か }] }
+  - sentence: いつ帰りますか
+    category: question
+    words:
+      - { surface: いつ, relevant: [{ kanji: 何時, kana: いつ }] }
+      - { surface: 帰ります, relevant: [{ kanji: 帰る }] }
+      - { surface: か, relevant: [{ kana: か }] }
+  - sentence: これはいくらですか
+    category: question
+    words:
+      - { surface: これ, relevant: [{ kanji: 此れ, kana: これ }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: いくら, relevant: [{ kanji: 幾ら, kana: いくら }] }
+      - { surface: ですか, relevant: [{ kana: ですか }] }
+  - sentence: どの電車に乗ればいいですか
+    category: question
+    words:
+      - { surface: どの, relevant: [{ kanji: 何の, kana: どの }] }
+      - { surface: 電車, relevant: [{ kanji: 電車 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 乗れば, relevant: [{ kanji: 乗る }] }
+      - { surface: いい, relevant: [{ kana: いい }, { kanji: 良い }] }
+      - { surface: ですか, relevant: [{ kana: ですか }] }
+  - sentence: 何を食べたいですか
+    category: question
+    words:
+      - { surface: 何, relevant: [{ kanji: 何, kana: なに }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 食べたい, relevant: [{ kanji: 食べる }] }
+      - { surface: ですか, relevant: [{ kana: ですか }] }
+  - sentence: どうやって行くの
+    category: question
+    words:
+      - { surface: どうやって, relevant: [{ kana: どうやって }] }
+      - { surface: 行く, relevant: [{ kanji: 行く }] }
+      - { surface: の, relevant: [{ kanji: 乃, kana: の }] }
+
+  # ---------------------------------------------------------------- particles (compound / sentence-final)
+  - sentence: 図書館では静かにしてください
+    category: particle
+    words:
+      - { surface: 図書館, relevant: [{ kanji: 図書館 }] }
+      - { surface: で, relevant: [{ kana: で }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 静か, relevant: [{ kanji: 静か }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: して, relevant: [{ kanji: 為る, kana: する }] }
+      - { surface: ください, relevant: [{ kanji: 下さい, kana: ください }] }
+  - sentence: 五時までに帰ってね
+    category: particle
+    words:
+      - { surface: 五, relevant: [{ kanji: 五 }] }
+      - { surface: 時, relevant: [{ kanji: 時, kana: じ }] }
+      - { surface: までに, relevant: [{ kana: までに }] }
+      - { surface: 帰って, relevant: [{ kanji: 帰る }] }
+      - { surface: ね, relevant: [{ kana: ね }] }
+  - sentence: 肉より魚が好きだ
+    category: particle
+    words:
+      - { surface: 肉, relevant: [{ kanji: 肉 }] }
+      - { surface: より, relevant: [{ kana: より }] }
+      - { surface: 魚, relevant: [{ kanji: 魚 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 好き, relevant: [{ kanji: 好き }] }
+      - { surface: だ, relevant: [{ kana: だ }] }
+  - sentence: 子供でも分かるよ
+    category: particle
+    words:
+      - { surface: 子供, relevant: [{ kanji: 子供 }] }
+      - { surface: でも, relevant: [{ kana: でも }] }
+      - { surface: 分かる, relevant: [{ kanji: 分かる }] }
+      - { surface: よ, relevant: [{ kana: よ }] }
+  - sentence: 水しか飲まない
+    category: particle
+    words:
+      - { surface: 水, relevant: [{ kanji: 水 }] }
+      - { surface: しか, relevant: [{ kana: しか }] }
+      - { surface: 飲まない, relevant: [{ kanji: 飲む }] }
+  - sentence: 明日は雨かな
+    category: particle
+    words:
+      - { surface: 明日, relevant: [{ kanji: 明日 }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 雨, relevant: [{ kanji: 雨 }] }
+      - { surface: かな, relevant: [{ kana: かな }] }
+  - sentence: 私だけが知っている
+    category: particle
+    words:
+      - { surface: 私, relevant: [{ kanji: 私, kana: わたし }] }
+      - { surface: だけ, relevant: [{ kana: だけ }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 知っている, relevant: [{ kanji: 知る }] }
+  - sentence: 駅から家まで歩いた
+    category: particle
+    words:
+      - { surface: 駅, relevant: [{ kanji: 駅 }] }
+      - { surface: から, relevant: [{ kana: から }] }
+      - { surface: 家, relevant: [{ kanji: 家 }] }
+      - { surface: まで, relevant: [{ kana: まで }] }
+      - { surface: 歩いた, relevant: [{ kanji: 歩く }] }
+  - sentence: 猫とか犬とかが好き
+    category: particle
+    words:
+      - { surface: 猫, relevant: [{ kanji: 猫 }] }
+      - { surface: とか, relevant: [{ kana: とか }] }
+      - { surface: 犬, relevant: [{ kanji: 犬 }] }
+      - { surface: とか, relevant: [{ kana: とか }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 好き, relevant: [{ kanji: 好き }] }
+
+  # ---------------------------------------------------------------- adverbs / conjunctions
+  - sentence: ゆっくり話してください
+    category: adverb
+    words:
+      - { surface: ゆっくり, relevant: [{ kana: ゆっくり }] }
+      - { surface: 話して, relevant: [{ kanji: 話す }] }
+      - { surface: ください, relevant: [{ kanji: 下さい, kana: ください }] }
+  - sentence: もう一度言ってください
+    category: adverb
+    words:
+      # もう一度 is its own JMdict entry
+      - { surface: もう一度, relevant: [{ kanji: もう一度 }] }
+      - { surface: 言って, relevant: [{ kanji: 言う }] }
+      - { surface: ください, relevant: [{ kanji: 下さい, kana: ください }] }
+  - sentence: まだ終わっていない
+    category: adverb
+    words:
+      - { surface: まだ, relevant: [{ kanji: 未だ, kana: まだ }] }
+      - { surface: 終わっていない, relevant: [{ kanji: 終わる }] }
+  - sentence: しかし誰も来なかった
+    category: adverb
+    words:
+      - { surface: しかし, relevant: [{ kanji: 然し, kana: しかし }] }
+      - { surface: 誰, relevant: [{ kanji: 誰, kana: だれ }] }
+      - { surface: も, relevant: [{ kana: も }] }
+      - { surface: 来なかった, relevant: [{ kanji: 来る }] }
+  - sentence: だから言ったでしょう
+    category: adverb
+    words:
+      - { surface: だから, relevant: [{ kana: だから }] }
+      - { surface: 言った, relevant: [{ kanji: 言う }] }
+      - { surface: でしょう, relevant: [{ kana: でしょう }] }
+  - sentence: きっと大丈夫だ
+    category: adverb
+    words:
+      - { surface: きっと, relevant: [{ kana: きっと }] }
+      - { surface: 大丈夫, relevant: [{ kanji: 大丈夫 }] }
+      - { surface: だ, relevant: [{ kana: だ }] }
+  - sentence: 心臓がどきどきする
+    category: adverb
+    words:
+      - { surface: 心臓, relevant: [{ kanji: 心臓 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: どきどき, relevant: [{ kana: どきどき }] }
+      - { surface: する, relevant: [{ kanji: 為る, kana: する }] }
+  - sentence: たぶん間に合わない
+    category: adverb
+    words:
+      - { surface: たぶん, relevant: [{ kanji: 多分, kana: たぶん }] }
+      - { surface: 間に合わない, relevant: [{ kanji: 間に合う }] }
+
+  # ---------------------------------------------------------------- compound nouns
+  - sentence: 自動販売機でジュースを買った
+    category: compound
+    words:
+      - { surface: 自動販売機, relevant: [{ kanji: 自動販売機 }] }
+      - { surface: で, relevant: [{ kana: で }] }
+      - { surface: ジュース, relevant: [{ kana: ジュース }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 買った, relevant: [{ kanji: 買う }] }
+  - sentence: 携帯電話を忘れた
+    category: compound
+    words:
+      - { surface: 携帯電話, relevant: [{ kanji: 携帯電話 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 忘れた, relevant: [{ kanji: 忘れる }] }
+  - sentence: 誕生日おめでとう
+    category: compound
+    words:
+      - { surface: 誕生日, relevant: [{ kanji: 誕生日 }] }
+      - { surface: おめでとう, relevant: [{ kanji: お目出度う, kana: おめでとう }] }
+  - sentence: 天気予報によると雨だ
+    category: compound
+    words:
+      - { surface: 天気予報, relevant: [{ kanji: 天気予報 }] }
+      - { surface: によると, relevant: [{ kana: によると }] }
+      - { surface: 雨, relevant: [{ kanji: 雨 }] }
+      - { surface: だ, relevant: [{ kana: だ }] }
+  - sentence: 交通事故に遭った
+    category: compound
+    words:
+      - { surface: 交通事故, relevant: [{ kanji: 交通事故 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 遭った, relevant: [{ kanji: 遭う }] }
+
+  # ---------------------------------------------------------------- set phrases
+  - sentence: すみません
+    category: phrase
+    words:
+      - { surface: すみません, relevant: [{ kanji: 済みません, kana: すみません }] }
+  - sentence: いただきます
+    category: phrase
+    words:
+      - { surface: いただきます, relevant: [{ kanji: 頂きます, kana: いただきます }] }
+  - sentence: お疲れ様でした
+    category: phrase
+    words:
+      - { surface: お疲れ様, relevant: [{ kanji: お疲れ様 }] }
+      - { surface: でした, relevant: [{ kana: です }] }
+  - sentence: よろしくお願いします
+    category: phrase
+    words:
+      - { surface: よろしくお願いします, relevant: [{ kanji: 宜しくお願いします, kana: よろしくおねがいします }] }
+  - sentence: おはようございます
+    category: phrase
+    words:
+      - { surface: おはようございます, relevant: [{ kanji: お早うございます, kana: おはようございます }] }
+
+  # ---------------------------------------------------------------- natural / conversational
+  - sentence: 昨日、駅の前で偶然先生に会った。
+    category: natural
+    words:
+      - { surface: 昨日, relevant: [{ kanji: 昨日 }] }
+      - { surface: 、 }
+      - { surface: 駅, relevant: [{ kanji: 駅 }] }
+      - { surface: の, relevant: [{ kanji: 乃, kana: の }] }
+      - { surface: 前, relevant: [{ kanji: 前, kana: まえ }] }
+      - { surface: で, relevant: [{ kana: で }] }
+      - { surface: 偶然, relevant: [{ kanji: 偶然 }] }
+      - { surface: 先生, relevant: [{ kanji: 先生 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 会った, relevant: [{ kanji: 会う }] }
+      - { surface: 。 }
+  - sentence: 日本に来てから三年になります
+    category: natural
+    words:
+      - { surface: 日本, relevant: [{ kanji: 日本 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 来て, relevant: [{ kanji: 来る }] }
+      - { surface: から, relevant: [{ kana: から }] }
+      - { surface: 三, relevant: [{ kanji: 三 }] }
+      - { surface: 年, relevant: [{ kanji: 年, kana: ねん }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: なります, relevant: [{ kanji: 成る, kana: なる }] }
+  - sentence: 風邪を引いたので、今日は会社を休みます
+    category: natural
+    words:
+      - { surface: 風邪を引いた, relevant: [{ kanji: 風邪を引く }] }
+      - { surface: ので, relevant: [{ kana: ので }] }
+      - { surface: 、 }
+      - { surface: 今日, relevant: [{ kanji: 今日, kana: きょう }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 会社, relevant: [{ kanji: 会社 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 休みます, relevant: [{ kanji: 休む }] }
+  - sentence: この店のラーメンは安くて美味しいと聞いた
+    category: natural
+    words:
+      - { surface: この, relevant: [{ kanji: 此の, kana: この }] }
+      - { surface: 店, relevant: [{ kanji: 店, kana: みせ }] }
+      - { surface: の, relevant: [{ kanji: 乃, kana: の }] }
+      - { surface: ラーメン, relevant: [{ kana: ラーメン }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 安くて, relevant: [{ kanji: 安い }] }
+      - { surface: 美味しい, relevant: [{ kanji: 美味しい }] }
+      - { surface: と, relevant: [{ kana: と }] }
+      - { surface: 聞いた, relevant: [{ kanji: 聞く }] }
+  - sentence: 宿題が終わったら遊びに行ってもいい
+    category: natural
+    words:
+      - { surface: 宿題, relevant: [{ kanji: 宿題 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 終わったら, relevant: [{ kanji: 終わる }] }
+      - { surface: 遊びに行っ, relevant: [{ kanji: 遊びに行く }] }
+      - { surface: てもいい, relevant: [{ kana: てもいい }] }
+  - sentence: 彼女が作ったケーキはとても美味しかった
+    category: natural
+    words:
+      - { surface: 彼女, relevant: [{ kanji: 彼女 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 作った, relevant: [{ kanji: 作る }] }
+      - { surface: ケーキ, relevant: [{ kana: ケーキ }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: とても, relevant: [{ kanji: 迚も, kana: とても }] }
+      - { surface: 美味しかった, relevant: [{ kanji: 美味しい }] }
+  - sentence: 道が分からなかったので、人に聞きました
+    category: natural
+    words:
+      - { surface: 道, relevant: [{ kanji: 道 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 分からなかった, relevant: [{ kanji: 分かる }] }
+      - { surface: ので, relevant: [{ kana: ので }] }
+      - { surface: 、 }
+      - { surface: 人, relevant: [{ kanji: 人, kana: ひと }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 聞きました, relevant: [{ kanji: 聞く }] }
+  - sentence: 週末は家でゆっくり休みたいです
+    category: natural
+    words:
+      - { surface: 週末, relevant: [{ kanji: 週末 }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 家, relevant: [{ kanji: 家 }] }
+      - { surface: で, relevant: [{ kana: で }] }
+      - { surface: ゆっくり, relevant: [{ kana: ゆっくり }] }
+      - { surface: 休みたい, relevant: [{ kanji: 休む }] }
+      - { surface: です, relevant: [{ kana: です }] }
+  - sentence: 電車が遅れたせいで、会議に間に合わなかった
+    category: natural
+    words:
+      - { surface: 電車, relevant: [{ kanji: 電車 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 遅れた, relevant: [{ kanji: 遅れる }] }
+      - { surface: せい, relevant: [{ kanji: 所為, kana: せい }] }
+      - { surface: で, relevant: [{ kana: で }] }
+      - { surface: 、 }
+      - { surface: 会議, relevant: [{ kanji: 会議 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 間に合わなかった, relevant: [{ kanji: 間に合う }] }
+  - sentence: 母に買ってもらった時計をなくしてしまった
+    category: natural
+    words:
+      - { surface: 母, relevant: [{ kanji: 母 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 買って, relevant: [{ kanji: 買う }] }
+      - { surface: もらった, relevant: [{ kanji: 貰う, kana: もらう }] }
+      - { surface: 時計, relevant: [{ kanji: 時計 }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: なくしてしまった, relevant: [{ kanji: 無くす, kana: なくす }] }
+  - sentence: 雨が止んだら散歩に行こう
+    category: natural
+    words:
+      - { surface: 雨, relevant: [{ kanji: 雨 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 止んだら, relevant: [{ kanji: 止む }] }
+      - { surface: 散歩, relevant: [{ kanji: 散歩 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 行こう, relevant: [{ kanji: 行く }] }
+  - sentence: 姉は銀行で働いていて、毎日忙しそうだ
+    category: natural
+    words:
+      - { surface: 姉, relevant: [{ kanji: 姉 }] }
+      - { surface: は, relevant: [{ kana: は }] }
+      - { surface: 銀行, relevant: [{ kanji: 銀行 }] }
+      - { surface: で, relevant: [{ kana: で }] }
+      - { surface: 働いていて, relevant: [{ kanji: 働く }] }
+      - { surface: 、 }
+      - { surface: 毎日, relevant: [{ kanji: 毎日 }] }
+      - { surface: 忙し, relevant: [{ kanji: 忙しい }] }
+      # the 'seems' そう is kana-only, like the adverb そう, so a label can't tell them apart
+      - { surface: そう }
+      - { surface: だ, relevant: [{ kana: だ }] }
+  # ---------------------------------------------------------------- expverb
+  # JMdict expression verbs (one word) and look-alikes that must stay split. Written before the
+  # expression verbs were added to the tokenizer dictionary.
+  - sentence: 週末に釣りに行きました
+    category: expverb
+    words:
+      - { surface: 週末, relevant: [{ kanji: 週末 }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 釣りに行きました, relevant: [{ kanji: 釣りに行く }] }
+  - sentence: 母が駅まで迎えに来た
+    category: expverb
+    words:
+      - { surface: 母, relevant: [{ kanji: 母 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 駅, relevant: [{ kanji: 駅 }] }
+      - { surface: まで, relevant: [{ kana: まで }] }
+      - { surface: 迎えに来た, relevant: [{ kanji: 迎えに来る }] }
+  - sentence: 新しいパソコンを手に入れた
+    category: expverb
+    words:
+      - { surface: 新しい, relevant: [{ kanji: 新しい }] }
+      - { surface: パソコン, relevant: [{ kana: パソコン }] }
+      - { surface: を, relevant: [{ kana: を }] }
+      - { surface: 手に入れた, relevant: [{ kanji: 手に入れる }] }
+  - sentence: 腹が減った
+    category: expverb
+    words:
+      - { surface: 腹が減った, relevant: [{ kanji: 腹が減る }] }
+  - sentence: 朝早く目を覚ました
+    category: expverb
+    words:
+      - { surface: 朝, relevant: [{ kanji: 朝 }] }
+      - { surface: 早く, ordered: true, relevant: [{ kanji: 早く }, { kanji: 早い }] }
+      - { surface: 目を覚ました, relevant: [{ kanji: 目を覚ます }] }
+  - sentence: 彼の話が気になる
+    category: expverb
+    words:
+      - { surface: 彼, relevant: [{ kanji: 彼 }] }
+      - { surface: の, relevant: [{ kanji: 乃, kana: の }] }
+      - { surface: 話, relevant: [{ kanji: 話 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 気になる, relevant: [{ kanji: 気になる }] }
+  # trap: 付いている is also the expression "to be lucky"; te-form + いる stays a verb
+  - sentence: 電気が付いている
+    category: expverb
+    words:
+      - { surface: 電気, relevant: [{ kanji: 電気 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: 付いている, relevant: [{ kanji: 付く }] }
+  # trap: no expression here
+  - sentence: 机の上に本がある
+    category: expverb
+    words:
+      - { surface: 机, relevant: [{ kanji: 机 }] }
+      - { surface: の, relevant: [{ kanji: 乃, kana: の }] }
+      - { surface: 上, relevant: [{ kanji: 上, kana: うえ }] }
+      - { surface: に, relevant: [{ kana: に }] }
+      - { surface: 本, relevant: [{ kanji: 本 }] }
+      - { surface: が, relevant: [{ kana: が }] }
+      - { surface: ある, relevant: [{ kana: ある }] }

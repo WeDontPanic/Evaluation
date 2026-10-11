@@ -1,0 +1,1848 @@
+language: English
+# Context-sensitive query set.
+# Each group (comment header) is one ambiguous English term whose correct
+# Japanese translation depends on context. Every Japanese word gets several
+# differently-phrased English queries to test context disambiguation.
+tests:
+  items:
+  # ===== break =====
+  # 割れる — to break / shatter (intransitive: glass, porcelain, screens)
+  - query: my glass broke
+    relevant:
+    - kanji: 割れる
+  - query: the window broke
+    relevant:
+    - kanji: 割れる
+  - query: the plate shattered
+    relevant:
+    - kanji: 割れる
+  - query: my phone screen cracked
+    relevant:
+    - kanji: 割れる
+  # 割る — to break / crack (transitive: glass, eggs, splitting)
+  - query: break glass
+    relevant:
+    - kanji: 割る
+    - kanji: 割れる
+    num_relevant: 1
+  - query: breaking a window
+    relevant:
+    - kanji: 割る
+    - kanji: 割れる
+    num_relevant: 1
+  - query: crack an egg
+    relevant:
+    - kanji: 割る
+  - query: split firewood
+    relevant:
+    - kanji: 割る
+  # 壊す — to break / destroy (transitive: machines, objects)
+  - query: break a machine
+    relevant:
+    - kanji: 壊す
+    - kanji: 壊れる
+    num_relevant: 1
+  - query: break a toy
+    relevant:
+    - kanji: 壊す
+  # 壊れる — to break down (intransitive: machines stop working)
+  - query: my phone is broken
+    relevant:
+    - kanji: 壊れる
+  - query: washing machine broke
+    relevant:
+    - kanji: 壊れる
+    - kanji: 故障
+    num_relevant: 1
+  - query: TV not working
+    relevant:
+    - kanji: 壊れる
+    - kanji: 故障
+    num_relevant: 1
+  # 折る / 折れる / 骨折 — to break / snap (bones, sticks, branches)
+  - query: break a bone
+    relevant:
+    - kanji: 折る
+    - kanji: 骨折
+    num_relevant: 1
+  - query: snap a stick
+    relevant:
+    - kanji: 折る
+  - query: break a branch
+    relevant:
+    - kanji: 折る
+  - query: broken arm
+    relevant:
+    - kanji: 骨折
+    - kanji: 折れる
+    num_relevant: 1
+  - query: pencil broke
+    relevant:
+    - kanji: 折れる
+  # 破る — to break (promises, records) / to tear
+  - query: break a promise
+    relevant:
+    - kanji: 破る
+  - query: break a record
+    relevant:
+    - kanji: 破る
+  - query: tear paper
+    relevant:
+    - kanji: 破る
+  # 休憩 — a break (rest pause)
+  - query: take a break
+    relevant:
+    - kanji: 休憩
+    - kanji: 一休み
+    num_relevant: 1
+  - query: coffee break
+    relevant:
+    - kanji: 休憩
+  - query: break from work
+    relevant:
+    - kanji: 休憩
+  # 休み / 休日 — break as day(s) off
+  - query: school break
+    relevant:
+    - kanji: 休み
+    - kanji: 休暇
+    num_relevant: 1
+  # 夏休み / 冬休み / 昼休み — specific breaks
+  - query: summer break
+    relevant:
+    - kanji: 夏休み
+  - query: winter break
+    relevant:
+    - kanji: 冬休み
+  # ===== cold =====
+  # 寒い — cold (weather, ambient temperature)
+  - query: cold weather
+    relevant:
+    - kanji: 寒い
+  - query: cold outside
+    relevant:
+    - kanji: 寒い
+  - query: cold morning
+    relevant:
+    - kanji: 寒い
+  # 冷たい — cold (to the touch; drinks, hands, personality)
+  - query: cold water
+    relevant:
+    - kanji: 冷たい
+  - query: cold drink
+    relevant:
+    - kanji: 冷たい
+  - query: cold hands
+    relevant:
+    - kanji: 冷たい
+  - query: cold person
+    relevant:
+    - kanji: 冷たい
+  # 冷める — to get cold (food)
+  - query: soup got cold
+    relevant:
+    - kanji: 冷める
+  - query: food getting cold
+    relevant:
+    - kanji: 冷める
+  # 風邪 — a cold (illness)
+  - query: have a cold
+    relevant:
+    - kanji: 風邪
+  # ===== hot =====
+  # 暑い — hot (weather)
+  - query: hot weather
+    relevant:
+    - kanji: 暑い
+  - query: hot summer
+    relevant:
+    - kanji: 暑い
+  - query: hot today
+    relevant:
+    - kanji: 暑い
+  # 熱い — hot (to the touch; objects, liquids)
+  - query: hot coffee
+    relevant:
+    - kanji: 熱い
+  - query: plate is hot
+    relevant:
+    - kanji: 熱い
+  - query: hot bath
+    relevant:
+    - kanji: 熱い
+  # 辛い — hot (spicy)
+  - query: hot curry
+    relevant:
+    - kanji: 辛い
+  # ===== wear =====
+  # 着る — to wear (upper body, clothes in general)
+  - query: wear a shirt
+    relevant:
+    - kanji: 着る
+  - query: wear a kimono
+    relevant:
+    - kanji: 着る
+  - query: put on a jacket
+    relevant:
+    - kanji: 着る
+  # 履く — to wear (feet, legs)
+  - query: wear shoes
+    relevant:
+    - kanji: 履く
+  - query: put on pants
+    relevant:
+    - kanji: 履く
+  - query: wearing sneakers
+    relevant:
+    - kanji: 履く
+  # 被る — to wear (on the head)
+  - query: wear a hat
+    relevant:
+    - kanji: 被る
+  - query: put on a helmet
+    relevant:
+    - kanji: 被る
+  # 付ける — to wear (accessories)
+  - query: wear a necklace
+    relevant:
+    - kanji: 付ける
+  - query: put on earrings
+    relevant:
+    - kanji: 付ける
+  # ===== play =====
+  # 遊ぶ — to play (children, have fun)
+  - query: play with friends
+    relevant:
+    - kanji: 遊ぶ
+  - query: children playing
+    relevant:
+    - kanji: 遊ぶ
+  - query: play outside
+    relevant:
+    - kanji: 遊ぶ
+  - query: play with toys
+    relevant:
+    - kanji: 遊ぶ
+  # 弾く — to play (string / keyboard instruments)
+  - query: play the piano
+    relevant:
+    - kanji: 弾く
+  - query: play the guitar
+    relevant:
+    - kanji: 弾く
+  - query: playing the violin
+    relevant:
+    - kanji: 弾く
+  # 吹く — to play (wind instruments)
+  - query: play the flute
+    relevant:
+    - kanji: 吹く
+  - query: play the trumpet
+    relevant:
+    - kanji: 吹く
+  # 演奏 — to play / perform (music)
+  - query: play music
+    relevant:
+    - kanji: 演奏
+  - query: play an instrument
+    relevant:
+    - kanji: 演奏
+  # 再生 — to play (media playback)
+  - query: play a video
+    relevant:
+    - kanji: 再生
+  - query: play the recording
+    relevant:
+    - kanji: 再生
+  # ===== take =====
+  # 撮る — to take (photos)
+  - query: take a photo
+    relevant:
+    - kanji: 撮る
+  - query: take a picture
+    relevant:
+    - kanji: 撮る
+  - query: taking pictures
+    relevant:
+    - kanji: 撮る
+  # 連れて行く — to take (someone somewhere)
+  - query: take kids to school
+    relevant:
+    - kanji: 連れて行く
+  - query: take someone somewhere
+    relevant:
+    - kanji: 連れて行く
+  # 持って行く — to take (something somewhere)
+  - query: take an umbrella
+    relevant:
+    - kanji: 持っていく
+  - query: take food with you
+    relevant:
+    - kanji: 持っていく
+  # 飲む / 服用 — to take (medicine)
+  - query: take a pill
+    relevant:
+    - kanji: 飲む
+    - kanji: 服用
+    num_relevant: 1
+  # 掛かる — to take (time)
+  - query: takes an hour
+    relevant:
+    - kanji: 掛かる
+  - query: takes time
+    relevant:
+    - kanji: 掛かる
+  # 乗る — to take (transportation)
+  - query: take the train
+    relevant:
+    - kanji: 乗る
+  - query: take a taxi
+    relevant:
+    - kanji: 乗る
+  - query: take the bus
+    relevant:
+    - kanji: 乗る
+  # 受ける — to take (exams, classes)
+  - query: take an exam
+    relevant:
+    - kanji: 受ける
+  - query: take a test
+    relevant:
+    - kanji: 受ける
+  # ===== right =====
+  # 右 — right (direction)
+  - query: turn right
+    relevant:
+    - kanji: 右
+    - kanji: 曲がる
+    num_relevant: 1
+  # 正しい — right (correct)
+  - query: the right answer
+    relevant:
+    - kanji: 正しい
+  - query: that is right
+    relevant:
+    - kanji: 正しい
+  - query: the right way
+    relevant:
+    - kanji: 正しい
+  # 権利 — right (entitlement)
+  - query: right to vote
+    relevant:
+    - kanji: 権利
+  # ===== light =====
+  # 軽い — light (weight)
+  - query: light bag
+    relevant:
+    - kanji: 軽い
+  - query: light suitcase
+    relevant:
+    - kanji: 軽い
+  - query: light meal
+    relevant:
+    - kanji: 軽い
+  # 明るい / 水色 — light (brightness, color)
+  - query: light color
+    relevant:
+    - kanji: 明るい
+    - kanji: 薄い
+    num_relevant: 1
+  # 光 — light (physical light)
+  - query: ray of light
+    relevant:
+    - kanji: 光
+  - query: speed of light
+    relevant:
+    - kanji: 光
+  - query: light and shadow
+    relevant:
+    - kanji: 光
+  # 明かり / 照明 / 電気 — light (lamp, lighting)
+  - query: ceiling leight
+    relevant:
+    - kanji: 明かり
+    - kanji: 照明
+    - kanji: 電気
+    num_relevant: 1
+  # ===== fine =====
+  # 罰金 — a fine (penalty)
+  - query: pay a fine
+    relevant:
+    - kanji: 罰金
+  - query: parking fine
+    relevant:
+    - kanji: 罰金
+  - query: speeding fine
+    relevant:
+    - kanji: 罰金
+  # 元気 — fine (health, wellbeing)
+  - query: I am fine
+    relevant:
+    - kanji: 元気
+  - query: feeling fine
+    relevant:
+    - kanji: 元気
+  # 大丈夫 — fine (acceptable, okay)
+  - query: it is fine
+    relevant:
+    - kanji: 大丈夫
+  - query: sounds fine
+    relevant:
+    - kanji: 大丈夫
+  # 細かい — fine (small, detailed)
+  - query: fine sand
+    relevant:
+    - kanji: 細かい
+  - query: fine particles
+    relevant:
+    - kanji: 細かい
+  # ===== run =====
+  # 走る — to run (physically)
+  - query: run fast
+    relevant:
+    - kanji: 走る
+  - query: go for a run
+    relevant:
+    - kanji: 走る
+  - query: morning run
+    relevant:
+    - kanji: 走る
+  # 経営 — to run (a business)
+  - query: run a business
+    relevant:
+    - kanji: 経営
+  - query: run a restaurant
+    relevant:
+    - kanji: 経営
+  # 立候補 — to run (for office)
+  - query: run for president
+    relevant:
+    - kanji: 立候補
+  - query: run for office
+    relevant:
+    - kanji: 立候補
+  # 逃げる — to run (away)
+  - query: run from danger
+    relevant:
+    - kanji: 逃げる
+  - query: run from police
+    relevant:
+    - kanji: 逃げる
+  # 動く / 稼働 — to run (machines)
+  - query: machine is running
+    relevant:
+    - kanji: 稼働
+    - kanji: 動く
+    num_relevant: 1
+  # 鼻水 — a running nose
+  - query: nose is running
+    relevant:
+    - kanji: 鼻水
+  # ===== draw =====
+  # 描く — to draw (pictures)
+  - query: draw a picture
+    relevant:
+    - kanji: 描く
+  - query: draw manga
+    relevant:
+    - kanji: 描く
+  - query: drawing portraits
+    relevant:
+    - kanji: 描く
+  # 引く — to draw (lines, cards)
+  - query: draw a line
+    relevant:
+    - kanji: 引く
+  - query: draw a card
+    relevant:
+    - kanji: 引く
+  # 引き分け — a draw (tied game)
+  - query: draw in soccer
+    relevant:
+    - kanji: 引き分け
+  # 抽選 — a draw (lottery)
+  - query: prize draw
+    relevant:
+    - kanji: 抽選
+  # ===== spring =====
+  # 春 — spring (season)
+  - query: spring season
+    relevant:
+    - kanji: 春
+  - query: spring has come
+    relevant:
+    - kanji: 春
+  # バネ — spring (mechanical)
+  - query: metal spring
+    relevant:
+    - kana: ばね
+  - query: coil spring
+    relevant:
+    - kana: ばね
+  # 泉 — spring (water source)
+  - query: natural spring
+    relevant:
+    - kanji: 泉
+  - query: spring water
+    relevant:
+    - kanji: 泉
+  # 温泉 — hot spring
+  - query: hot spring bath
+    relevant:
+    - kanji: 温泉
+  # ===== fall =====
+  # 秋 — fall (season)
+  - query: fall season
+    relevant:
+    - kanji: 秋
+  - query: leaves in fall
+    relevant:
+    - kanji: 秋
+    - kanji: 紅葉
+    num_relevant: 1
+  # 落ちる — to fall (drop from height)
+  - query: fall from a tree
+    relevant:
+    - kanji: 落ちる
+  - query: phone fell down
+    relevant:
+    - kanji: 落ちる
+  # 転ぶ — to fall (over, trip)
+  - query: trip and fall
+    relevant:
+    - kanji: 転ぶ
+  - query: fell on the ice
+    relevant:
+    - kanji: 転ぶ
+  # 倒れる — to fall (collapse, topple)
+  - query: tree fell over
+    relevant:
+    - kanji: 倒れる
+  # 降る — to fall (rain, snow)
+  - query: rain is falling
+    relevant:
+    - kanji: 降る
+  - query: falling snow
+    relevant:
+    - kanji: 降る
+  # ===== leave =====
+  # 出る — to leave (a place)
+  - query: leave the house
+    relevant:
+    - kanji: 出る
+  - query: leave the room
+    relevant:
+    - kanji: 出る
+  # 出発 — to leave (depart)
+  - query: leave on a trip
+    relevant:
+    - kanji: 出発
+  - query: leave at seven
+    relevant:
+    - kanji: 出発
+  # 残す — to leave (behind, remaining)
+  - query: leave some food
+    relevant:
+    - kanji: 残す
+  - query: leave a message
+    relevant:
+    - kanji: 残す
+  # 辞める — to leave (a job)
+  - query: leave the company
+    relevant:
+    - kanji: 辞める
+  - query: quit my job
+    relevant:
+    - kanji: 辞める
+  # 任せる — to leave (to someone)
+  - query: leave it to me
+    relevant:
+    - kanji: 任せる
+  - query: leave the decision
+    relevant:
+    - kanji: 任せる
+  # 置き忘れる — to leave (forget somewhere)
+  - query: left my phone behind
+    relevant:
+    - kanji: 置き忘れる
+    - kanji: 忘れる
+    num_relevant: 1
+  # ===== miss =====
+  # 乗り遅れる — to miss (a train, flight)
+  - query: miss the train
+    relevant:
+    - kanji: 乗り遅れる
+  - query: missed my flight
+    relevant:
+    - kanji: 乗り遅れる
+  - query: miss the last bus
+    relevant:
+    - kanji: 乗り遅れる
+  # 逃す — to miss (a chance)
+  - query: miss a chance
+    relevant:
+    - kanji: 逃す
+  - query: miss the opportunity
+    relevant:
+    - kanji: 逃す
+  # 見逃す — to miss (overlook, fail to see)
+  - query: miss an episode
+    relevant:
+    - kanji: 見逃す
+  - query: missed the show
+    relevant:
+    - kanji: 見逃す
+  # 恋しい — to miss (long for someone)
+  - query: I miss you
+    relevant:
+    - kanji: 恋しい
+  - query: miss my family
+    relevant:
+    - kanji: 恋しい
+  - query: miss home
+    relevant:
+    - kanji: 恋しい
+  # 懐かしい — to miss (nostalgia)
+  - query: miss the old days
+    relevant:
+    - kanji: 懐かしい
+  # 外れる / 外す — to miss (a target)
+  - query: the shot missed
+    relevant:
+    - kanji: 外れる
+    - kanji: 外す
+    num_relevant: 1
+  - query: miss the target
+    relevant:
+    - kanji: 外す
+    - kanji: 外れる
+    num_relevant: 1
+  # 欠席 — to miss (class, meetings)
+  - query: miss class
+    relevant:
+    - kanji: 欠席
+  - query: miss a meeting
+    relevant:
+    - kanji: 欠席
+  # ===== catch =====
+  # 捕まえる — to catch (animals, people)
+  - query: catch a thief
+    relevant:
+    - kanji: 捕まえる
+  - query: catch insects
+    relevant:
+    - kanji: 捕まえる
+  # 釣る — to catch (fish)
+  - query: catch a fish
+    relevant:
+    - kanji: 釣る
+  # 間に合う — to catch (be in time for)
+  - query: catch the last train
+    relevant:
+    - kanji: 間に合う
+    - kanji: 乗る
+    num_relevant: 1
+  # 受け止める / キャッチ — to catch (a ball)
+  - query: catch the ball
+    relevant:
+    - kanji: 受け止める
+    - kana: キャッチ
+    - kanji: 取る
+    num_relevant: 1
+  # ===== change =====
+  # 変える — to change (something)
+  - query: change the plan
+    relevant:
+    - kanji: 変える
+  - query: change the rules
+    relevant:
+    - kanji: 変える
+  # 変わる — to change (by itself)
+  - query: the weather changed
+    relevant:
+    - kanji: 変わる
+  - query: the town changed
+    relevant:
+    - kanji: 変わる
+  # お釣り — change (money returned)
+  - query: keep the change
+    relevant:
+    - kanji: お釣り
+  - query: get change back
+    relevant:
+    - kanji: お釣り
+  # 小銭 — change (coins)
+  - query: loose change
+    relevant:
+    - kanji: 小銭
+  # 着替える — to change (clothes)
+  - query: change into pajamas
+    relevant:
+    - kanji: 着替える
+  # 乗り換える — to change (trains)
+  - query: change trains
+    relevant:
+    - kanji: 乗り換える
+  - query: transfer to the subway
+    relevant:
+    - kanji: 乗り換える
+  # ===== order =====
+  # 注文 — order (restaurant, shopping)
+  - query: order food
+    relevant:
+    - kanji: 注文
+  - query: place an order
+    relevant:
+    - kanji: 注文
+  - query: order online
+    relevant:
+    - kanji: 注文
+  # 命令 — order (command)
+  - query: give an order
+    relevant:
+    - kanji: 命令
+  - query: follow orders
+    relevant:
+    - kanji: 命令
+  # 順番 / 順序 — order (sequence)
+  - query: wait your turn
+    relevant:
+    - kanji: 順番
+  - query: alphabetical order
+    relevant:
+    - kanji: 順序
+    - kanji: 順番
+    num_relevant: 1
+  - query: correct order
+    relevant:
+    - kanji: 順序
+    - kanji: 順番
+    num_relevant: 1
+  # ===== turn =====
+  # 曲がる — to turn (a corner)
+  - query: turn left
+    relevant:
+    - kanji: 曲がる
+  - query: turn at the corner
+    relevant:
+    - kanji: 曲がる
+  # 回す — to turn (rotate something)
+  - query: turn the key
+    relevant:
+    - kanji: 回す
+  - query: turn the doorknob
+    relevant:
+    - kanji: 回す
+  # 回る — to turn (rotate by itself)
+  - query: the wheel turns
+    relevant:
+    - kanji: 回る
+  # 消す — to turn off
+  - query: turn off the light
+    relevant:
+    - kanji: 消す
+  - query: turn off the TV
+    relevant:
+    - kanji: 消す
+  # 点ける — to turn on
+  - query: turn on the light
+    relevant:
+    - kanji: 点ける
+  - query: turn on the AC
+    relevant:
+    - kanji: 点ける
+  # 順番 — turn (whose turn it is)
+  - query: my turn
+    relevant:
+    - kanji: 順番
+    - kanji: 番
+    num_relevant: 1
+  # ===== book =====
+  # 予約 — to book (reserve)
+  - query: book a hotel
+    relevant:
+    - kanji: 予約
+  - query: book a flight
+    relevant:
+    - kanji: 予約
+  - query: book a table
+    relevant:
+    - kanji: 予約
+  # 本 — book (to read)
+  - query: borrow a book
+    relevant:
+    - kanji: 本
+    - kanji: 借りる
+    num_relevant: 1
+  # ===== bill =====
+  # 請求書 — bill (invoice)
+  - query: electricity bill
+    relevant:
+    - kanji: 請求書
+  - query: send the bill
+    relevant:
+    - kanji: 請求書
+  # 勘定 / 会計 — bill (at a restaurant)
+  - query: restaurant bill
+    relevant:
+    - kanji: 勘定
+    - kanji: 会計
+    num_relevant: 1
+  - query: check please
+    relevant:
+    - kanji: 勘定
+    - kanji: 会計
+    num_relevant: 1
+  # 紙幣 / お札 — bill (banknote)
+  - query: 1000 yen bill
+    relevant:
+    - kanji: 紙幣
+    - kanji: お札
+    num_relevant: 1
+  - query: dollar bill
+    relevant:
+    - kanji: 紙幣
+    - kanji: お札
+    num_relevant: 1
+  # 法案 — bill (legislation)
+  - query: pass a bill
+    relevant:
+    - kanji: 法案
+  # 嘴 — bill (of a bird)
+  - query: bird bill
+    relevant:
+    - kanji: 嘴
+  # ===== glass =====
+  # ガラス — glass (material)
+  - query: glass window
+    relevant:
+    - kana: ガラス
+  - query: made of glass
+    relevant:
+    - kana: ガラス
+  # コップ / グラス — glass (for drinking)
+  - query: glass of water
+    relevant:
+    - kana: コップ
+    - kana: グラス
+    num_relevant: 1
+  - query: fill the glass
+    relevant:
+    - kana: コップ
+    - kana: グラス
+    num_relevant: 1
+  - query: wine glass
+    relevant:
+    - kana: グラス
+  # 眼鏡 — glasses (eyewear)
+  - query: new glasses
+    relevant:
+    - kanji: 眼鏡
+  - query: my glasses
+    relevant:
+    - kanji: 眼鏡
+  # ===== paper =====
+  # 紙 — paper (material)
+  - query: sheet of paper
+    relevant:
+    - kanji: 紙
+  - query: fold the paper
+    relevant:
+    - kanji: 紙
+    - kanji: 折る
+    num_relevant: 1
+  # 論文 — paper (academic)
+  - query: research paper
+    relevant:
+    - kanji: 論文
+  - query: publish a paper
+    relevant:
+    - kanji: 論文
+  # レポート — paper (school assignment)
+  - query: submit a paper
+    relevant:
+    - kana: レポート
+    - kanji: 提出
+    num_relevant: 1
+  - query: term paper
+    relevant:
+    - kana: レポート
+  # 新聞 — paper (newspaper)
+  - query: morning paper
+    relevant:
+    - kanji: 新聞
+  # ===== cook =====
+  # 料理 — to cook (in general)
+  - query: cook dinner
+    relevant:
+    - kanji: 料理
+  - query: learn to cook
+    relevant:
+    - kanji: 料理
+  # 料理人 / コック — a cook (person)
+  - query: work as a cook
+    relevant:
+    - kanji: 料理人
+    - kana: コック
+    num_relevant: 1
+  - query: restaurant cook
+    relevant:
+    - kanji: 料理人
+    - kana: コック
+    num_relevant: 1
+  # 炊く — to cook (rice)
+  - query: cook rice
+    relevant:
+    - kanji: 炊く
+  # 焼く — to cook (bake, grill, fry)
+  - query: bake a cake
+    relevant:
+    - kanji: 焼く
+  - query: grill fish
+    relevant:
+    - kanji: 焼く
+  # 煮る — to cook (boil, simmer)
+  - query: simmer vegetables
+    relevant:
+    - kanji: 煮る
+  - query: stew meat
+    relevant:
+    - kanji: 煮る
+    - kanji: 煮込む
+    num_relevant: 1
+  # ===== grow =====
+  # 育てる — to grow (raise plants, children)
+  - query: grow vegetables
+    relevant:
+    - kanji: 育てる
+  - query: grow flowers
+    relevant:
+    - kanji: 育てる
+  # 育つ — to grow up
+  - query: grew up in Japan
+    relevant:
+    - kanji: 育つ
+  - query: child is growing
+    relevant:
+    - kanji: 育つ
+  # 生える — to grow (sprout)
+  - query: weeds are growing
+    relevant:
+    - kanji: 生える
+  - query: mold is growing
+    relevant:
+    - kanji: 生える
+  # 伸びる — to grow (longer, taller)
+  - query: hair grew long
+    relevant:
+    - kanji: 伸びる
+  - query: grow taller
+    relevant:
+    - kanji: 伸びる
+  # 増える — to grow (increase)
+  - query: population is growing
+    relevant:
+    - kanji: 増える
+  - query: growing number
+    relevant:
+    - kanji: 増える
+  # ===== fire =====
+  # 火 — fire (flame)
+  - query: light a fire
+    relevant:
+    - kanji: 火
+  - query: cook over a fire
+    relevant:
+    - kanji: 火
+  # 火事 — fire (disaster)
+  - query: house fire
+    relevant:
+    - kanji: 火事
+  - query: fire broke out
+    relevant:
+    - kanji: 火事
+  # 解雇 / 首 — to fire (dismiss)
+  - query: fire an employee
+    relevant:
+    - kanji: 解雇
+    - kanji: 首
+    num_relevant: 1
+  - query: got fired
+    relevant:
+    - kanji: 解雇
+    - kanji: 首
+    num_relevant: 1
+  # 撃つ — to fire (a weapon)
+  - query: fire a gun
+    relevant:
+    - kanji: 撃つ
+  - query: fire at the target
+    relevant:
+    - kanji: 撃つ
+  # ===== free =====
+  # 無料 — free (no cost)
+  - query: free ticket
+    relevant:
+    - kanji: 無料
+  # 自由 — free (freedom)
+  - query: free country
+    relevant:
+    - kanji: 自由
+  - query: free to choose
+    relevant:
+    - kanji: 自由
+  # 暇 — free (having time)
+  - query: free tomorrow
+    relevant:
+    - kanji: 暇
+  - query: free this weekend
+    relevant:
+    - kanji: 暇
+  # 空く — free (unoccupied)
+  - query: free seat
+    relevant:
+    - kanji: 空く
+  # ===== save =====
+  # 助ける / 救う — to save (rescue)
+  - query: save a life
+    relevant:
+    - kanji: 助ける
+    - kanji: 救う
+    num_relevant: 1
+  - query: save from drowning
+    relevant:
+    - kanji: 助ける
+    - kanji: 救う
+    num_relevant: 1
+  - query: save the world
+    relevant:
+    - kanji: 救う
+  # 貯金 / 貯める — to save (money)
+  - query: save money
+    relevant:
+    - kanji: 貯金
+    - kanji: 貯める
+    num_relevant: 1
+  - query: save up money
+    relevant:
+    - kanji: 貯金
+    - kanji: 貯める
+    num_relevant: 1
+  # 節約 — to save (economize)
+  - query: save electricity
+    relevant:
+    - kanji: 節約
+  - query: save time
+    relevant:
+    - kanji: 節約
+  # 保存 / セーブ — to save (data)
+  - query: save the file
+    relevant:
+    - kanji: 保存
+  - query: save the game
+    relevant:
+    - kana: セーブ
+    - kanji: 保存
+    num_relevant: 1
+  # ===== sign =====
+  # 看板 — sign (shop signboard)
+  - query: shop sign
+    relevant:
+    - kanji: 看板
+  - query: neon sign
+    relevant:
+    - kanji: 看板
+    - kana: ネオン
+    num_relevant: 1
+  # 標識 — sign (traffic)
+  - query: stop sign
+    relevant:
+    - kanji: 標識
+    - kanji: 一時停止
+    num_relevant: 1
+  # 署名 / サイン — to sign (signature)
+  - query: sign the contract
+    relevant:
+    - kanji: 署名
+    - kana: サイン
+    num_relevant: 1
+  - query: sign here
+    relevant:
+    - kanji: 署名
+    - kana: サイン
+    num_relevant: 1
+  # 兆候 — sign (indication)
+  - query: signs of illness
+    relevant:
+    - kanji: 兆候
+    - kanji: 兆し
+    num_relevant: 1
+  - query: warning sign
+    relevant:
+    - kanji: 兆候
+    - kanji: 兆し
+    num_relevant: 1
+  # ===== story =====
+  # 物語 — story (tale)
+  - query: tell me a story
+    relevant:
+    - kanji: 物語
+    - kanji: 話
+    num_relevant: 1
+  # 話 — story (anecdote)
+  - query: funny story
+    relevant:
+    - kanji: 話
+  # ===== letter =====
+  # 手紙 — letter (mail)
+  - query: write a letter
+    relevant:
+    - kanji: 手紙
+  - query: send a letter
+    relevant:
+    - kanji: 手紙
+  # 文字 — letter (character)
+  - query: alphabet letters
+    relevant:
+    - kanji: 文字
+  # ===== interest =====
+  # 興味 / 関心 — interest (curiosity)
+  - query: interest in music
+    relevant:
+    - kanji: 興味
+    - kanji: 関心
+    num_relevant: 1
+  - query: lose interest
+    relevant:
+    - kanji: 興味
+    - kanji: 関心
+    num_relevant: 1
+  # 金利 / 利子 / 利息 — interest (money)
+  - query: pay interest
+    relevant:
+    - kanji: 利子
+    - kanji: 利息
+    - kanji: 金利
+    num_relevant: 1
+  # ===== branch =====
+  # 枝 — branch (of a tree)
+  - query: tree branch
+    relevant:
+    - kanji: 枝
+  - query: cut off a branch
+    relevant:
+    - kanji: 枝
+  # 支店 — branch (office)
+  - query: bank branch
+    relevant:
+    - kanji: 支店
+  # ===== charge =====
+  # 充電 — to charge (a battery)
+  - query: charge my phone
+    relevant:
+    - kanji: 充電
+  - query: charge the battery
+    relevant:
+    - kanji: 充電
+  # 料金 / 手数料 — charge (fee)
+  - query: extra charge
+    relevant:
+    - kanji: 料金
+    - kanji: 手数料
+    num_relevant: 1
+  - query: service charge
+    relevant:
+    - kanji: 手数料
+    - kanji: 料金
+    num_relevant: 1
+  # 担当 — in charge
+  - query: who is in charge
+    relevant:
+    - kanji: 担当
+  # 突撃 — to charge (attack)
+  - query: charge at the enemy
+    relevant:
+    - kanji: 突撃
+  # ===== floor =====
+  # 床 — floor (surface)
+  - query: sit on the floor
+    relevant:
+    - kanji: 床
+  - query: mop the floor
+    relevant:
+    - kanji: 床
+  # 階 — floor (level of a building)
+  - query: fifth floor
+    relevant:
+    - kanji: 階
+  # ===== plant =====
+  # 植物 — plant (vegetation)
+  - query: water the plants
+    relevant:
+    - kanji: 植物
+  # 植える — to plant
+  - query: plant a tree
+    relevant:
+    - kanji: 植える
+  - query: plant flowers
+    relevant:
+    - kanji: 植える
+  - query: plant seeds
+    relevant:
+    - kanji: 植える
+    - kanji: 蒔く
+    num_relevant: 1
+  # 工場 / 発電所 — plant (factory)
+  - query: manufacturing plant
+    relevant:
+    - kanji: 工場
+  # ===== present =====
+  # プレゼント / 贈り物 — present (gift)
+  - query: birthday present
+    relevant:
+    - kana: プレゼント
+    - kanji: 贈り物
+    num_relevant: 1
+  - query: give a present
+    relevant:
+    - kana: プレゼント
+    - kanji: 贈り物
+    num_relevant: 1
+  # 現在 — the present (time)
+  - query: the present situation
+    relevant:
+    - kanji: 現在
+    - kanji: 現状
+    num_relevant: 1
+  # 出席 — present (attendance)
+  - query: present at the meeting
+    relevant:
+    - kanji: 出席
+  # ===== raise =====
+  # 上げる — to raise (lift)
+  - query: raise your hand
+    relevant:
+    - kanji: 上げる
+    - kanji: 挙げる
+    num_relevant: 1
+  - query: raise the volume
+    relevant:
+    - kanji: 上げる
+  # 育てる — to raise (children)
+  - query: raise children
+    relevant:
+    - kanji: 育てる
+  # 飼う — to raise (animals)
+  - query: raise chickens
+    relevant:
+    - kanji: 飼う
+  - query: keep a pet
+    relevant:
+    - kanji: 飼う
+  # 昇給 — a raise (salary)
+  - query: get a raise
+    relevant:
+    - kanji: 昇給
+  - query: salary raise
+    relevant:
+    - kanji: 昇給
+  # ===== ring =====
+  # 指輪 — ring (jewelry)
+  - query: gold ring
+    relevant:
+    - kanji: 指輪
+  # 鳴る / 鳴らす — to ring (sound)
+  - query: phone is ringing
+    relevant:
+    - kanji: 鳴る
+  - query: doorbell rang
+    relevant:
+    - kanji: 鳴る
+  - query: ring the bell
+    relevant:
+    - kanji: 鳴らす
+  # ===== rest =====
+  # 休む — to rest
+  - query: rest at home
+    relevant:
+    - kanji: 休む
+  # 残り — the rest (remainder)
+  - query: rest of the food
+    relevant:
+    - kanji: 残り
+  - query: rest of the day
+    relevant:
+    - kanji: 残り
+  # ===== room =====
+  # 部屋 — room (chamber)
+  - query: clean my room
+    relevant:
+    - kanji: 部屋
+  - query: rent a room
+    relevant:
+    - kanji: 部屋
+  # 余地 — room (margin, scope)
+  - query: room for improvement
+    relevant:
+    - kanji: 余地
+  - query: no room for doubt
+    relevant:
+    - kanji: 余地
+  # スペース / 場所 — room (space)
+  - query: not enough room
+    relevant:
+    - kana: スペース
+    - kanji: 場所
+    - kanji: 空間
+    num_relevant: 1
+  # ===== second =====
+  # 秒 — second (time unit)
+  - query: sixty seconds
+    relevant:
+    - kanji: 秒
+  - query: a few seconds
+    relevant:
+    - kanji: 秒
+  # 二番目 — second (ordinal)
+  - query: second child
+    relevant:
+    - kanji: 二番目
+  - query: second from the left
+    relevant:
+    - kanji: 二番目
+  # ===== match =====
+  # 試合 — match (sports game)
+  - query: soccer match
+    relevant:
+    - kanji: 試合
+  - query: win the match
+    relevant:
+    - kanji: 試合
+    - kanji: 勝つ
+    num_relevant: 1
+  # マッチ — match (fire)
+  - query: light a match
+    relevant:
+    - kana: マッチ
+  - query: box of matches
+    relevant:
+    - kana: マッチ
+  # 合う — to match (go together)
+  - query: the colors match
+    relevant:
+    - kanji: 合う
+  # 似合う — to match / suit (someone)
+  - query: it suits you
+    relevant:
+    - kanji: 似合う
+  # ===== mean =====
+  # 意味 — to mean (signify)
+  - query: what does it mean
+    relevant:
+    - kanji: 意味
+  - query: what do you mean
+    relevant:
+    - kanji: 意味
+  # 意地悪 — mean (unkind)
+  - query: don't be mean
+    relevant:
+    - kanji: 意地悪
+  - query: a mean person
+    relevant:
+    - kanji: 意地悪
+  # 平均 — mean (average)
+  - query: mean value
+    relevant:
+    - kanji: 平均
+  # ===== key =====
+  # 鍵 — key (for a lock)
+  - query: house key
+    relevant:
+    - kanji: 鍵
+  - query: lost my keys
+    relevant:
+    - kanji: 鍵
+  # キー — key (keyboard)
+  - query: press any key
+    relevant:
+    - kana: キー
+  - query: keyboard key
+    relevant:
+    - kana: キー
+  # 秘訣 — key (to success)
+  - query: key to success
+    relevant:
+    - kanji: 秘訣
+  - query: secret of cooking
+    relevant:
+    - kanji: 秘訣
+  # ===== note =====
+  # メモ — note (memo)
+  - query: take notes
+    relevant:
+    - kana: メモ
+  - query: leave a note
+    relevant:
+    - kana: メモ
+  # 音符 — note (musical)
+  - query: quarter note
+    relevant:
+    - kanji: 音符
+  # ノート — notebook (Japanese English "note")
+  - query: school notebook
+    relevant:
+    - kana: ノート
+  # ===== tie =====
+  # ネクタイ — tie (necktie)
+  - query: wear a tie
+    relevant:
+    - kana: ネクタイ
+    - kanji: 締める
+    num_relevant: 1
+  - query: suit and tie
+    relevant:
+    - kana: ネクタイ
+  # 結ぶ — to tie (knots)
+  - query: tie your shoelaces
+    relevant:
+    - kanji: 結ぶ
+  - query: tie a knot
+    relevant:
+    - kanji: 結ぶ
+  - query: tie the ribbon
+    relevant:
+    - kanji: 結ぶ
+  # 縛る — to tie (up, bind)
+  - query: tie up with rope
+    relevant:
+    - kanji: 縛る
+  - query: tie the boxes together
+    relevant:
+    - kanji: 縛る
+  # ===== tongue =====
+  # 舌 — tongue (body part)
+  - query: stick out your tongue
+    relevant:
+    - kanji: 舌
+  - query: bit my tongue
+    relevant:
+    - kanji: 舌
+  # 母語 / 母国語 — tongue (language)
+  - query: native tongue
+    relevant:
+    - kanji: 母語
+    - kanji: 母国語
+    num_relevant: 1
+  # ===== wave =====
+  # 波 — wave (water)
+  - query: ocean waves
+    relevant:
+    - kanji: 波
+  - query: big waves
+    relevant:
+    - kanji: 波
+  # 手を振る / 振る — to wave (a hand)
+  - query: wave goodbye
+    relevant:
+    - kanji: 手を振る
+    - kanji: 振る
+    num_relevant: 1
+  # ===== way =====
+  # 道 — way (route)
+  - query: way to the station
+    relevant:
+    - kanji: 道
+  # 方法 / やり方 / 仕方 — way (method)
+  - query: a better way
+    relevant:
+    - kanji: 方法
+    - kanji: やり方
+    num_relevant: 1
+  - query: way to do it
+    relevant:
+    - kanji: やり方
+    - kanji: 方法
+    - kanji: 仕方
+    num_relevant: 1
+  # ===== work =====
+  # 働く — to work (labor)
+  - query: work at a bank
+    relevant:
+    - kanji: 働く
+  - query: work hard
+    relevant:
+    - kanji: 働く
+  # 仕事 — work (job, tasks)
+  - query: go to work
+    relevant:
+    - kanji: 仕事
+  - query: too much work
+    relevant:
+    - kanji: 仕事
+  # 作品 — work (of art)
+  - query: artist's work
+    relevant:
+    - kanji: 作品
+  # 動く — to work (function)
+  - query: does it work
+    relevant:
+    - kanji: 動く
+  # 効く — to work (be effective)
+  - query: medicine works
+    relevant:
+    - kanji: 効く
+  - query: painkiller works
+    relevant:
+    - kanji: 効く
+  # ===== class =====
+  # 授業 — class (lesson)
+  - query: math class
+    relevant:
+    - kanji: 授業
+  - query: attend class
+    relevant:
+    - kanji: 授業
+  - query: skip class
+    relevant:
+    - kana: サボる
+    - kanji: 授業
+    num_relevant: 1
+  # クラス — class (group of students)
+  - query: same class
+    relevant:
+    - kana: クラス
+  # 階級 — class (social)
+  - query: social class
+    relevant:
+    - kanji: 階級
+  # ===== practice =====
+  # 練習 — practice (training)
+  - query: piano practice
+    relevant:
+    - kanji: 練習
+  - query: practice every day
+    relevant:
+    - kanji: 練習
+  - query: soccer practice
+    relevant:
+    - kanji: 練習
+  # 習慣 — practice (custom, habit)
+  - query: common practice
+    relevant:
+    - kanji: 習慣
+    - kanji: 慣習
+    num_relevant: 1
+  # ===== subject =====
+  # 科目 — subject (school)
+  - query: favorite subject
+    relevant:
+    - kanji: 科目
+  - query: school subjects
+    relevant:
+    - kanji: 科目
+  # 主語 — subject (grammar)
+  - query: subject and verb
+    relevant:
+    - kanji: 主語
+  # 話題 — subject (topic)
+  - query: change the subject
+    relevant:
+    - kanji: 話題
+  - query: touchy subject
+    relevant:
+    - kanji: 話題
+  # ===== degree =====
+  # 度 — degree (temperature, angle)
+  - query: ninety degrees
+    relevant:
+    - kanji: 度
+  - query: degrees celsius
+    relevant:
+    - kanji: 度
+    - kanji: 摂氏
+    num_relevant: 1
+  # 学位 — degree (academic)
+  - query: university degree
+    relevant:
+    - kanji: 学位
+  - query: earn a degree
+    relevant:
+    - kanji: 学位
+  # ===== court =====
+  # 裁判所 — court (of law)
+  - query: go to court
+    relevant:
+    - kanji: 裁判所
+    - kanji: 裁判
+    num_relevant: 1
+  # コート — court (sports)
+  - query: tennis court
+    relevant:
+    - kana: コート
+  - query: basketball court
+    relevant:
+    - kana: コート
+  # ===== fan =====
+  # 扇風機 — fan (electric)
+  - query: turn on the fan
+    relevant:
+    - kanji: 扇風機
+  # 扇子 — fan (folding)
+  - query: Japanese fan
+    relevant:
+    - kanji: 扇子
+  # ファン — fan (admirer)
+  - query: big fan
+    relevant:
+    - kana: ファン
+  - query: baseball fan
+    relevant:
+    - kana: ファン
+  # ===== bat =====
+  # 蝙蝠 — bat (animal)
+  - query: bat at night
+    relevant:
+    - kanji: 蝙蝠
+  - query: bats in caves
+    relevant:
+    - kanji: 蝙蝠
+  # バット — bat (baseball)
+  - query: baseball bat
+    relevant:
+    - kana: バット
+  - query: swing the bat
+    relevant:
+    - kana: バット
+  # ===== seal =====
+  # アザラシ — seal (animal)
+  - query: seal animal
+    relevant:
+    - kana: アザラシ
+  - query: seal swimming
+    relevant:
+    - kana: アザラシ
+  # 判子 / 印鑑 — seal (stamp)
+  - query: seal for documents
+    relevant:
+    - kanji: 判子
+    - kanji: 印鑑
+    num_relevant: 1
+  - query: stamp a seal
+    relevant:
+    - kanji: 判子
+    - kanji: 印鑑
+    num_relevant: 1
+  # 封 — to seal (an envelope)
+  - query: seal the envelope
+    relevant:
+    - kanji: 封
+  # ===== bark =====
+  # 吠える — to bark (dog)
+  - query: dog barking
+    relevant:
+    - kanji: 吠える
+  - query: bark at strangers
+    relevant:
+    - kanji: 吠える
+  # 樹皮 — bark (of a tree)
+  - query: tree bark
+    relevant:
+    - kanji: 樹皮
+  # ===== nail =====
+  # 爪 — nail (finger)
+  - query: cut your nails
+    relevant:
+    - kanji: 爪
+  # 釘 — nail (metal)
+  - query: hammer a nail
+    relevant:
+    - kanji: 釘
+  - query: nails and screws
+    relevant:
+    - kanji: 釘
+  # ===== bow =====
+  # お辞儀 — bow (greeting)
+  - query: bow to the teacher
+    relevant:
+    - kanji: お辞儀
+  - query: bow in apology
+    relevant:
+    - kanji: お辞儀
+  # 弓 — bow (weapon)
+  - query: bow and arrow
+    relevant:
+    - kanji: 弓
+  - query: shoot with a bow
+    relevant:
+    - kanji: 弓
+  # リボン / 蝶ネクタイ — bow (ribbon, bow tie)
+  - query: bow on a gift
+    relevant:
+    - kana: リボン
+  # ===== crane =====
+  # 鶴 / 折り鶴 — crane (bird, origami)
+  - query: crane bird
+    relevant:
+    - kanji: 鶴
+  # クレーン — crane (machine)
+  - query: construction crane
+    relevant:
+    - kana: クレーン
+  - query: crane machine
+    relevant:
+    - kana: クレーン
+  # ===== mouse =====
+  # 鼠 — mouse (animal)
+  - query: mouse animal
+    relevant:
+    - kanji: 鼠
+    - kana: ネズミ
+    num_relevant: 1
+  - query: cat caught a mouse
+    relevant:
+    - kanji: 鼠
+    - kana: ネズミ
+    num_relevant: 1
+  # マウス — mouse (computer)
+  - query: computer mouse
+    relevant:
+    - kana: マウス
+  - query: click the mouse
+    relevant:
+    - kana: マウス
+  # ===== pupil =====
+  # 生徒 — pupil (student)
+  - query: pupils school
+    relevant:
+    - kanji: 生徒
+  - query: teacher and pupils
+    relevant:
+    - kanji: 生徒
+    - kanji: 児童
+    num_relevant: 1
+  # 瞳 — pupil (of the eye)
+  - query: pupils eyes
+    relevant:
+    - kanji: 瞳
+    - kanji: 瞳孔
+    num_relevant: 1
+  - query: dilated pupils
+    relevant:
+    - kanji: 瞳
+    - kanji: 瞳孔
+    num_relevant: 1
+  # ===== temple =====
+  # 寺 — temple (building)
+  - query: temple in Kyoto
+    relevant:
+    - kanji: 寺
+    - kanji: お寺
+    num_relevant: 1
+  - query: buddhist temple
+    relevant:
+    - kanji: 寺
+    - kanji: お寺
+    num_relevant: 1
+  # こめかみ — temple (of the head)
+  - query: pain in my temple
+    relevant:
+    - kana: こめかみ
+  - query: rub your temples
+    relevant:
+    - kana: こめかみ
+  # ===== palm =====
+  # 手のひら — palm (of the hand)
+  - query: palm of my hand
+    relevant:
+    - kanji: 手のひら
+  - query: palm and fingers
+    relevant:
+    - kanji: 手のひら
+  # 椰子 — palm (tree)
+  - query: palm tree
+    relevant:
+    - kanji: 椰子
+  - query: coconut palm
+    relevant:
+    - kanji: 椰子
+  # ===== last =====
+  # 最後 — last (final)
+  - query: last day
+    relevant:
+    - kanji: 最後
+  - query: last piece
+    relevant:
+    - kanji: 最後
+  # 続く — to last (continue)
+  - query: lasts for hours
+    relevant:
+    - kanji: 続く
+  - query: rain lasted all day
+    relevant:
+    - kanji: 続く
+  # 持つ — to last (hold out, keep)
+  - query: battery lasts long
+    relevant:
+    - kanji: 持つ
+  # ===== call =====
+  # 呼ぶ — to call (name, summon)
+  - query: call my name
+    relevant:
+    - kanji: 呼ぶ
+  - query: call a taxi
+    relevant:
+    - kanji: 呼ぶ
+  - query: what is it called
+    relevant:
+    - kanji: 呼ぶ
+  # 電話を掛ける — to call (by phone)
+  - query: call me tonight
+    relevant:
+    - kanji: 電話をかける
+    - kanji: 電話
+    num_relevant: 1
+  # ===== stop =====
+  # 止まる — to stop (by itself)
+  - query: the train stopped
+    relevant:
+    - kanji: 止まる
+  - query: my watch stopped
+    relevant:
+    - kanji: 止まる
+  # 止める — to stop (something)
+  - query: stop the car
+    relevant:
+    - kanji: 止める
+  - query: stop the music
+    relevant:
+    - kanji: 止める
+  # やめる — to stop (doing, quit)
+  - query: stop doing that
+    relevant:
+    - kanji: 止める
+      kana: やめる
+  # バス停 — a stop (bus stop)
+  - query: next bus stop
+    relevant:
+    - kanji: バス停
+    - kanji: 停留所
+    num_relevant: 1
+  # ===== watch =====
+  # 腕時計 — watch (wristwatch)
+  - query: expensive watch
+    relevant:
+    - kanji: 腕時計
+    - kanji: 時計
+    num_relevant: 1
+  - query: look at my watch
+    relevant:
+    - kanji: 腕時計
+    - kanji: 時計
+    num_relevant: 1
+  # 見る — to watch
+  - query: watch a movie
+    relevant:
+    - kanji: 見る
+  - query: watch TV
+    relevant:
+    - kanji: 見る

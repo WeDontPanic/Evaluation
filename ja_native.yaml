@@ -1,0 +1,326 @@
+# Japanese (native) word search evaluation: a Japanese query and the entries it should return.
+#
+# Same format as en.yaml (joto_tool `evaluate` can run it against the API); `group` is an extra
+# field used by the offline test `lib/search/tests/native_search_eval.rs` (Jotoba/Search).
+# `language` is the gloss language only.
+#
+# Groups:
+# - uk_homograph: kana query whose answer is a usually-kana word with a kanji main form (する → 為る),
+#   competing with kanji homographs that are normally written in kanji (擦る)
+# - kana_reading: kana query whose answer is normally written in kanji (がくせい → 学生); guards
+#   against over-boosting usually-kana words
+# - kana_word: words that are written in kana only
+# - kanji: exact kanji queries (controls)
+language: English
+tests:
+  items:
+  # ---------------------------------------------------------------- uk_homograph
+  - { group: uk_homograph, query: する, relevant: [{ kanji: 為る, kana: する }] }
+  - { group: uk_homograph, query: いる, relevant: [{ kanji: 居る, kana: いる }] }
+  - { group: uk_homograph, query: ある, relevant: [{ kanji: 有る, kana: ある }] }
+  - { group: uk_homograph, query: なる, relevant: [{ kanji: 成る, kana: なる }] }
+  - { group: uk_homograph, query: くれる, relevant: [{ kanji: 呉れる, kana: くれる }] }
+  - { group: uk_homograph, query: やる, relevant: [{ kanji: 遣る, kana: やる }] }
+  - { group: uk_homograph, query: もらう, relevant: [{ kanji: 貰う, kana: もらう }] }
+  - { group: uk_homograph, query: できる, relevant: [{ kanji: 出来る, kana: できる }] }
+  - { group: uk_homograph, query: ここ, relevant: [{ kanji: 此処, kana: ここ }] }
+  - { group: uk_homograph, query: そこ, relevant: [{ kanji: 其処, kana: そこ }] }
+  - { group: uk_homograph, query: どこ, relevant: [{ kanji: 何処, kana: どこ }] }
+  - { group: uk_homograph, query: いつ, relevant: [{ kanji: 何時, kana: いつ }] }
+  - { group: uk_homograph, query: これ, relevant: [{ kanji: 此れ, kana: これ }] }
+  - { group: uk_homograph, query: それ, relevant: [{ kanji: 其れ, kana: それ }] }
+  - { group: uk_homograph, query: どの, relevant: [{ kanji: 何の, kana: どの }] }
+  - { group: uk_homograph, query: こと, relevant: [{ kanji: 事, kana: こと }] }
+  - { group: uk_homograph, query: もの, relevant: [{ kanji: 物, kana: もの }] }
+  - { group: uk_homograph, query: わけ, relevant: [{ kanji: 訳, kana: わけ }] }
+  - { group: uk_homograph, query: ちょっと, relevant: [{ kanji: 一寸, kana: ちょっと }] }
+  - { group: uk_homograph, query: たくさん, relevant: [{ kanji: 沢山, kana: たくさん }] }
+  - { group: uk_homograph, query: とても, relevant: [{ kanji: 迚も, kana: とても }] }
+  - { group: uk_homograph, query: やはり, relevant: [{ kanji: 矢張り, kana: やはり }] }
+  - { group: uk_homograph, query: ください, relevant: [{ kanji: 下さい, kana: ください }] }
+  - { group: uk_homograph, query: なぜ, relevant: [{ kanji: 何故, kana: なぜ }] }
+  - { group: uk_homograph, query: いくら, relevant: [{ kanji: 幾ら, kana: いくら }] }
+  - { group: uk_homograph, query: まだ, relevant: [{ kanji: 未だ, kana: まだ }] }
+  - { group: uk_homograph, query: すぐ, relevant: [{ kanji: 直ぐ, kana: すぐ }] }
+  - { group: uk_homograph, query: ほとんど, relevant: [{ kanji: 殆ど, kana: ほとんど }] }
+  - { group: uk_homograph, query: あなた, relevant: [{ kanji: 貴方, kana: あなた }] }
+  - { group: uk_homograph, query: きれい, relevant: [{ kanji: 綺麗, kana: きれい }] }
+  - { group: uk_homograph, query: せい, relevant: [{ kanji: 所為, kana: せい }] }
+  - { group: uk_homograph, query: ない, relevant: [{ kanji: 無い, kana: ない }] }
+  # ---------------------------------------------------------------- kana_reading
+  - { group: kana_reading, query: がくせい, relevant: [{ kanji: 学生 }] }
+  - { group: kana_reading, query: せんせい, relevant: [{ kanji: 先生 }] }
+  - { group: kana_reading, query: にほんご, relevant: [{ kanji: 日本語 }] }
+  - { group: kana_reading, query: たべる, relevant: [{ kanji: 食べる }] }
+  - { group: kana_reading, query: のむ, relevant: [{ kanji: 飲む }] }
+  - { group: kana_reading, query: みる, relevant: [{ kanji: 見る }] }
+  - { group: kana_reading, query: くる, relevant: [{ kanji: 来る }] }
+  - { group: kana_reading, query: わかる, relevant: [{ kanji: 分かる }] }
+  - { group: kana_reading, query: でんしゃ, relevant: [{ kanji: 電車 }] }
+  - { group: kana_reading, query: ともだち, relevant: [{ kanji: 友達 }] }
+  - { group: kana_reading, query: いぬ, relevant: [{ kanji: 犬 }] }
+  - { group: kana_reading, query: ねこ, relevant: [{ kanji: 猫 }] }
+  - { group: kana_reading, query: やま, relevant: [{ kanji: 山 }] }
+  - { group: kana_reading, query: うみ, relevant: [{ kanji: 海 }] }
+  - { group: kana_reading, query: みず, relevant: [{ kanji: 水 }] }
+  - { group: kana_reading, query: あたらしい, relevant: [{ kanji: 新しい }] }
+  - { group: kana_reading, query: おおきい, relevant: [{ kanji: 大きい }] }
+  - { group: kana_reading, query: たかい, relevant: [{ kanji: 高い }] }
+  - { group: kana_reading, query: すき, relevant: [{ kanji: 好き }] }
+  - { group: kana_reading, query: しずか, relevant: [{ kanji: 静か }] }
+  - { group: kana_reading, query: げんき, relevant: [{ kanji: 元気 }] }
+  - { group: kana_reading, query: まえ, relevant: [{ kanji: 前 }] }
+  - { group: kana_reading, query: わたし, relevant: [{ kanji: 私 }] }
+  - { group: kana_reading, query: なに, relevant: [{ kanji: 何 }] }
+  - { group: kana_reading, query: だれ, relevant: [{ kanji: 誰 }] }
+  - { group: kana_reading, query: じかん, relevant: [{ kanji: 時間 }] }
+  - { group: kana_reading, query: いっしょ, relevant: [{ kanji: 一緒 }] }
+  - { group: kana_reading, query: ぜんぶ, relevant: [{ kanji: 全部 }] }
+  - { group: kana_reading, query: たぶん, relevant: [{ kanji: 多分 }] }
+  - { group: kana_reading, query: とる, relevant: [{ kanji: 取る }] }
+  # ---------------------------------------------------------------- kana_word
+  - { group: kana_word, query: テレビ, relevant: [{ kana: テレビ }] }
+  - { group: kana_word, query: パソコン, relevant: [{ kana: パソコン }] }
+  - { group: kana_word, query: ゆっくり, relevant: [{ kana: ゆっくり }] }
+  - { group: kana_word, query: もう, relevant: [{ kana: もう }] }
+  - { group: kana_word, query: どう, relevant: [{ kana: どう }] }
+  - { group: kana_word, query: きっと, relevant: [{ kana: きっと }] }
+  - { group: kana_word, query: そう, relevant: [{ kana: そう }] }
+  - { group: kana_word, query: いい, relevant: [{ kana: いい }] }
+  - { group: kana_word, query: でも, relevant: [{ kana: でも }] }
+  - { group: kana_word, query: だから, relevant: [{ kana: だから }] }
+  # ---------------------------------------------------------------- kanji
+  - { group: kanji, query: 食べる, relevant: [{ kanji: 食べる }] }
+  - { group: kanji, query: 学生, relevant: [{ kanji: 学生 }] }
+  - { group: kanji, query: 日本語, relevant: [{ kanji: 日本語 }] }
+  - { group: kanji, query: 行く, relevant: [{ kanji: 行く }] }
+  - { group: kanji, query: 見る, relevant: [{ kanji: 見る }] }
+  - { group: kanji, query: 人, relevant: [{ kanji: 人, kana: ひと }] }
+  - { group: kanji, query: 大きい, relevant: [{ kanji: 大きい }] }
+  - { group: kanji, query: 時間, relevant: [{ kanji: 時間 }] }
+  - { group: kanji, query: 事, relevant: [{ kanji: 事, kana: こと }] }
+  - { group: kanji, query: 為る, relevant: [{ kanji: 為る, kana: する }] }
+  - { group: kanji, query: 入る, relevant: [{ kanji: 入る, kana: はいる }] }
+  - { group: kanji, query: 個々, relevant: [{ kanji: 個々 }] }
+  # ================================================================ batch 2 (b2_*)
+  # Added as a held-out, general-purpose set: written before looking at search results and not
+  # targeted at any particular ranking change.
+  # ---------------------------------------------------------------- b2_kanji
+  - { group: b2_kanji, query: 雨, relevant: [{ kanji: 雨, kana: あめ }] }
+  - { group: b2_kanji, query: 車, relevant: [{ kanji: 車, kana: くるま }] }
+  - { group: b2_kanji, query: 本, relevant: [{ kanji: 本, kana: ほん }] }
+  - { group: b2_kanji, query: 机, relevant: [{ kanji: 机, kana: つくえ }] }
+  - { group: b2_kanji, query: 駅, relevant: [{ kanji: 駅, kana: えき }] }
+  - { group: b2_kanji, query: 病院, relevant: [{ kanji: 病院 }] }
+  - { group: b2_kanji, query: 会社, relevant: [{ kanji: 会社 }] }
+  - { group: b2_kanji, query: 天気, relevant: [{ kanji: 天気 }] }
+  - { group: b2_kanji, query: 勉強, relevant: [{ kanji: 勉強 }] }
+  - { group: b2_kanji, query: 料理, relevant: [{ kanji: 料理 }] }
+  - { group: b2_kanji, query: 仕事, relevant: [{ kanji: 仕事 }] }
+  - { group: b2_kanji, query: 家族, relevant: [{ kanji: 家族 }] }
+  - { group: b2_kanji, query: 写真, relevant: [{ kanji: 写真 }] }
+  - { group: b2_kanji, query: 電話, relevant: [{ kanji: 電話 }] }
+  - { group: b2_kanji, query: 映画, relevant: [{ kanji: 映画 }] }
+  - { group: b2_kanji, query: 音楽, relevant: [{ kanji: 音楽 }] }
+  - { group: b2_kanji, query: 銀行, relevant: [{ kanji: 銀行 }] }
+  - { group: b2_kanji, query: 部屋, relevant: [{ kanji: 部屋 }] }
+  - { group: b2_kanji, query: 図書館, relevant: [{ kanji: 図書館 }] }
+  - { group: b2_kanji, query: 新聞, relevant: [{ kanji: 新聞 }] }
+  - { group: b2_kanji, query: 買う, relevant: [{ kanji: 買う }] }
+  - { group: b2_kanji, query: 書く, relevant: [{ kanji: 書く }] }
+  - { group: b2_kanji, query: 話す, relevant: [{ kanji: 話す }] }
+  - { group: b2_kanji, query: 歩く, relevant: [{ kanji: 歩く }] }
+  - { group: b2_kanji, query: 待つ, relevant: [{ kanji: 待つ }] }
+  - { group: b2_kanji, query: 働く, relevant: [{ kanji: 働く }] }
+  - { group: b2_kanji, query: 忘れる, relevant: [{ kanji: 忘れる }] }
+  - { group: b2_kanji, query: 教える, relevant: [{ kanji: 教える }] }
+  - { group: b2_kanji, query: 届ける, relevant: [{ kanji: 届ける }] }
+  - { group: b2_kanji, query: 調べる, relevant: [{ kanji: 調べる }] }
+  - { group: b2_kanji, query: 比べる, relevant: [{ kanji: 比べる }] }
+  - { group: b2_kanji, query: 選ぶ, relevant: [{ kanji: 選ぶ }] }
+  - { group: b2_kanji, query: 増える, relevant: [{ kanji: 増える }] }
+  - { group: b2_kanji, query: 守る, relevant: [{ kanji: 守る }] }
+  - { group: b2_kanji, query: 寒い, relevant: [{ kanji: 寒い }] }
+  - { group: b2_kanji, query: 暑い, relevant: [{ kanji: 暑い }] }
+  - { group: b2_kanji, query: 難しい, relevant: [{ kanji: 難しい }] }
+  - { group: b2_kanji, query: 優しい, relevant: [{ kanji: 優しい }] }
+  - { group: b2_kanji, query: 忙しい, relevant: [{ kanji: 忙しい }] }
+  - { group: b2_kanji, query: 便利, relevant: [{ kanji: 便利 }] }
+  - { group: b2_kanji, query: 簡単, relevant: [{ kanji: 簡単 }] }
+  - { group: b2_kanji, query: 危険, relevant: [{ kanji: 危険 }] }
+  - { group: b2_kanji, query: 経済, relevant: [{ kanji: 経済 }] }
+  - { group: b2_kanji, query: 政治, relevant: [{ kanji: 政治 }] }
+  - { group: b2_kanji, query: 環境, relevant: [{ kanji: 環境 }] }
+  - { group: b2_kanji, query: 影響, relevant: [{ kanji: 影響 }] }
+  - { group: b2_kanji, query: 状況, relevant: [{ kanji: 状況 }] }
+  - { group: b2_kanji, query: 責任, relevant: [{ kanji: 責任 }] }
+  - { group: b2_kanji, query: 雰囲気, relevant: [{ kanji: 雰囲気 }] }
+  - { group: b2_kanji, query: 曖昧, relevant: [{ kanji: 曖昧 }] }
+  - { group: b2_kanji, query: 憂鬱, relevant: [{ kanji: 憂鬱 }] }
+  - { group: b2_kanji, query: 躊躇う, relevant: [{ kanji: 躊躇う }] }
+  - { group: b2_kanji, query: 頻繁, relevant: [{ kanji: 頻繁 }] }
+  - { group: b2_kanji, query: 概念, relevant: [{ kanji: 概念 }] }
+  - { group: b2_kanji, query: 貢献, relevant: [{ kanji: 貢献 }] }
+  - { group: b2_kanji, query: 把握, relevant: [{ kanji: 把握 }] }
+  - { group: b2_kanji, query: 培う, relevant: [{ kanji: 培う }] }
+  - { group: b2_kanji, query: 漠然, relevant: [{ kanji: 漠然 }] }
+  # ---------------------------------------------------------------- b2_kana
+  # (several labels = ambiguous reading, all expected near the top)
+  - { group: b2_kana, query: あめ, relevant: [{ kanji: 雨, kana: あめ }, { kanji: 飴, kana: あめ }] }
+  - { group: b2_kana, query: はし, relevant: [{ kanji: 橋, kana: はし }, { kanji: 箸, kana: はし }] }
+  - { group: b2_kana, query: かみ, relevant: [{ kanji: 紙, kana: かみ }, { kanji: 髪, kana: かみ }, { kanji: 神, kana: かみ }] }
+  - { group: b2_kana, query: くも, relevant: [{ kanji: 雲, kana: くも }, { kanji: 蜘蛛, kana: くも }] }
+  - { group: b2_kana, query: はな, relevant: [{ kanji: 花, kana: はな }, { kanji: 鼻, kana: はな }] }
+  - { group: b2_kana, query: あつい, relevant: [{ kanji: 暑い }, { kanji: 熱い }, { kanji: 厚い }] }
+  - { group: b2_kana, query: きる, relevant: [{ kanji: 切る }, { kanji: 着る }] }
+  - { group: b2_kana, query: かう, relevant: [{ kanji: 買う }, { kanji: 飼う }] }
+  - { group: b2_kana, query: はやい, relevant: [{ kanji: 早い }, { kanji: 速い }] }
+  - { group: b2_kana, query: きかい, relevant: [{ kanji: 機会 }, { kanji: 機械 }] }
+  - { group: b2_kana, query: こうえん, relevant: [{ kanji: 公園 }, { kanji: 講演 }] }
+  - { group: b2_kana, query: かがく, relevant: [{ kanji: 科学 }, { kanji: 化学 }] }
+  - { group: b2_kana, query: やさしい, relevant: [{ kanji: 優しい }, { kanji: 易しい }] }
+  - { group: b2_kana, query: さけ, relevant: [{ kanji: 酒, kana: さけ }, { kanji: 鮭, kana: さけ }] }
+  - { group: b2_kana, query: かえる, relevant: [{ kanji: 帰る }, { kanji: 変える }, { kanji: 蛙, kana: かえる }] }
+  - { group: b2_kana, query: はなす, relevant: [{ kanji: 話す }, { kanji: 離す }] }
+  - { group: b2_kana, query: まつ, relevant: [{ kanji: 待つ }, { kanji: 松, kana: まつ }] }
+  - { group: b2_kana, query: のる, relevant: [{ kanji: 乗る }] }
+  - { group: b2_kana, query: おくる, relevant: [{ kanji: 送る }] }
+  - { group: b2_kana, query: てがみ, relevant: [{ kanji: 手紙 }] }
+  - { group: b2_kana, query: くるま, relevant: [{ kanji: 車, kana: くるま }] }
+  - { group: b2_kana, query: つくえ, relevant: [{ kanji: 机, kana: つくえ }] }
+  - { group: b2_kana, query: えき, relevant: [{ kanji: 駅, kana: えき }] }
+  - { group: b2_kana, query: びょういん, relevant: [{ kanji: 病院 }] }
+  - { group: b2_kana, query: かいしゃ, relevant: [{ kanji: 会社 }] }
+  - { group: b2_kana, query: てんき, relevant: [{ kanji: 天気 }] }
+  - { group: b2_kana, query: べんきょう, relevant: [{ kanji: 勉強 }] }
+  - { group: b2_kana, query: しごと, relevant: [{ kanji: 仕事 }] }
+  - { group: b2_kana, query: しゃしん, relevant: [{ kanji: 写真 }] }
+  - { group: b2_kana, query: でんわ, relevant: [{ kanji: 電話 }] }
+  - { group: b2_kana, query: えいが, relevant: [{ kanji: 映画 }] }
+  - { group: b2_kana, query: へや, relevant: [{ kanji: 部屋 }] }
+  - { group: b2_kana, query: としょかん, relevant: [{ kanji: 図書館 }] }
+  - { group: b2_kana, query: あるく, relevant: [{ kanji: 歩く }] }
+  - { group: b2_kana, query: はたらく, relevant: [{ kanji: 働く }] }
+  - { group: b2_kana, query: わすれる, relevant: [{ kanji: 忘れる }] }
+  - { group: b2_kana, query: おしえる, relevant: [{ kanji: 教える }] }
+  - { group: b2_kana, query: えらぶ, relevant: [{ kanji: 選ぶ }] }
+  - { group: b2_kana, query: さむい, relevant: [{ kanji: 寒い }] }
+  - { group: b2_kana, query: むずかしい, relevant: [{ kanji: 難しい }] }
+  - { group: b2_kana, query: いそがしい, relevant: [{ kanji: 忙しい }] }
+  - { group: b2_kana, query: べんり, relevant: [{ kanji: 便利 }] }
+  - { group: b2_kana, query: かんたん, relevant: [{ kanji: 簡単 }] }
+  - { group: b2_kana, query: けいざい, relevant: [{ kanji: 経済 }] }
+  - { group: b2_kana, query: えいきょう, relevant: [{ kanji: 影響 }] }
+  - { group: b2_kana, query: ふんいき, relevant: [{ kanji: 雰囲気 }] }
+  - { group: b2_kana, query: なつ, relevant: [{ kanji: 夏, kana: なつ }] }
+  - { group: b2_kana, query: ふゆ, relevant: [{ kanji: 冬, kana: ふゆ }] }
+  - { group: b2_kana, query: ゆき, relevant: [{ kanji: 雪, kana: ゆき }] }
+  - { group: b2_kana, query: そら, relevant: [{ kanji: 空, kana: そら }] }
+  - { group: b2_kana, query: こども, relevant: [{ kanji: 子供 }] }
+  - { group: b2_kana, query: たまご, relevant: [{ kanji: 卵, kana: たまご }] }
+  - { group: b2_kana, query: さかな, relevant: [{ kanji: 魚, kana: さかな }] }
+  - { group: b2_kana, query: くすり, relevant: [{ kanji: 薬, kana: くすり }] }
+  - { group: b2_kana, query: みせ, relevant: [{ kanji: 店, kana: みせ }] }
+  # ---------------------------------------------------------------- b2_katakana
+  - { group: b2_katakana, query: コーヒー, relevant: [{ kana: コーヒー }] }
+  - { group: b2_katakana, query: パン, relevant: [{ kana: パン }] }
+  - { group: b2_katakana, query: ホテル, relevant: [{ kana: ホテル }] }
+  - { group: b2_katakana, query: レストラン, relevant: [{ kana: レストラン }] }
+  - { group: b2_katakana, query: コンピューター, relevant: [{ kana: コンピューター }] }
+  - { group: b2_katakana, query: アルバイト, relevant: [{ kana: アルバイト }] }
+  - { group: b2_katakana, query: エレベーター, relevant: [{ kana: エレベーター }] }
+  - { group: b2_katakana, query: スマホ, relevant: [{ kana: スマホ }] }
+  - { group: b2_katakana, query: インターネット, relevant: [{ kana: インターネット }] }
+  - { group: b2_katakana, query: ニュース, relevant: [{ kana: ニュース }] }
+  - { group: b2_katakana, query: ゲーム, relevant: [{ kana: ゲーム }] }
+  - { group: b2_katakana, query: カメラ, relevant: [{ kana: カメラ }] }
+  - { group: b2_katakana, query: バス, relevant: [{ kana: バス }] }
+  - { group: b2_katakana, query: タクシー, relevant: [{ kana: タクシー }] }
+  - { group: b2_katakana, query: シャワー, relevant: [{ kana: シャワー }] }
+  - { group: b2_katakana, query: ノート, relevant: [{ kana: ノート }] }
+  - { group: b2_katakana, query: メール, relevant: [{ kana: メール }] }
+  - { group: b2_katakana, query: スーパー, relevant: [{ kana: スーパー }] }
+  - { group: b2_katakana, query: デパート, relevant: [{ kana: デパート }] }
+  - { group: b2_katakana, query: サービス, relevant: [{ kana: サービス }] }
+  - { group: b2_katakana, query: プレゼント, relevant: [{ kana: プレゼント }] }
+  - { group: b2_katakana, query: アパート, relevant: [{ kana: アパート }] }
+  # ---------------------------------------------------------------- b2_inflected
+  - { group: b2_inflected, query: 食べた, relevant: [{ kanji: 食べる }] }
+  - { group: b2_inflected, query: 行かない, relevant: [{ kanji: 行く }] }
+  - { group: b2_inflected, query: 高かった, relevant: [{ kanji: 高い }] }
+  - { group: b2_inflected, query: 読めます, relevant: [{ kanji: 読む }] }
+  - { group: b2_inflected, query: 勝てる, relevant: [{ kanji: 勝つ }] }
+  - { group: b2_inflected, query: 飲んだ, relevant: [{ kanji: 飲む }] }
+  - { group: b2_inflected, query: 書いて, relevant: [{ kanji: 書く }] }
+  - { group: b2_inflected, query: 見ました, relevant: [{ kanji: 見る }] }
+  - { group: b2_inflected, query: 来なかった, relevant: [{ kanji: 来る }] }
+  - { group: b2_inflected, query: 話したい, relevant: [{ kanji: 話す }] }
+  - { group: b2_inflected, query: 走っている, relevant: [{ kanji: 走る }] }
+  - { group: b2_inflected, query: 買われた, relevant: [{ kanji: 買う }] }
+  - { group: b2_inflected, query: 寒くない, relevant: [{ kanji: 寒い }] }
+  - { group: b2_inflected, query: 泳げる, relevant: [{ kanji: 泳ぐ }] }
+  - { group: b2_inflected, query: 待って, relevant: [{ kanji: 待つ }] }
+  - { group: b2_inflected, query: 忘れました, relevant: [{ kanji: 忘れる }] }
+  - { group: b2_inflected, query: 使わせる, relevant: [{ kanji: 使う }] }
+  - { group: b2_inflected, query: 遊んでいる, relevant: [{ kanji: 遊ぶ }] }
+  - { group: b2_inflected, query: 帰りたい, relevant: [{ kanji: 帰る }] }
+  - { group: b2_inflected, query: 言われた, relevant: [{ kanji: 言う }] }
+  - { group: b2_inflected, query: 開けて, relevant: [{ kanji: 開ける }] }
+  - { group: b2_inflected, query: 美しかった, relevant: [{ kanji: 美しい }] }
+  - { group: b2_inflected, query: 起きなかった, relevant: [{ kanji: 起きる }] }
+  - { group: b2_inflected, query: 死んだ, relevant: [{ kanji: 死ぬ }] }
+  - { group: b2_inflected, query: 楽しくて, relevant: [{ kanji: 楽しい }] }
+  - { group: b2_inflected, query: 作られる, relevant: [{ kanji: 作る }] }
+  - { group: b2_inflected, query: たべた, relevant: [{ kanji: 食べる }] }
+  - { group: b2_inflected, query: いかない, relevant: [{ kanji: 行く }] }
+  # ---------------------------------------------------------------- b2_compound
+  - { group: b2_compound, query: 日本人, relevant: [{ kanji: 日本人 }] }
+  - { group: b2_compound, query: 大学生, relevant: [{ kanji: 大学生 }] }
+  - { group: b2_compound, query: 電子レンジ, relevant: [{ kanji: 電子レンジ }] }
+  - { group: b2_compound, query: 携帯電話, relevant: [{ kanji: 携帯電話 }] }
+  - { group: b2_compound, query: 新幹線, relevant: [{ kanji: 新幹線 }] }
+  - { group: b2_compound, query: 高等学校, relevant: [{ kanji: 高等学校 }] }
+  - { group: b2_compound, query: 一石二鳥, relevant: [{ kanji: 一石二鳥 }] }
+  - { group: b2_compound, query: 一期一会, relevant: [{ kanji: 一期一会 }] }
+  - { group: b2_compound, query: 自業自得, relevant: [{ kanji: 自業自得 }] }
+  - { group: b2_compound, query: 四字熟語, relevant: [{ kanji: 四字熟語 }] }
+  - { group: b2_compound, query: 弱肉強食, relevant: [{ kanji: 弱肉強食 }] }
+  - { group: b2_compound, query: 試行錯誤, relevant: [{ kanji: 試行錯誤 }] }
+  - { group: b2_compound, query: 温故知新, relevant: [{ kanji: 温故知新 }] }
+  - { group: b2_compound, query: 十人十色, relevant: [{ kanji: 十人十色 }] }
+  - { group: b2_compound, query: 以心伝心, relevant: [{ kanji: 以心伝心 }] }
+  - { group: b2_compound, query: 天気予報, relevant: [{ kanji: 天気予報 }] }
+  - { group: b2_compound, query: 交通事故, relevant: [{ kanji: 交通事故 }] }
+  - { group: b2_compound, query: 地球温暖化, relevant: [{ kanji: 地球温暖化 }] }
+  - { group: b2_compound, query: 自動販売機, relevant: [{ kanji: 自動販売機 }] }
+  - { group: b2_compound, query: 誕生日, relevant: [{ kanji: 誕生日 }] }
+  - { group: b2_compound, query: 夏休み, relevant: [{ kanji: 夏休み }] }
+  - { group: b2_compound, query: 一生懸命, relevant: [{ kanji: 一生懸命 }] }
+  # ---------------------------------------------------------------- b2_mixed
+  - { group: b2_mixed, query: ありがとう, relevant: [{ kana: ありがとう }] }
+  - { group: b2_mixed, query: おはよう, relevant: [{ kana: おはよう }] }
+  - { group: b2_mixed, query: すみません, relevant: [{ kana: すみません }] }
+  - { group: b2_mixed, query: いただきます, relevant: [{ kana: いただきます }] }
+  - { group: b2_mixed, query: よろしく, relevant: [{ kana: よろしく }] }
+  - { group: b2_mixed, query: ごめんなさい, relevant: [{ kana: ごめんなさい }] }
+  - { group: b2_mixed, query: もちろん, relevant: [{ kana: もちろん }] }
+  - { group: b2_mixed, query: だんだん, relevant: [{ kanji: 段々, kana: だんだん }] }
+  - { group: b2_mixed, query: いろいろ, relevant: [{ kanji: 色々, kana: いろいろ }] }
+  - { group: b2_mixed, query: なかなか, relevant: [{ kana: なかなか }] }
+  - { group: b2_mixed, query: やっぱり, relevant: [{ kana: やっぱり }] }
+  - { group: b2_mixed, query: ぜひ, relevant: [{ kanji: 是非, kana: ぜひ }] }
+  - { group: b2_mixed, query: とりあえず, relevant: [{ kana: とりあえず }] }
+  - { group: b2_mixed, query: 取扱い, relevant: [{ kanji: 取り扱い }] }
+  - { group: b2_mixed, query: 申込み, relevant: [{ kanji: 申し込み }] }
+  - { group: b2_mixed, query: 打ち合せ, relevant: [{ kanji: 打ち合わせ }] }
+  - { group: b2_mixed, query: 行なう, relevant: [{ kanji: 行う }] }
+  - { group: b2_mixed, query: 一つ, relevant: [{ kanji: 一つ }] }
+  - { group: b2_mixed, query: 一人, relevant: [{ kanji: 一人, kana: ひとり }] }
+  - { group: b2_mixed, query: 二人, relevant: [{ kanji: 二人, kana: ふたり }] }
+  - { group: b2_mixed, query: 一日, relevant: [{ kanji: 一日, kana: いちにち }, { kanji: 一日, kana: ついたち }] }
+  - { group: b2_mixed, query: 十分, relevant: [{ kanji: 十分, kana: じゅうぶん }, { kanji: 十分, kana: じっぷん }] }
+  - { group: b2_mixed, query: 何人, relevant: [{ kanji: 何人, kana: なんにん }] }
+  - { group: b2_mixed, query: 三月, relevant: [{ kanji: 三月, kana: さんがつ }] }
+  - { group: b2_mixed, query: 二十歳, relevant: [{ kanji: 二十歳, kana: はたち }] }
+  - { group: b2_mixed, query: 枚, relevant: [{ kanji: 枚, kana: まい }] }
+  - { group: b2_mixed, query: 匹, relevant: [{ kanji: 匹, kana: ひき }] }

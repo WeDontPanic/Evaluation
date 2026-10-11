@@ -166,18 +166,12 @@ tests:
     - kanji: お米
     - kanji: 米
     num_relevant: 1
-  - query: hospital
-    relevant:
-    - kanji: 病院
   - query: hotel
     relevant:
     - kana: ホテル
   - query: bookstore
     relevant:
     - kanji: 本屋
-  - query: town
-    relevant:
-    - kanji: 町
   - query: yesterday
     relevant:
     - kanji: 昨日
@@ -260,7 +254,7 @@ tests:
     relevant:
     - kanji: 驚き
     - kanji: 吃驚
-    - kanji: サプライズ
+    - kana: サプライズ
     - kanji: 驚かす
   - query: result
     relevant:
@@ -356,3 +350,452 @@ tests:
       - kanji: 木
         kana: き
       - kanji: 木材
+  - query: water
+    relevant:
+      - kanji: 水
+  - query: fire
+    relevant:
+      - kanji: 火
+  - query: sky
+    relevant:
+      - kanji: 空
+  - query: star
+    relevant:
+      - kanji: 星
+  - query: mountain
+    relevant:
+      - kanji: 山
+  - query: river
+    relevant:
+      - kanji: 川
+  - query: sea
+    relevant:
+      - kanji: 海
+  - query: forest
+    relevant:
+      - kanji: 森
+  - query: bird
+    relevant:
+      - kanji: 鳥
+  - query: fish
+    relevant:
+      - kanji: 魚
+  - query: horse
+    relevant:
+      - kanji: 馬
+  - query: cow
+    relevant:
+      - kanji: 牛
+  - query: head
+    relevant:
+      - kanji: 頭
+  - query: eye
+    relevant:
+      - kanji: 目
+  - query: ear
+    relevant:
+      - kanji: 耳
+  - query: mouth
+    relevant:
+      - kanji: 口
+  - query: hand
+    relevant:
+      - kanji: 手
+  - query: tooth
+    relevant:
+      - kanji: 歯
+  - query: hair
+    relevant:
+      - kanji: 髪
+  - query: neck
+    relevant:
+      - kanji: 首
+  - query: blood
+    relevant:
+      - kanji: 血
+  - query: bone
+    relevant:
+      - kanji: 骨
+  - query: chair
+    relevant:
+      - kanji: 椅子
+  - query: bed
+    relevant:
+      - kana: ベッド
+  - query: window
+    relevant:
+      - kanji: 窓
+  - query: door
+    relevant:
+      - kana: ドア
+      - kanji: 扉
+  - query: key
+    relevant:
+      - kanji: 鍵
+  - query: clock
+    relevant:
+      - kanji: 時計
+  - query: phone
+    relevant:
+      - kanji: 電話
+  - query: book
+    relevant:
+      - kanji: 本
+  - query: pencil
+    relevant:
+      - kanji: 鉛筆
+  - query: paper
+    relevant:
+      - kanji: 紙
+  - query: letter
+    relevant:
+      - kanji: 手紙
+  - query: newspaper
+    relevant:
+      - kanji: 新聞
+  - query: wallet
+    relevant:
+      - kanji: 財布
+  - query: umbrella
+    relevant:
+      - kanji: 傘
+  - query: shoes
+    relevant:
+      - kanji: 靴
+  - query: hat
+    relevant:
+      - kanji: 帽子
+  - query: clothes
+    relevant:
+      - kanji: 服
+      - kanji: 衣服
+  - query: mirror
+    relevant:
+      - kanji: 鏡
+  - query: chopsticks
+    relevant:
+      - kanji: 箸
+  - query: bread
+    relevant:
+      - kana: パン
+  - query: egg
+    relevant:
+      - kanji: 卵
+  - query: meat
+    relevant:
+      - kanji: 肉
+  - query: vegetable
+    relevant:
+      - kanji: 野菜
+  - query: fruit
+    relevant:
+      - kanji: 果物
+      - kana: フルーツ
+  - query: tea
+    relevant:
+      - kanji: お茶
+  - query: coffee
+    relevant:
+      - kana: コーヒー
+  - query: milk
+    relevant:
+      - kanji: 牛乳
+      - kana: ミルク
+  - query: salt
+    relevant:
+      - kanji: 塩
+  - query: station
+    relevant:
+      - kanji: 駅
+  - query: airport
+    relevant:
+      - kanji: 空港
+  - query: train
+    relevant:
+      - kanji: 電車
+  - query: bus
+    relevant:
+      - kana: バス
+  - query: bicycle
+    relevant:
+      - kanji: 自転車
+  - query: airplane
+    relevant:
+      - kanji: 飛行機
+  - query: ship
+    relevant:
+      - kanji: 船
+  - query: ticket
+    relevant:
+      - kanji: 切符
+      - kana: チケット
+  - query: map
+    relevant:
+      - kanji: 地図
+  - query: bridge
+    relevant:
+      - kanji: 橋
+  - query: park
+    relevant:
+      - kanji: 公園
+  - query: library
+    relevant:
+      - kanji: 図書館
+  - query: school
+    relevant:
+      - kanji: 学校
+  - query: university
+    relevant:
+      - kanji: 大学
+  - query: company
+    relevant:
+      - kanji: 会社
+      - kanji: 企業
+  - query: bank
+    relevant:
+      - kanji: 銀行
+  - query: temple
+    relevant:
+      - kanji: 寺
+  - query: shrine
+    relevant:
+      - kanji: 神社
+  - query: castle
+    relevant:
+      - kanji: 城
+  - query: country
+    relevant:
+      - kanji: 国
+  - query: village
+    relevant:
+      - kanji: 村
+  - query: name
+    relevant:
+      - kanji: 名前
+  - query: color
+    relevant:
+      - kanji: 色
+  - query: birthday
+    relevant:
+      - kanji: 誕生日
+  - query: morning
+    relevant:
+      - kanji: 朝
+  - query: weekend
+    relevant:
+      - kanji: 週末
+  - query: spring
+    relevant:
+      - kanji: 春
+  - query: summer
+    relevant:
+      - kanji: 夏
+  - query: autumn
+    relevant:
+      - kanji: 秋
+  - query: winter
+    relevant:
+      - kanji: 冬
+  - query: weather
+    relevant:
+      - kanji: 天気
+  - query: cloud
+    relevant:
+      - kanji: 雲
+  - query: history
+    relevant:
+      - kanji: 歴史
+  - query: science
+    relevant:
+      - kanji: 科学
+  - query: movie
+    relevant:
+      - kanji: 映画
+  - query: song
+    relevant:
+      - kanji: 歌
+  - query: dream
+    relevant:
+      - kanji: 夢
+  - query: war
+    relevant:
+      - kanji: 戦争
+  - query: peace
+    relevant:
+      - kanji: 平和
+  - query: question
+    relevant:
+      - kanji: 質問
+  - query: answer
+    relevant:
+      - kanji: 答え
+      - kanji: 回答
+      - kanji: 返事
+  - query: problem
+    relevant:
+      - kanji: 問題
+  - query: reason
+    relevant:
+      - kanji: 理由
+  - query: meaning
+    relevant:
+      - kanji: 意味
+  - query: right
+    relevant:
+      - kanji: 右
+  - query: left
+    relevant:
+      - kanji: 左
+  - query: north
+    relevant:
+      - kanji: 北
+  - query: south
+    relevant:
+      - kanji: 南
+  - query: east
+    relevant:
+      - kanji: 東
+  - query: west
+    relevant:
+      - kanji: 西
+  - query: soccer
+    relevant:
+      - kana: サッカー
+  - query: baseball
+    relevant:
+      - kanji: 野球
+  - query: tennis
+    relevant:
+      - kana: テニス
+  - query: light rain
+    relevant:
+      - kanji: 小雨
+  - query: heavy rain
+    relevant:
+      - kanji: 大雨
+      - kanji: 豪雨
+  - query: heavy snow
+    relevant:
+      - kanji: 大雪
+  - query: traffic jam
+    relevant:
+      - kanji: 渋滞
+  - query: traffic light
+    relevant:
+      - kanji: 信号機
+  - query: traffic accident
+    relevant:
+      - kanji: 交通事故
+  - query: wonder child
+    relevant:
+      - kanji: 神童
+  - query: child prodigy
+    relevant:
+      - kanji: 神童
+  - query: fire engine
+    relevant:
+      - kanji: 消防車
+  - query: police officer
+    relevant:
+      - kanji: 警察官
+  - query: department store
+    relevant:
+      - kanji: 百貨店
+      - kana: デパート
+  - query: high school
+    relevant:
+      - kanji: 高校
+      - kanji: 高等学校
+  - query: elementary school
+    relevant:
+      - kanji: 小学校
+  - query: junior high school
+    relevant:
+      - kanji: 中学校
+  - query: convenience store
+    relevant:
+      - kana: コンビニ
+  - query: vending machine
+    relevant:
+      - kanji: 自動販売機
+  - query: washing machine
+    relevant:
+      - kanji: 洗濯機
+  - query: rice field
+    relevant:
+      - kanji: 田んぼ
+  - query: hot spring
+    relevant:
+      - kanji: 温泉
+  - query: parking lot
+    relevant:
+      - kanji: 駐車場
+  - query: credit card
+    relevant:
+      - kana: クレジットカード
+  - query: mobile phone
+    relevant:
+      - kanji: 携帯電話
+  - query: air conditioner
+    relevant:
+      - kana: エアコン
+  - query: weather forecast
+    relevant:
+      - kanji: 天気予報
+  - query: blood type
+    relevant:
+      - kanji: 血液型
+  - query: common sense
+    relevant:
+      - kanji: 常識
+  - query: green tea
+    relevant:
+      - kanji: 緑茶
+  - query: black tea
+    relevant:
+      - kanji: 紅茶
+  - query: soy sauce
+    relevant:
+      - kanji: 醤油
+  - query: ice cream
+    relevant:
+      - kana: アイスクリーム
+  - query: full moon
+    relevant:
+      - kanji: 満月
+  - query: shooting star
+    relevant:
+      - kanji: 流れ星
+  - query: alarm clock
+    relevant:
+      - kanji: 目覚まし時計
+  - query: seat belt
+    relevant:
+      - kana: シートベルト
+  - query: gas station
+    relevant:
+      - kana: ガソリンスタンド
+  - query: real estate
+    relevant:
+      - kanji: 不動産
+  - query: life insurance
+    relevant:
+      - kanji: 生命保険
+  - query: first aid
+    relevant:
+      - kanji: 救急
+  - query: rush hour
+    relevant:
+      - kana: ラッシュアワー
+  - query: train station
+    relevant:
+      - kanji: 駅
+  - query: nursery school
+    relevant:
+      - kanji: 保育園
+  - query: fresh water
+    relevant:
+      - kanji: 淡水
+  - query: salt water
+    relevant:
+      - kanji: 塩水

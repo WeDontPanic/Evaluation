@@ -1,0 +1,1202 @@
+language: English
+# Direct-hit query set for niche / lower-frequency words.
+# Purpose: verify that specialized, less-common Japanese words and translations
+# are still FOUND and ranked near the top when queried by their direct English
+# meaning. Each entry lists 1-2 correct Japanese targets (max 2); when 2 are
+# listed BOTH must be found (no num_relevant), to guard against niche synonyms
+# dropping out. Targets exclude ultra-core vocab (見る/読む/行く…). Roughly half
+# the queries are multi-word phrases (e.g. "wonder child", "false accusation").
+tests:
+  items:
+  # ===== emotion / mind =====
+  - query: nostalgia
+    relevant:
+    - kanji: 郷愁
+    - kanji: 懐古
+  - query: melancholy
+    relevant:
+    - kanji: 憂鬱
+    - kanji: 憂愁
+  - query: resentment
+    relevant:
+    - kanji: 憤慨
+    - kanji: 恨み
+  - query: compassion
+    relevant:
+    - kanji: 慈悲
+    - kanji: 哀れみ
+  - query: eloquence
+    relevant:
+    - kanji: 雄弁
+    - kanji: 弁舌
+  - query: cowardice
+    relevant:
+    - kanji: 小心
+    - kanji: 物怖じ
+  - query: perseverance
+    relevant:
+    - kanji: 忍耐
+    - kanji: 辛抱
+  - query: arrogance
+    relevant:
+    - kanji: 驕り
+    - kanji: 驕慢
+  - query: premonition
+    relevant:
+    - kanji: 予感
+    - kanji: 胸騒ぎ
+  - query: unrequited love
+    relevant:
+    - kanji: 片思い
+    - kanji: 片恋
+  - query: love at first sight
+    relevant:
+    - kanji: 一目惚れ
+  - query: first love
+    relevant:
+    - kanji: 初恋
+  - query: broken heart
+    relevant:
+    - kanji: 失恋
+    - kanji: 失意
+  - query: cold sweat
+    relevant:
+    - kanji: 冷や汗
+    - kanji: 脂汗
+  - query: guilty conscience
+    relevant:
+    - kanji: 自責の念
+  - query: inferiority complex
+    relevant:
+    - kanji: 劣等感
+  - query: sense of duty
+    relevant:
+    - kanji: 義務感
+    - kanji: 使命感
+  # ===== body / medicine =====
+  - query: insomnia
+    relevant:
+    - kanji: 不眠症
+    - kanji: 不眠
+  - query: dizziness
+    relevant:
+    - kanji: 眩暈
+    - kanji: 立ちくらみ
+  - query: nausea
+    relevant:
+    - kanji: 吐き気
+    - kanji: 嘔気
+  - query: goosebumps
+    relevant:
+    - kanji: 鳥肌
+    - kanji: 寒イボ
+  - query: sprain
+    relevant:
+    - kanji: 捻挫
+    - kanji: 挫傷
+  - query: wrinkle
+    relevant:
+    - kanji: 皺
+  - query: freckle
+    relevant:
+    - kanji: 雀斑
+  - query: dimple
+    relevant:
+    - kanji: 笑窪
+  - query: kneecap
+    relevant:
+    - kanji: 膝蓋骨
+    - kanji: 膝小僧
+  - query: wisdom tooth
+    relevant:
+    - kanji: 親知らず
+    - kanji: 知恵歯
+  - query: stiff shoulders
+    relevant:
+    - kanji: 肩こり
+  - query: sore throat
+    relevant:
+    - kanji: 咽頭痛
+    - kanji: 喉の痛み
+  - query: runny nose
+    relevant:
+    - kanji: 水洟
+    - kanji: 水っぱな
+  - query: nosebleed
+    relevant:
+    - kanji: 鼻血
+    - kanji: 鼻出血
+  - query: food poisoning
+    relevant:
+    - kanji: 食中毒
+    - kanji: 食あたり
+  - query: motion sickness
+    relevant:
+    - kanji: 乗り物酔い
+  - query: morning sickness
+    relevant:
+    - kanji: 悪阻
+  - query: high fever
+    relevant:
+    - kanji: 高熱
+  - query: dull pain
+    relevant:
+    - kanji: 鈍痛
+  - query: growing pains
+    relevant:
+    - kanji: 成長痛
+  - query: phantom pain
+    relevant:
+    - kanji: 幻肢痛
+  - query: chronic illness
+    relevant:
+    - kanji: 持病
+    - kanji: 宿痾
+  - query: terminal illness
+    relevant:
+    - kanji: 死に至る病
+  - query: infectious disease
+    relevant:
+    - kanji: 感染症
+    - kanji: 伝染病
+  - query: heatstroke
+    relevant:
+    - kanji: 熱中症
+    - kanji: 熱射病
+  - query: altitude sickness
+    relevant:
+    - kanji: 高山病
+    - kanji: 高所病
+  - query: blood vessel
+    relevant:
+    - kanji: 血管
+    - kanji: 血脈
+  - query: white blood cell
+    relevant:
+    - kanji: 白血球
+  - query: red blood cell
+    relevant:
+    - kanji: 赤血球
+  - query: vocal cords
+    relevant:
+    - kanji: 声帯
+  - query: baby tooth
+    relevant:
+    - kanji: 乳歯
+  - query: false tooth
+    relevant:
+    - kanji: 入れ歯
+  - query: artificial eye
+    relevant:
+    - kanji: 義眼
+    - kanji: 入れ目
+  - query: artificial leg
+    relevant:
+    - kanji: 義足
+  # ===== actions / verbs =====
+  - query: eavesdrop
+    relevant:
+    - kanji: 立ち聞く
+  - query: procrastinate
+    relevant:
+    - kanji: 先延ばしにする
+  - query: reminisce
+    relevant:
+    - kanji: 偲ぶ
+    - kanji: 懐かしがる
+  - query: stammer
+    relevant:
+    - kanji: 吃る
+    - kanji: 吃り
+  - query: mumble
+    relevant:
+    - kanji: 口ごもる
+    - kanji: 言いよどむ
+  - query: snore
+    relevant:
+    - kanji: 鼾
+  - query: gargle
+    relevant:
+    - kanji: 漱ぐ
+  - query: flinch
+    relevant:
+    - kana: たじろぐ
+    - kanji: 怯む
+  - query: crouch
+    relevant:
+    - kana: しゃがむ
+    - kanji: 蹲る
+  - query: embroider
+    relevant:
+    - kanji: 縫い取る
+  - query: knead
+    relevant:
+    - kanji: 練る
+    - kanji: 捏ねる
+  - query: whittle
+    relevant:
+    - kanji: 削る
+  - query: solder
+    relevant:
+    - kanji: 半田
+  # ===== nature / weather =====
+  - query: drizzle
+    relevant:
+    - kanji: 霧雨
+    - kanji: 小糠雨
+  - query: downpour
+    relevant:
+    - kanji: 土砂降り
+    - kanji: 豪雨
+  - query: blizzard
+    relevant:
+    - kanji: 吹雪
+    - kanji: 暴風雪
+  - query: avalanche
+    relevant:
+    - kanji: 雪崩
+  - query: landslide
+    relevant:
+    - kanji: 地すべり
+    - kanji: 土砂崩れ
+  - query: mirage
+    relevant:
+    - kanji: 蜃気楼
+  - query: eclipse
+    relevant:
+    - kanji: 日食
+    - kanji: 月食
+  - query: glacier
+    relevant:
+    - kanji: 氷河
+  - query: crater
+    relevant:
+    - kanji: 火口
+    - kanji: 噴火口
+  - query: whirlpool
+    relevant:
+    - kanji: 渦
+    - kanji: 渦巻き
+  - query: undertow
+    relevant:
+    - kanji: 引き波
+  - query: shooting star
+    relevant:
+    - kanji: 流れ星
+    - kanji: 流星
+  - query: storm surge
+    relevant:
+    - kanji: 高潮
+    - kanji: 風津波
+  - query: heat wave
+    relevant:
+    - kanji: 熱波
+    - kanji: 猛暑
+  - query: cold snap
+    relevant:
+    - kanji: 大寒波
+  - query: morning dew
+    relevant:
+    - kanji: 朝露
+  - query: morning fog
+    relevant:
+    - kanji: 朝霧
+  - query: sea fog
+    relevant:
+    - kanji: 海霧
+  - query: sea breeze
+    relevant:
+    - kanji: 潮風
+    - kanji: 海風
+  - query: night breeze
+    relevant:
+    - kanji: 夜風
+  - query: fresh water
+    relevant:
+    - kanji: 淡水
+    - kanji: 真水
+  - query: deep sea
+    relevant:
+    - kanji: 深海
+  - query: tidal flat
+    relevant:
+    - kanji: 干潟
+  - query: sand dune
+    relevant:
+    - kanji: 砂丘
+  - query: spring water
+    relevant:
+    - kanji: 湧き水
+    - kanji: 湧水
+  - query: volcanic ash
+    relevant:
+    - kanji: 火山灰
+  # ===== plants =====
+  - query: chrysanthemum
+    relevant:
+    - kanji: 菊
+  - query: lotus
+    relevant:
+    - kanji: 蓮
+  - query: wisteria
+    relevant:
+    - kanji: 藤
+  - query: dandelion
+    relevant:
+    - kanji: 蒲公英
+  - query: fern
+    relevant:
+    - kanji: 羊歯
+  - query: ivy
+    relevant:
+    - kanji: 蔦
+  - query: acorn
+    relevant:
+    - kanji: 団栗
+  - query: pollen
+    relevant:
+    - kanji: 花粉
+  - query: annual ring
+    relevant:
+    - kanji: 年輪
+  - query: driftwood
+    relevant:
+    - kanji: 流木
+  - query: dead tree
+    relevant:
+    - kanji: 枯れ木
+  - query: dead leaf
+    relevant:
+    - kanji: 枯葉
+  - query: fallen leaves
+    relevant:
+    - kanji: 落ち葉
+  - query: potted plant
+    relevant:
+    - kanji: 鉢植え
+    - kanji: 鉢物
+  - query: paper crane
+    relevant:
+    - kanji: 折り鶴
+  # ===== animals =====
+  - query: jellyfish
+    relevant:
+    - kanji: 水母
+  - query: seahorse
+    relevant:
+    - kanji: 竜の落とし子
+    - kanji: 海馬
+  - query: starfish
+    relevant:
+    - kanji: 海星
+  - query: catfish
+    relevant:
+    - kanji: 鯰
+  - query: cicada
+    relevant:
+    - kanji: 蝉
+  - query: firefly
+    relevant:
+    - kanji: 蛍
+  - query: dragonfly
+    relevant:
+    - kanji: 蜻蛉
+  - query: praying mantis
+    relevant:
+    - kanji: 蟷螂
+  - query: centipede
+    relevant:
+    - kanji: 百足
+  - query: scorpion
+    relevant:
+    - kanji: 蠍
+  - query: newt
+    relevant:
+    - kanji: 井守
+  - query: gecko
+    relevant:
+    - kanji: 守宮
+  - query: hedgehog
+    relevant:
+    - kanji: 針鼠
+  - query: weasel
+    relevant:
+    - kanji: 鼬
+  - query: otter
+    relevant:
+    - kanji: 川獺
+  - query: raccoon dog
+    relevant:
+    - kanji: 狸
+  - query: kingfisher
+    relevant:
+    - kanji: 翡翠
+  - query: sea urchin
+    relevant:
+    - kanji: 海胆
+  - query: guide dog
+    relevant:
+    - kanji: 盲導犬
+  - query: stray dog
+    relevant:
+    - kanji: 野良犬
+    - kanji: 野犬
+  - query: guard dog
+    relevant:
+    - kanji: 番犬
+  - query: bird of prey
+    relevant:
+    - kanji: 猛禽
+    - kanji: 猛鳥
+  - query: carrier pigeon
+    relevant:
+    - kanji: 伝書鳩
+    - kanji: 軍用鳩
+  - query: migratory bird
+    relevant:
+    - kanji: 渡り鳥
+    - kanji: 候鳥
+  - query: spider web
+    relevant:
+    - kanji: 蜘蛛の巣
+  - query: beehive
+    relevant:
+    - kanji: 蜂の巣
+    - kanji: 蜂窩
+  - query: anthill
+    relevant:
+    - kanji: 蟻塚
+    - kanji: 蟻の塔
+  - query: school of fish
+    relevant:
+    - kanji: 魚群
+  - query: fishing rod
+    relevant:
+    - kanji: 釣竿
+  - query: fish hook
+    relevant:
+    - kanji: 釣り針
+  # ===== food =====
+  - query: loquat
+    relevant:
+    - kanji: 枇杷
+  - query: pomegranate
+    relevant:
+    - kanji: 柘榴
+  - query: apricot
+    relevant:
+    - kanji: 杏
+  - query: yuzu
+    relevant:
+    - kanji: 柚子
+  - query: yeast
+    relevant:
+    - kanji: 酵母
+  - query: bamboo shoot
+    relevant:
+    - kanji: 筍
+  - query: egg yolk
+    relevant:
+    - kanji: 卵黄
+    - kanji: 黄身
+  - query: egg white
+    relevant:
+    - kanji: 卵白
+    - kanji: 白身
+  - query: red bean paste
+    relevant:
+    - kanji: 餡
+    - kanji: 餡子
+  - query: rice ball
+    relevant:
+    - kanji: お握り
+    - kanji: 握り飯
+  - query: broth
+    relevant:
+    - kanji: だし汁
+    - kanji: 煮汁
+  # ===== law / crime =====
+  - query: false accusation
+    relevant:
+    - kanji: 冤罪
+    - kanji: 濡れ衣
+  - query: perjury
+    relevant:
+    - kanji: 偽証
+  - query: bribery
+    relevant:
+    - kanji: 贈収賄
+    - kanji: 汚職
+  - query: blackmail
+    relevant:
+    - kanji: 恐喝
+    - kanji: 脅迫
+  - query: embezzlement
+    relevant:
+    - kanji: 横領
+    - kanji: 着服
+  - query: forgery
+    relevant:
+    - kanji: 偽造
+    - kanji: 贋造
+  - query: smuggling
+    relevant:
+    - kanji: 密輸
+    - kanji: 密貿易
+  - query: arson
+    relevant:
+    - kanji: 放火
+    - kanji: 火付け
+  - query: kidnapping
+    relevant:
+    - kanji: 誘拐
+    - kanji: 拉致
+  - query: ransom
+    relevant:
+    - kanji: 身代金
+  - query: acquittal
+    relevant:
+    - kanji: 免罪
+    - kanji: 放免
+  - query: interrogation
+    relevant:
+    - kanji: 尋問
+    - kanji: 審問
+  - query: ambush
+    relevant:
+    - kanji: 待ち伏せ
+    - kanji: 伏兵
+  - query: assassination
+    relevant:
+    - kanji: 暗殺
+  - query: treason
+    relevant:
+    - kanji: 反逆
+    - kanji: 謀反
+  - query: exile
+    relevant:
+    - kanji: 追放
+    - kanji: 島流し
+  - query: uprising
+    relevant:
+    - kanji: 蜂起
+    - kanji: 一揆
+  - query: defamation
+    relevant:
+    - kanji: 名誉毀損
+    - kanji: 中傷
+  - query: harassment
+    relevant:
+    - kanji: 嫌がらせ
+    - kanji: 迷惑行為
+  - query: hostage
+    relevant:
+    - kanji: 人質
+  - query: witch hunt
+    relevant:
+    - kanji: 魔女狩り
+  - query: bounty hunter
+    relevant:
+    - kanji: 賞金稼ぎ
+  - query: serial killer
+    relevant:
+    - kanji: 連続殺人鬼
+    - kanji: 連続殺人犯
+  - query: black market
+    relevant:
+    - kanji: 闇市
+    - kanji: 闇市場
+  - query: life sentence
+    relevant:
+    - kanji: 終身刑
+  - query: solitary confinement
+    relevant:
+    - kanji: 独房
+    - kanji: 独房監禁
+  - query: house arrest
+    relevant:
+    - kanji: 軟禁
+    - kanji: 自宅軟禁
+  - query: search warrant
+    relevant:
+    - kanji: 捜査令状
+  - query: crime scene
+    relevant:
+    - kanji: 犯行現場
+  - query: death penalty
+    relevant:
+    - kanji: 死刑
+    - kanji: 極刑
+  # ===== war / military =====
+  - query: secret agent
+    relevant:
+    - kanji: 隠密
+    - kanji: 密偵
+  - query: secret police
+    relevant:
+    - kanji: 秘密警察
+  - query: riot police
+    relevant:
+    - kanji: 機動隊
+  - query: martial law
+    relevant:
+    - kanji: 戒厳令
+  - query: civil war
+    relevant:
+    - kanji: 内戦
+    - kanji: 内乱
+  - query: arms race
+    relevant:
+    - kanji: 軍拡競争
+    - kanji: 軍備競争
+  - query: land mine
+    relevant:
+    - kanji: 地雷
+  - query: gas mask
+    relevant:
+    - kanji: 防毒面
+    - kanji: 防毒マスク
+  - query: watchtower
+    relevant:
+    - kanji: 監視塔
+    - kanji: 望楼
+  - query: drawbridge
+    relevant:
+    - kanji: 跳ね橋
+  - query: moat
+    relevant:
+    - kanji: 堀
+  - query: crossbow
+    relevant:
+    - kanji: 石弓
+    - kanji: 弩
+  - query: foot soldier
+    relevant:
+    - kanji: 歩兵
+    - kanji: 一兵卒
+  - query: cavalry
+    relevant:
+    - kanji: 騎兵
+  - query: vanguard
+    relevant:
+    - kanji: 先陣
+  - query: warhorse
+    relevant:
+    - kanji: 軍馬
+    - kanji: 戦馬
+  - query: warship
+    relevant:
+    - kanji: 軍艦
+    - kanji: 兵船
+  - query: aircraft carrier
+    relevant:
+    - kanji: 空母
+    - kanji: 航空母艦
+  - query: machine gun
+    relevant:
+    - kanji: 機関銃
+    - kanji: 機銃
+  - query: hand grenade
+    relevant:
+    - kanji: 手榴弾
+    - kanji: 手投げ弾
+  - query: gunpowder
+    relevant:
+    - kanji: 火薬
+    - kanji: 煙硝
+  - query: barbed wire
+    relevant:
+    - kanji: 有刺鉄線
+    - kanji: 荊棘線
+  - query: secret weapon
+    relevant:
+    - kanji: 秘密兵器
+  - query: atomic bomb
+    relevant:
+    - kanji: 原爆
+    - kanji: 原子爆弾
+  - query: time bomb
+    relevant:
+    - kanji: 時限爆弾
+  - query: war criminal
+    relevant:
+    - kanji: 戦犯
+    - kanji: 戦争犯罪人
+  - query: prisoner of war
+    relevant:
+    - kanji: 俘虜
+  - query: war cry
+    relevant:
+    - kanji: 鬨の声
+    - kanji: 雄叫び
+  - query: decisive battle
+    relevant:
+    - kanji: 決戦
+  - query: suicide attack
+    relevant:
+    - kanji: 特攻
+    - kanji: 特別攻撃
+  - query: surprise attack
+    relevant:
+    - kanji: 奇襲
+    - kanji: 不意打ち
+  - query: peace treaty
+    relevant:
+    - kanji: 平和条約
+    - kanji: 講和条約
+  # ===== literary / abstract / religion =====
+  - query: wonder child
+    relevant:
+    - kanji: 神童
+    - kanji: 麒麟児
+  - query: swan song
+    relevant:
+    - kanji: 白鳥の歌
+    - kanji: 最後の舞台
+  - query: turning point
+    relevant:
+    - kanji: 転機
+    - kanji: 転換点
+  - query: foreshadowing
+    relevant:
+    - kanji: 伏線
+  - query: metaphor
+    relevant:
+    - kanji: 比喩
+    - kanji: 隠喩
+  - query: allegory
+    relevant:
+    - kanji: 寓話
+    - kanji: 諷喩
+  - query: sarcasm
+    relevant:
+    - kanji: 皮肉
+    - kanji: 風刺
+  - query: pun
+    relevant:
+    - kanji: 語呂合わせ
+    - kanji: 地口
+  - query: riddle
+    relevant:
+    - kanji: 謎々
+    - kanji: 判じ物
+  - query: fable
+    relevant:
+    - kanji: 寓話
+    - kanji: 作り話
+  - query: proverb
+    relevant:
+    - kanji: 諺
+    - kanji: 格言
+  - query: lullaby
+    relevant:
+    - kanji: 子守唄
+  - query: eulogy
+    relevant:
+    - kanji: 弔辞
+    - kanji: 弔詞
+  - query: elegy
+    relevant:
+    - kanji: 挽歌
+    - kanji: 哀歌
+  - query: silhouette
+    relevant:
+    - kanji: 影絵
+    - kanji: 影法師
+  - query: omen
+    relevant:
+    - kanji: 前兆
+    - kanji: 予兆
+  - query: superstition
+    relevant:
+    - kanji: 迷信
+  - query: prophecy
+    relevant:
+    - kanji: 予言
+    - kanji: 預言
+  - query: reincarnation
+    relevant:
+    - kanji: 転生
+    - kanji: 輪廻
+  - query: enlightenment
+    relevant:
+    - kanji: 悟り
+    - kanji: 啓蒙
+  - query: pilgrimage
+    relevant:
+    - kanji: 巡礼
+    - kanji: 遍路
+  - query: hermit
+    relevant:
+    - kanji: 隠者
+    - kanji: 世捨て人
+  - query: incense
+    relevant:
+    - kanji: 香
+    - kanji: 線香
+  - query: amulet
+    relevant:
+    - kanji: お守り
+    - kanji: 護符
+  - query: offering
+    relevant:
+    - kanji: 供物
+    - kanji: 供え物
+  - query: exorcism
+    relevant:
+    - kanji: 悪魔払い
+    - kanji: 除霊
+  - query: apparition
+    relevant:
+    - kanji: 亡霊
+    - kanji: 怨霊
+  - query: demon
+    relevant:
+    - kanji: 悪魔
+    - kanji: 悪鬼
+  - query: goblin
+    relevant:
+    - kanji: 化け物
+    - kanji: 小鬼
+  - query: phoenix
+    relevant:
+    - kanji: 不死鳥
+    - kanji: 鳳凰
+  - query: fairy tale
+    relevant:
+    - kanji: おとぎ話
+    - kanji: 童話
+  - query: ghost story
+    relevant:
+    - kanji: 怪談
+  - query: short story
+    relevant:
+    - kanji: 短編
+    - kanji: 短編小説
+  - query: tongue twister
+    relevant:
+    - kanji: 早口言葉
+  - query: figure of speech
+    relevant:
+    - kanji: 修辞
+    - kanji: 言葉のあや
+  - query: last resort
+    relevant:
+    - kanji: 最終手段
+    - kanji: 最後の手段
+  - query: double edged sword
+    relevant:
+    - kanji: 諸刃の剣
+  - query: vicious circle
+    relevant:
+    - kanji: 悪循環
+  - query: wishful thinking
+    relevant:
+    - kanji: 希望的観測
+  - query: open secret
+    relevant:
+    - kanji: 公然の秘密
+  - query: power struggle
+    relevant:
+    - kanji: 権力闘争
+    - kanji: 権力争い
+  - query: sworn enemy
+    relevant:
+    - kanji: 怨敵
+    - kanji: 不倶戴天の敵
+  - query: natural enemy
+    relevant:
+    - kanji: 天敵
+  - query: guardian deity
+    relevant:
+    - kanji: 守り神
+    - kanji: 守護神
+  # ===== people / relationships =====
+  - query: birth mother
+    relevant:
+    - kanji: 実母
+  - query: foster parent
+    relevant:
+    - kanji: 里親
+    - kanji: 育て親
+  - query: only child
+    relevant:
+    - kanji: 一人っ子
+    - kanji: 一粒種
+  - query: childhood friend
+    relevant:
+    - kanji: 幼なじみ
+    - kanji: 幼友達
+  - query: close friend
+    relevant:
+    - kanji: 親友
+    - kanji: 心友
+  - query: blood relative
+    relevant:
+    - kanji: 血族
+    - kanji: 肉親
+  - query: distant relative
+    relevant:
+    - kanji: 遠縁
+    - kanji: 遠戚
+  - query: adopted child
+    relevant:
+    - kanji: 養子
+    - kanji: 義子
+  - query: love letter
+    relevant:
+    - kanji: 恋文
+    - kanji: 艶書
+  # ===== occupations =====
+  - query: blacksmith
+    relevant:
+    - kanji: 鍛冶屋
+    - kanji: 鍛冶
+  - query: plumber
+    relevant:
+    - kanji: 配管工
+    - kanji: 水道屋
+  - query: tailor
+    relevant:
+    - kanji: 仕立て屋
+    - kanji: 裁縫師
+  - query: lumberjack
+    relevant:
+    - kanji: 木こり
+    - kanji: 杣人
+  - query: miner
+    relevant:
+    - kanji: 坑夫
+    - kanji: 鉱員
+  - query: shepherd
+    relevant:
+    - kanji: 羊飼い
+    - kanji: 牧羊者
+  - query: beekeeper
+    relevant:
+    - kanji: 養蜂家
+  - query: potter
+    relevant:
+    - kanji: 陶工
+    - kanji: 陶芸家
+  - query: weaver
+    relevant:
+    - kanji: 機織り
+    - kanji: 織工
+  - query: sculptor
+    relevant:
+    - kanji: 彫刻家
+    - kanji: 彫工
+  - query: swordsmith
+    relevant:
+    - kanji: 刀匠
+    - kanji: 刀鍛冶
+  - query: midwife
+    relevant:
+    - kanji: 助産師
+    - kanji: 助産婦
+  - query: undertaker
+    relevant:
+    - kanji: 葬儀屋
+    - kanji: 納棺師
+  - query: executioner
+    relevant:
+    - kanji: 死刑執行人
+    - kanji: 首切り役人
+  - query: puppeteer
+    relevant:
+    - kanji: 人形使い
+    - kanji: 傀儡師
+  - query: playwright
+    relevant:
+    - kanji: 劇作家
+    - kanji: 脚本家
+  - query: sniper
+    relevant:
+    - kanji: 狙撃兵
+    - kanji: 狙撃手
+  - query: mercenary
+    relevant:
+    - kanji: 傭兵
+  - query: bodyguard
+    relevant:
+    - kanji: 用心棒
+  - query: notary
+    relevant:
+    - kanji: 公証人
+  - query: envoy
+    relevant:
+    - kanji: 使節
+    - kanji: 公使
+  - query: apprentice
+    relevant:
+    - kanji: 徒弟
+    - kanji: 見習い
+  - query: fortune teller
+    relevant:
+    - kanji: 占い師
+    - kanji: 占者
+  # ===== tools / objects =====
+  - query: anvil
+    relevant:
+    - kanji: 金床
+    - kanji: 金敷き
+  - query: bellows
+    relevant:
+    - kanji: 鞴
+  - query: chisel
+    relevant:
+    - kanji: 鑿
+    - kanji: 鏨
+  - query: awl
+    relevant:
+    - kanji: 錐
+    - kanji: 千枚通し
+  - query: tongs
+    relevant:
+    - kanji: 火箸
+  - query: ladle
+    relevant:
+    - kanji: 柄杓
+    - kanji: お玉
+  - query: grater
+    relevant:
+    - kanji: おろし金
+    - kanji: おろし器
+  - query: sieve
+    relevant:
+    - kanji: 篩
+  - query: funnel
+    relevant:
+    - kanji: 漏斗
+  - query: scythe
+    relevant:
+    - kanji: 大鎌
+  - query: pickaxe
+    relevant:
+    - kanji: 鶴嘴
+  - query: crowbar
+    relevant:
+    - kanji: 金てこ
+    - kanji: 金棒
+  - query: hinge
+    relevant:
+    - kanji: 蝶番
+  - query: rivet
+    relevant:
+    - kanji: 鋲
+    - kanji: 鋲釘
+  - query: faucet
+    relevant:
+    - kanji: 蛇口
+    - kanji: 水栓
+  - query: spindle
+    relevant:
+    - kanji: 紡錘
+  - query: kiln
+    relevant:
+    - kanji: 窯
+  - query: loom
+    relevant:
+    - kanji: 織機
+  - query: abacus
+    relevant:
+    - kanji: 算盤
+  - query: easel
+    relevant:
+    - kanji: 画架
+  - query: hourglass
+    relevant:
+    - kanji: 砂時計
+  - query: sundial
+    relevant:
+    - kanji: 日時計
+  - query: magnifying glass
+    relevant:
+    - kanji: 虫眼鏡
+    - kanji: 拡大鏡
+  - query: rolling pin
+    relevant:
+    - kanji: 麺棒
+    - kanji: のし棒
+  - query: spatula
+    relevant:
+    - kanji: 箆
+    - kanji: フライ返し
+  - query: spinning wheel
+    relevant:
+    - kanji: 糸車
+    - kanji: 紡車
+  - query: ferris wheel
+    relevant:
+    - kanji: 観覧車
+  - query: lighthouse
+    relevant:
+    - kanji: 灯台
+  - query: windmill
+    relevant:
+    - kanji: 風車
+    - kanji: 風車小屋
+  - query: pocket watch
+    relevant:
+    - kanji: 懐中時計
+  - query: alarm clock
+    relevant:
+    - kanji: 目覚まし時計
+    - kanji: 目覚まし
+  - query: weather vane
+    relevant:
+    - kanji: 風見
+    - kanji: 風見鶏
+  - query: lightning rod
+    relevant:
+    - kanji: 避雷針
+  - query: fire extinguisher
+    relevant:
+    - kanji: 消火器
+  - query: life jacket
+    relevant:
+    - kanji: 救命胴衣
+  - query: reading glasses
+    relevant:
+    - kanji: 老眼鏡
+  - query: eyepatch
+    relevant:
+    - kanji: 眼帯
+  - query: earplug
+    relevant:
+    - kanji: 耳栓
+  # ===== everyday / cultural =====
+  - query: dead end
+    relevant:
+    - kanji: 行き止まり
+    - kanji: 袋小路
+  - query: last train
+    relevant:
+    - kanji: 終電
+    - kanji: 最終電車
+  - query: public bath
+    relevant:
+    - kanji: 銭湯
+    - kanji: 共同浴場
+  - query: folding fan
+    relevant:
+    - kanji: 扇子
+    - kanji: 扇
+  - query: paper lantern
+    relevant:
+    - kanji: 提灯
+  - query: wind chime
+    relevant:
+    - kanji: 風鈴
+  - query: family crest
+    relevant:
+    - kanji: 家紋
+    - kanji: 定紋
+  - query: flower arrangement
+    relevant:
+    - kanji: 華道
+    - kanji: 挿花
+  - query: rock garden
+    relevant:
+    - kanji: 石庭

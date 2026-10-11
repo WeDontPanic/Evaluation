@@ -1,0 +1,95 @@
+# Gloss-paraphrase queries: the gold shares NO content lemma with any of its
+# English glosses (verified with `probe_overlap`; 2026-07-09 semantic-injection
+# spec §6), so purely lexical retrieval cannot find it. Items marked CONTROL
+# deliberately overlap (near-lexical border cases guarding against
+# over-injection collateral); the two "nose" items are legacy border cases
+# (share "nose") kept from the original 3-item set.
+language: English
+tests:
+  items:
+  # ----- synonym paraphrase -----
+  - query: milk goods            # marquee: gloss is only "dairy products"
+    relevant:
+    - kanji: 乳製品
+  # ----- compositional paraphrase -----
+  - query: morning meal
+    relevant:
+    - kanji: 朝食
+  - query: tooth doctor
+    relevant:
+    - kanji: 歯医者
+  - query: animal doctor
+    relevant:
+    - kanji: 獣医
+  - query: skin doctor
+    relevant:
+    - kanji: 皮膚科医
+  - query: sleeping room
+    relevant:
+    - kanji: 寝室
+  - query: cooking area
+    relevant:
+    - kanji: 台所
+  - query: word book
+    relevant:
+    - kanji: 辞書
+  - query: flying machine
+    relevant:
+    - kanji: 飛行機
+  - query: moving stairs
+    relevant:
+    - kana: エスカレーター
+  - query: sun umbrella
+    relevant:
+    - kanji: 日傘
+  - query: fire fighter
+    relevant:
+    - kanji: 消防士
+  - query: book shop
+    relevant:
+    - kanji: 本屋
+  - query: eating place
+    relevant:
+    - kanji: 食堂
+  - query: drinking place
+    relevant:
+    - kanji: 居酒屋
+  - query: night clothes
+    relevant:
+    - kanji: 寝巻き
+  # ----- register / abbreviation variant -----
+  - query: ice box               # dated AmE for refrigerator
+    relevant:
+    - kanji: 冷蔵庫
+  - query: telly
+    relevant:
+    - kana: テレビ
+  - query: kids
+    relevant:
+    - kanji: 子供
+  - query: tummy
+    relevant:
+    - kanji: お腹
+  - query: grownup
+    relevant:
+    - kanji: 大人
+  # ----- legacy (derivational mismatch) -----
+  - query: running nose          # border: shares "nose" (gloss "dripping nose")
+    relevant:
+    - kanji: 鼻水
+  - query: runny nose            # border: shares "nose"
+    relevant:
+    - kanji: 鼻水
+  - query: raining
+    relevant:
+    - kanji: 降る
+  # ----- CONTROLS: near-lexical border cases (deliberate overlap) -----
+  - query: milk products         # CONTROL (shares "products")
+    relevant:
+    - kanji: 乳製品
+  - query: washing machine       # CONTROL (direct hit)
+    relevant:
+    - kanji: 洗濯機
+  - query: light rain            # CONTROL (direct hit, compound class)
+    relevant:
+    - kanji: 小雨

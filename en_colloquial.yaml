@@ -1,0 +1,54 @@
+language: English
+# Colloquial / register-gap query set.
+# Purpose: measure whether the natural EVERYDAY Japanese word for a query
+# surfaces near the top, for words whose common form is casual / usually-kana /
+# web-register / colloquial. These are under-attested in the formal parallel
+# corpus (Tatoeba + JESC; KFTT weighted 0), so a formal or obscure synonym can
+# dominate and bury the everyday word — even on a perfect gloss match. Grew out
+# of the `summary → まとめ` investigation (2026-07-07).
+#
+# Each "# jotoba N / ours M" note records the rank of the target on
+# production (jotoba.de, via ~/bin/jotoba, capped at 10 results → ">10" = not in
+# the top 10) vs this prototype, at the time of authoring. The prototype already
+# beats production heavily on this set. Every target is a verified correct,
+# FINDABLE gloss (candidate recall must stay 100%); items are chosen because
+# production ranks them poorly, so this doubles as a production-gap tracker.
+#
+# The set is deliberately BALANCED, not all-failing: many usually-kana everyday
+# words (お金/噂/お腹/…) already rank #1-2 here, kept as CONTROLS so a future
+# class-fix must lift the buried words WITHOUT breaking the ones that work.
+tests:
+  items:
+  # ----- BURIED here (headroom); production ranks them worse still -----
+  - query: summary          # jotoba >10 / ours ~16  (formal 要約/概要/概略 dominate)
+    relevant:
+    - kanji: 纏め
+  - query: so-so            # jotoba >10 / ours ~28  (retrieval swamped by function words)
+    relevant:
+    - kana: まあまあ
+  - query: chit-chat        # jotoba >10 / ours ~4   (prod returns チャット/トーク)
+    relevant:
+    - kanji: 雑談
+  - query: runny nose       # jotoba >10 / ours ~7   (prod returns 水っぱな/水洟, misses 鼻水)
+    relevant:
+    - kanji: 鼻水
+  # ----- CONTROLS: same colloquial/usually-kana class, already rank well -----
+  - query: troll            # jotoba  4  / ours ~3   ((Internet) 荒らし)
+    relevant:
+    - kanji: 荒らし
+  - query: money            # jotoba  1  / ours  1   (お金 vs 金/金銭/貨幣)
+    relevant:
+    - kanji: お金
+  - query: belly            # jotoba  2  / ours  2   (お腹 vs 腹/腹部)
+    relevant:
+    - kanji: お腹
+  - query: gossip           # jotoba  1  / ours  1   (噂話 / 噂)
+    relevant:
+    - kanji: 噂話
+    - kanji: 噂
+  - query: gist             # jotoba  5  / ours  1   (要点)
+    relevant:
+    - kanji: 要点
+  - query: newbie           # jotoba >10 / ours  1   (prod misses 新人 for "newbie")
+    relevant:
+    - kanji: 新人

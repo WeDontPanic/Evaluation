@@ -1,0 +1,63 @@
+language: English
+# Phrasal / light-verb MWE query set (spec: docs/superpowers/specs/
+# 2026-07-08-phrasal-mwe-recall-design.md).
+# Purpose: English light-verb ("to get lost") and particle-verb ("to calm
+# down") constructions collapse to <=1 content token under the stopword list,
+# so the bigram machinery never fires and frequency-dominant homonym senses
+# bury the multi-word-expression target (道に迷う rank 17 behind 失う).
+# Each "# jotoba N / ours M" note records the target's rank on production
+# (~/bin/jotoba, capped at 10 -> ">10") vs this prototype at authoring time
+# (2026-07-08). BALANCED set: the buried item is the headroom, controls
+# (already #1-3 for us) guard against collateral damage from any class-level
+# fix; several items where production misses the MWE target but we find it
+# form the r@10 bar the fix must stay above.
+#
+# One primary target per item = the r@10 unit (e.g. for "to get lost" only
+# the buried 道に迷う, not the already-#3 迷う, so the metric measures the
+# fix). Every target verified FINDABLE in this prototype's top-40 at authoring
+# time (candidate recall must stay 100% -> this measures ranking, not
+# retrieval).
+tests:
+  items:
+  # ----- BURIED here (headroom): the class's poster child -----
+  - query: to get lost        # jotoba 3 / ours 17  (失う freq-dominates the lose key)
+    relevant:
+    - kanji: 道に迷う
+  # ----- We beat production (prod misses the MWE target; guards the r@10 bar) -----
+  - query: to put on          # jotoba >10 / ours 3
+    relevant:
+    - kanji: 着る
+  - query: to turn on         # jotoba >10 / ours 6
+    relevant:
+    - kanji: 点ける
+  - query: to find out        # jotoba >10 / ours 4
+    relevant:
+    - kanji: 見つけ出す
+  # ----- CONTROLS: already rank well for us, must stay top-3 -----
+  - query: to take off        # jotoba 1 / ours 1
+    relevant:
+    - kanji: 脱ぐ
+  - query: to turn off        # jotoba 1 / ours 3
+    relevant:
+    - kanji: 消す
+  - query: to give up         # jotoba 2 / ours 1
+    relevant:
+    - kanji: 諦める
+  - query: to wake up         # jotoba 3 / ours 1
+    relevant:
+    - kanji: 目覚める
+  - query: to calm down       # jotoba 1 / ours 1
+    relevant:
+    - kanji: 落ち着く
+  - query: to run away        # jotoba 1 / ours 1
+    relevant:
+    - kanji: 逃げる
+  - query: to get over        # jotoba 1 / ours 2
+    relevant:
+    - kanji: 乗り越える
+  - query: to pass away       # jotoba 1 / ours 1
+    relevant:
+    - kanji: 亡くなる
+  - query: to get angry       # jotoba 1 / ours 1
+    relevant:
+    - kanji: 怒る
