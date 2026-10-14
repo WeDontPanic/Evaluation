@@ -1,0 +1,2125 @@
+language: English
+# LLM-GENERATED English->Japanese ranking set (written by Claude, 2026-10-14).
+# Kept separate from the human-written en*.yaml sets on purpose: never merge.
+#
+# Purpose: measure/tune RANKING quality (MAP over genuinely relevant words),
+# NOT dictionary coverage. JMdict glosses are noisy for search: 犬 carries the
+# gloss "useless" (cf. 犬死に), yet a learner typing "useless" wants 無駄 /
+# 役に立たない / 無用. A gloss match only makes a word a CANDIDATE; this set
+# asks whether the answer a fluent bilingual speaker would give to "what's the
+# Japanese for <query>?" (most natural, common sense) ranks near the top.
+#
+# Coverage: ~400 queries, weighted toward polysemous / noisy-gloss queries
+# (light, fine, free, clear, sharp, to play, to take, change, charge, bill,
+# patient, can, ...), plus loanword traps (mansion -> 屋敷 not マンション,
+# steering wheel -> ハンドル, outlet -> コンセント), usually-kana everyday words,
+# multi-word phrases, and smaller verb/adjective/adverb/noun slices. Every item
+# carries a trailing "# <group>" tag for slicing. No query duplicates a query
+# in the existing en*.yaml sets.
+#
+# How labels were chosen:
+#  * Answers were decided FIRST from bilingual judgment, without looking at any
+#    Jotoba/production ranking output (no ~/bin/jotoba, no search runs), so the
+#    set does not inherit the current ranker's bias.
+#  * Each label was then verified against the project's JMdict
+#    (joto_tool/build/resources/words/JMdict): `kanji:` = the entry's FIRST
+#    (main) kanji form, `kana:` = the entry's first reading (used for
+#    kana-only entries). Where a main kanji form is shared by several entries
+#    with different readings (e.g. 床 ゆか/とこ, 下手 へた/したて, 辛い つらい/からい)
+#    a `kana:` field pins the intended reading. Rare variants were replaced by
+#    the JMdict main form (e.g. 気づく not 気付く, 風邪をひく not 風邪を引く).
+#    Labels/queries with no fitting JMdict entry were dropped.
+#  * 1-4 labels per query; `num_relevant: 1` where several translations are
+#    each fully acceptable and the user only needs one of them near the top
+#    (typical for polysemous queries: any of the main senses is a good hit).
+#  * Known harness caveat: a kana-only label matches every entry whose reading
+#    equals it, so some katakana labels also match unrelated homophones
+#    (コップ "cop", バイト "byte", ミス "Miss", マウス "mouth"). These homophones
+#    do not carry the query's gloss, so the effect on MAP should be negligible.
+#  * Revision (same day, user-approved): labels widened where a distinct,
+#    equally natural JMdict entry had been missed: native verbs next to
+#    する-nouns (受かる, 備える, 愚痴る, 文句を言う, 嫌う, 調べる, 息をする, ...) and
+#    separate everyday variants (すいません, さよなら, 有難うございます, 何で, ウザイ).
+#    Loose fits were rejected (e.g. 落ちる for generic "to fail", 見込む,
+#    整える, 退く, 吸う for "to breathe").
+tests:
+  items:
+  # ===== noisy-gloss: the query word appears as a weak/figurative gloss on many unrelated entries (e.g. 犬 'useless') (13 queries) =====
+  - query: useless   # noisy-gloss
+    relevant:
+    - kanji: 無駄
+    - kanji: 役に立たない
+    - kanji: 無用
+    num_relevant: 1
+  - query: pointless   # noisy-gloss
+    relevant:
+    - kanji: 無駄
+    - kanji: 無意味
+    num_relevant: 1
+  - query: waste   # noisy-gloss
+    relevant:
+    - kanji: 無駄
+    - kanji: 浪費
+    num_relevant: 1
+  - query: garbage   # noisy-gloss
+    relevant:
+    - kanji: 塵
+      kana: ゴミ
+  - query: worthless   # noisy-gloss
+    relevant:
+    - kanji: 無価値
+    - kanji: 下らない
+    num_relevant: 1
+  - query: stupid   # noisy-gloss
+    relevant:
+    - kanji: 馬鹿
+    - kanji: 愚か
+    num_relevant: 1
+  - query: clever   # noisy-gloss
+    relevant:
+    - kanji: 賢い
+    - kanji: 頭がいい
+    num_relevant: 1
+  - query: lucky   # noisy-gloss
+    relevant:
+    - kanji: 運がいい
+    - kanji: 幸運
+    - kana: ラッキー
+    num_relevant: 1
+  - query: unlucky   # noisy-gloss
+    relevant:
+    - kanji: 運が悪い
+    - kanji: 不運
+    num_relevant: 1
+  - query: soul   # noisy-gloss
+    relevant:
+    - kanji: 魂
+      kana: たましい
+  - query: god   # noisy-gloss
+    relevant:
+    - kanji: 神
+      kana: かみ
+    - kanji: 神様
+    num_relevant: 1
+  - query: ghost   # noisy-gloss
+    relevant:
+    - kanji: 幽霊
+    - kanji: お化け
+    num_relevant: 1
+  - query: monster   # noisy-gloss
+    relevant:
+    - kanji: 怪物
+    - kanji: 化け物
+    num_relevant: 1
+  # ===== polysemy: ambiguous English word or sense-specific phrasing; JMdict has many weak matches (124 queries) =====
+  - query: light   # polysemy
+    relevant:
+    - kanji: 光
+    - kanji: 軽い
+    - kanji: 明かり
+    num_relevant: 1
+  - query: fine   # polysemy
+    relevant:
+    - kanji: 元気
+    - kanji: 大丈夫
+    - kanji: 罰金
+    num_relevant: 1
+  - query: a fine   # polysemy
+    relevant:
+    - kanji: 罰金
+  - query: free   # polysemy
+    relevant:
+    - kanji: 無料
+    - kanji: 自由
+    - kanji: 暇
+    num_relevant: 1
+  - query: free of charge   # polysemy
+    relevant:
+    - kanji: 無料
+    - kana: ただ
+    num_relevant: 1
+  - query: a cold   # polysemy
+    relevant:
+    - kanji: 風邪
+  - query: river bank   # polysemy
+    relevant:
+    - kanji: 川岸
+    - kanji: 岸
+    - kanji: 土手
+    num_relevant: 1
+  - query: to play   # polysemy
+    relevant:
+    - kanji: 遊ぶ
+  - query: to play the piano   # polysemy
+    relevant:
+    - kanji: 弾く
+      kana: ひく
+  - query: to take   # polysemy
+    relevant:
+    - kanji: 取る
+  - query: to take a photo   # polysemy
+    relevant:
+    - kanji: 撮る
+    - kanji: 写真を撮る
+    num_relevant: 1
+  - query: to take medicine   # polysemy
+    relevant:
+    - kanji: 飲む
+  - query: to take a break   # polysemy
+    relevant:
+    - kanji: 休む
+    - kanji: 休憩
+    num_relevant: 1
+  - query: change   # polysemy
+    relevant:
+    - kanji: 変化
+    - kanji: お釣り
+    num_relevant: 1
+  - query: to change clothes   # polysemy
+    relevant:
+    - kanji: 着替える
+  - query: to change trains   # polysemy
+    relevant:
+    - kanji: 乗り換える
+  - query: clear   # polysemy
+    relevant:
+    - kanji: 明らか
+    - kanji: 透明
+    num_relevant: 1
+  - query: sharp   # polysemy
+    relevant:
+    - kanji: 鋭い
+  - query: dull   # polysemy
+    relevant:
+    - kanji: 鈍い
+    - kanji: 退屈
+    - kanji: 詰らない
+    num_relevant: 1
+  - query: match   # polysemy
+    relevant:
+    - kanji: 試合
+    - kana: マッチ
+    num_relevant: 1
+  - query: watch   # polysemy
+    relevant:
+    - kanji: 時計
+    - kanji: 腕時計
+    num_relevant: 1
+  - query: to watch   # polysemy
+    relevant:
+    - kanji: 見る
+  - query: fair   # polysemy
+    relevant:
+    - kanji: 公平
+    - kanji: 公正
+    num_relevant: 1
+  - query: mean   # polysemy
+    relevant:
+    - kanji: 意地悪
+  - query: to mean   # polysemy
+    relevant:
+    - kanji: 意味
+  - query: present   # polysemy
+    relevant:
+    - kanji: 贈り物
+    - kana: プレゼント
+    - kanji: 現在
+    num_relevant: 1
+  - query: pretty   # polysemy
+    relevant:
+    - kanji: 綺麗
+    - kanji: 可愛い
+    num_relevant: 1
+  - query: lie   # polysemy
+    relevant:
+    - kanji: 嘘
+  - query: to lie down   # polysemy
+    relevant:
+    - kanji: 横になる
+    - kanji: 寝転ぶ
+    num_relevant: 1
+  - query: to tell a lie   # polysemy
+    relevant:
+    - kanji: 嘘をつく
+  - query: point   # polysemy
+    relevant:
+    - kanji: 点
+    - kana: ポイント
+    num_relevant: 1
+  - query: plant   # polysemy
+    relevant:
+    - kanji: 植物
+    - kanji: 工場
+    num_relevant: 1
+  - query: character   # polysemy
+    relevant:
+    - kanji: 性格
+    - kanji: 文字
+    - kana: キャラクター
+    num_relevant: 1
+  - query: mind   # polysemy
+    relevant:
+    - kanji: 心
+      kana: こころ
+    - kanji: 精神
+    num_relevant: 1
+  - query: good at   # polysemy
+    relevant:
+    - kanji: 上手
+      kana: じょうず
+    - kanji: 得意
+    num_relevant: 1
+  - query: bad at   # polysemy
+    relevant:
+    - kanji: 下手
+      kana: へた
+    - kanji: 苦手
+    num_relevant: 1
+  - query: to shoot   # polysemy
+    relevant:
+    - kanji: 撃つ
+  - query: to fire someone   # polysemy
+    relevant:
+    - kanji: 解雇
+    - kanji: 首にする
+    num_relevant: 1
+  - query: to fix   # polysemy
+    relevant:
+    - kanji: 直す
+    - kanji: 修理
+    num_relevant: 1
+  - query: to lose weight   # polysemy
+    relevant:
+    - kanji: 痩せる
+  - query: to gain weight   # polysemy
+    relevant:
+    - kanji: 太る
+  - query: thin   # polysemy
+    relevant:
+    - kanji: 細い
+      kana: ほそい
+    - kanji: 薄い
+    - kanji: 痩せる
+    num_relevant: 1
+  - query: thick   # polysemy
+    relevant:
+    - kanji: 厚い
+    - kanji: 太い
+    num_relevant: 1
+  - query: to miss the train   # polysemy
+    relevant:
+    - kanji: 乗り遅れる
+  - query: to leave   # polysemy
+    relevant:
+    - kanji: 出る
+    - kanji: 出発
+    - kanji: 去る
+    num_relevant: 1
+  - query: to receive   # polysemy
+    relevant:
+    - kanji: 受け取る
+    - kanji: 貰う
+    num_relevant: 1
+  - query: to give   # polysemy
+    relevant:
+    - kanji: 上げる
+    - kanji: 与える
+    - kanji: 呉れる
+    num_relevant: 1
+  - query: to hold   # polysemy
+    relevant:
+    - kanji: 持つ
+    - kanji: 握る
+    num_relevant: 1
+  - query: to keep   # polysemy
+    relevant:
+    - kanji: 保つ
+    - kanji: 取っておく
+    num_relevant: 1
+  - query: to carry   # polysemy
+    relevant:
+    - kanji: 運ぶ
+  - query: to turn   # polysemy
+    relevant:
+    - kanji: 曲がる
+    - kanji: 回る
+    - kanji: 回す
+    num_relevant: 1
+  - query: to show   # polysemy
+    relevant:
+    - kanji: 見せる
+    - kanji: 示す
+    num_relevant: 1
+  - query: to ask   # polysemy
+    relevant:
+    - kanji: 聞く
+    - kanji: 尋ねる
+    - kanji: 頼む
+    num_relevant: 1
+  - query: to see   # polysemy
+    relevant:
+    - kanji: 見る
+    - kanji: 会う
+    - kanji: 見える
+    num_relevant: 1
+  - query: to grow   # polysemy
+    relevant:
+    - kanji: 育つ
+    - kanji: 成長
+    - kanji: 伸びる
+    num_relevant: 1
+  - query: to rise   # polysemy
+    relevant:
+    - kanji: 上がる
+    - kanji: 上る
+    num_relevant: 1
+  - query: to hit   # polysemy
+    relevant:
+    - kanji: 打つ
+    - kanji: 殴る
+    - kanji: 叩く
+    - kanji: 当たる
+    num_relevant: 1
+  - query: to hang out   # polysemy
+    relevant:
+    - kanji: 遊ぶ
+  - query: to pass an exam   # polysemy
+    relevant:
+    - kanji: 合格
+    - kanji: 受かる
+    num_relevant: 1
+  - query: to fail   # polysemy
+    relevant:
+    - kanji: 失敗
+  - query: to fail an exam   # polysemy
+    relevant:
+    - kanji: 落ちる
+    - kanji: 不合格
+    num_relevant: 1
+  - query: close   # polysemy
+    relevant:
+    - kanji: 近い
+    - kanji: 閉める
+    num_relevant: 1
+  - query: to wear   # polysemy
+    relevant:
+    - kanji: 着る
+    - kanji: 履く
+    - kanji: 被る
+    num_relevant: 1
+  - query: to suit   # polysemy
+    relevant:
+    - kanji: 似合う
+  - query: suit   # polysemy
+    relevant:
+    - kana: スーツ
+    - kanji: 背広
+    num_relevant: 1
+  - query: bow   # polysemy
+    relevant:
+    - kanji: お辞儀
+    - kanji: 弓
+      kana: ゆみ
+    num_relevant: 1
+  - query: bat   # polysemy
+    relevant:
+    - kanji: 蝙蝠
+    - kana: バット
+    num_relevant: 1
+  - query: stamp   # polysemy
+    relevant:
+    - kanji: 切手
+    - kanji: 判子
+    - kana: スタンプ
+    num_relevant: 1
+  - query: cup   # polysemy
+    relevant:
+    - kana: コップ
+    - kana: カップ
+    - kanji: 茶碗
+    num_relevant: 1
+  - query: bowl   # polysemy
+    relevant:
+    - kanji: 茶碗
+    - kanji: 丼
+    - kana: ボウル
+    num_relevant: 1
+  - query: dish   # polysemy
+    relevant:
+    - kanji: 料理
+    - kanji: 皿
+    num_relevant: 1
+  - query: bill   # polysemy
+    relevant:
+    - kanji: 勘定
+    - kanji: 請求書
+    - kanji: 紙幣
+    num_relevant: 1
+  - query: patient   # polysemy
+    relevant:
+    - kanji: 患者
+    - kanji: 我慢強い
+    - kanji: 辛抱強い
+    num_relevant: 1
+  - query: pupil   # polysemy
+    relevant:
+    - kanji: 生徒
+    - kanji: 瞳
+    num_relevant: 1
+  - query: degree   # polysemy
+    relevant:
+    - kanji: 度
+      kana: ど
+    - kanji: 学位
+    - kanji: 程度
+    num_relevant: 1
+  - query: field   # polysemy
+    relevant:
+    - kanji: 畑
+    - kanji: 野原
+    - kanji: 分野
+    num_relevant: 1
+  - query: back   # polysemy
+    relevant:
+    - kanji: 後ろ
+    - kanji: 背中
+    - kanji: 裏
+    num_relevant: 1
+  - query: corner   # polysemy
+    relevant:
+    - kanji: 角
+      kana: かど
+    - kanji: 隅
+    num_relevant: 1
+  - query: power   # polysemy
+    relevant:
+    - kanji: 力
+    - kanji: 権力
+    - kanji: 電力
+    num_relevant: 1
+  - query: life   # polysemy
+    relevant:
+    - kanji: 人生
+    - kanji: 命
+    - kanji: 生活
+    num_relevant: 1
+  - query: to live   # polysemy
+    relevant:
+    - kanji: 住む
+    - kanji: 生きる
+    - kanji: 暮らす
+    num_relevant: 1
+  - query: wrong   # polysemy
+    relevant:
+    - kanji: 間違い
+    - kanji: 違う
+    num_relevant: 1
+  - query: can   # polysemy
+    relevant:
+    - kanji: 出来る
+    - kanji: 缶
+      kana: かん
+    num_relevant: 1
+  - query: to move   # polysemy
+    relevant:
+    - kanji: 動く
+    - kanji: 引っ越す
+    - kanji: 移動
+    num_relevant: 1
+  - query: to spend   # polysemy
+    relevant:
+    - kanji: 過ごす
+    - kanji: 使う
+    - kanji: 費やす
+    num_relevant: 1
+  - query: to save   # polysemy
+    relevant:
+    - kanji: 貯める
+    - kanji: 救う
+    - kanji: 保存
+    - kanji: 節約
+    num_relevant: 1
+  - query: to realize   # polysemy
+    relevant:
+    - kanji: 気づく
+    - kanji: 実現
+    - kanji: 気がつく
+    num_relevant: 1
+  - query: charge   # polysemy
+    relevant:
+    - kanji: 料金
+    - kanji: 充電
+    - kanji: 担当
+    num_relevant: 1
+  - query: in charge   # polysemy
+    relevant:
+    - kanji: 担当
+    - kanji: 係
+    num_relevant: 1
+  - query: interest   # polysemy
+    relevant:
+    - kanji: 興味
+    - kanji: 利子
+    - kanji: 関心
+    num_relevant: 1
+  - query: capital   # polysemy
+    relevant:
+    - kanji: 首都
+    - kanji: 資本
+    num_relevant: 1
+  - query: period   # polysemy
+    relevant:
+    - kanji: 期間
+    - kanji: 時代
+    - kanji: 生理
+    num_relevant: 1
+  - query: sentence   # polysemy
+    relevant:
+    - kanji: 文
+      kana: ぶん
+    - kanji: 判決
+    num_relevant: 1
+  - query: organ   # polysemy
+    relevant:
+    - kanji: 臓器
+    - kana: オルガン
+    num_relevant: 1
+  - query: handle   # polysemy
+    relevant:
+    - kanji: 取っ手
+    - kana: ハンドル
+    num_relevant: 1
+  - query: rich   # polysemy
+    relevant:
+    - kanji: 金持ち
+    - kanji: 豊か
+    num_relevant: 1
+  - query: poor   # polysemy
+    relevant:
+    - kanji: 貧しい
+    - kanji: 貧乏
+    - kanji: 下手
+      kana: へた
+    num_relevant: 1
+  - query: square   # polysemy
+    relevant:
+    - kanji: 四角
+    - kanji: 正方形
+    - kanji: 広場
+    num_relevant: 1
+  - query: serious   # polysemy
+    relevant:
+    - kanji: 真面目
+    - kanji: 深刻
+    - kanji: 本気
+    num_relevant: 1
+  - query: case   # polysemy
+    relevant:
+    - kanji: 場合
+    - kanji: 事件
+    - kana: ケース
+    num_relevant: 1
+  - query: order   # polysemy
+    relevant:
+    - kanji: 注文
+    - kanji: 順番
+    - kanji: 命令
+    num_relevant: 1
+  - query: line   # polysemy
+    relevant:
+    - kanji: 線
+    - kanji: 列
+    num_relevant: 1
+  - query: to line up   # polysemy
+    relevant:
+    - kanji: 並ぶ
+  - query: table   # polysemy
+    relevant:
+    - kana: テーブル
+    - kanji: 机
+    - kanji: 表
+      kana: ひょう
+    num_relevant: 1
+  - query: cover   # polysemy
+    relevant:
+    - kanji: 表紙
+    - kana: カバー
+    - kanji: 蓋
+    num_relevant: 1
+  - query: fan   # polysemy
+    relevant:
+    - kanji: 扇風機
+    - kanji: 扇子
+    - kana: ファン
+    - kanji: 団扇
+    num_relevant: 1
+  - query: sink   # polysemy
+    relevant:
+    - kanji: 流し
+    - kana: シンク
+    num_relevant: 1
+  - query: ring   # polysemy
+    relevant:
+    - kanji: 指輪
+    - kanji: 輪
+      kana: わ
+    num_relevant: 1
+  - query: bug   # polysemy
+    relevant:
+    - kanji: 虫
+    - kana: バグ
+    num_relevant: 1
+  - query: mouse   # polysemy
+    relevant:
+    - kanji: 鼠
+      kana: ネズミ
+    - kana: マウス
+    num_relevant: 1
+  - query: date   # polysemy
+    relevant:
+    - kanji: 日付
+    - kana: デート
+    num_relevant: 1
+  - query: fall   # polysemy
+    relevant:
+    - kanji: 秋
+    - kanji: 落ちる
+    num_relevant: 1
+  - query: novel   # polysemy
+    relevant:
+    - kanji: 小説
+    - kanji: 斬新
+    num_relevant: 1
+  - query: program   # polysemy
+    relevant:
+    - kanji: 番組
+    - kana: プログラム
+    num_relevant: 1
+  - query: note   # polysemy
+    relevant:
+    - kana: メモ
+    - kana: ノート
+    - kanji: 音符
+    num_relevant: 1
+  - query: address   # polysemy
+    relevant:
+    - kanji: 住所
+    - kana: アドレス
+    num_relevant: 1
+  - query: to shake   # polysemy
+    relevant:
+    - kanji: 振る
+    - kanji: 揺れる
+    - kanji: 震える
+    num_relevant: 1
+  - query: to stop   # polysemy
+    relevant:
+    - kanji: 止める
+    - kanji: 止まる
+    num_relevant: 1
+  - query: to quit   # polysemy
+    relevant:
+    - kanji: 辞める
+    - kanji: 止める
+    num_relevant: 1
+  - query: to return   # polysemy
+    relevant:
+    - kanji: 帰る
+    - kanji: 戻る
+    - kanji: 返す
+    num_relevant: 1
+  - query: bar   # polysemy
+    relevant:
+    - kana: バー
+    - kanji: 居酒屋
+    - kanji: 棒
+    num_relevant: 1
+  - query: to draw   # polysemy
+    relevant:
+    - kanji: 描く
+    - kanji: 引く
+    num_relevant: 1
+  - query: floor   # polysemy
+    relevant:
+    - kanji: 床
+      kana: ゆか
+    - kanji: 階
+      kana: かい
+    num_relevant: 1
+  - query: space   # polysemy
+    relevant:
+    - kanji: 宇宙
+    - kanji: 空間
+    - kana: スペース
+    num_relevant: 1
+  # ===== loanword-trap: a native word (or the established loanword) should beat obscure katakana transliterations / false friends (37 queries) =====
+  - query: car   # loanword-trap
+    relevant:
+    - kanji: 車
+    - kanji: 自動車
+    num_relevant: 1
+  - query: home   # loanword-trap
+    relevant:
+    - kanji: 家
+      kana: いえ
+    - kanji: 家
+      kana: うち
+    - kanji: 自宅
+    num_relevant: 1
+  - query: bath   # loanword-trap
+    relevant:
+    - kanji: 風呂
+    - kanji: お風呂
+    num_relevant: 1
+  - query: rock   # loanword-trap
+    relevant:
+    - kanji: 岩
+    - kanji: 石
+    num_relevant: 1
+  - query: king   # loanword-trap
+    relevant:
+    - kanji: 王
+    - kanji: 王様
+    num_relevant: 1
+  - query: lady   # loanword-trap
+    relevant:
+    - kanji: 婦人
+    - kanji: 女性
+    num_relevant: 1
+  - query: city   # loanword-trap
+    relevant:
+    - kanji: 都市
+    - kanji: 市
+      kana: し
+    - kanji: 町
+    num_relevant: 1
+  - query: farm   # loanword-trap
+    relevant:
+    - kanji: 農場
+    - kanji: 畑
+    num_relevant: 1
+  - query: boat   # loanword-trap
+    relevant:
+    - kanji: 船
+    - kana: ボート
+    num_relevant: 1
+  - query: street   # loanword-trap
+    relevant:
+    - kanji: 通り
+    - kanji: 道
+    num_relevant: 1
+  - query: sound   # loanword-trap
+    relevant:
+    - kanji: 音
+      kana: おと
+  - query: noise   # loanword-trap
+    relevant:
+    - kanji: 騒音
+    - kanji: 雑音
+    num_relevant: 1
+  - query: ice   # loanword-trap
+    relevant:
+    - kanji: 氷
+  - query: ball   # loanword-trap
+    relevant:
+    - kana: ボール
+    - kanji: 球
+    - kanji: 玉
+    num_relevant: 1
+  - query: boots   # loanword-trap
+    relevant:
+    - kana: ブーツ
+    - kanji: 長靴
+    num_relevant: 1
+  - query: jacket   # loanword-trap
+    relevant:
+    - kanji: 上着
+    - kana: ジャケット
+    num_relevant: 1
+  - query: group   # loanword-trap
+    relevant:
+    - kana: グループ
+    - kanji: 集団
+    - kanji: 団体
+    num_relevant: 1
+  - query: list   # loanword-trap
+    relevant:
+    - kana: リスト
+    - kanji: 一覧
+    - kanji: 名簿
+    num_relevant: 1
+  - query: menu   # loanword-trap
+    relevant:
+    - kana: メニュー
+    - kanji: 献立
+    num_relevant: 1
+  - query: recipe   # loanword-trap
+    relevant:
+    - kana: レシピ
+    - kanji: 作り方
+    num_relevant: 1
+  - query: kitchen   # loanword-trap
+    relevant:
+    - kanji: 台所
+    - kana: キッチン
+    num_relevant: 1
+  - query: dance   # loanword-trap
+    relevant:
+    - kanji: 踊り
+    - kana: ダンス
+    num_relevant: 1
+  - query: plan   # loanword-trap
+    relevant:
+    - kanji: 計画
+    - kanji: 予定
+    num_relevant: 1
+  - query: schedule   # loanword-trap
+    relevant:
+    - kanji: 予定
+    - kana: スケジュール
+    num_relevant: 1
+  - query: idea   # loanword-trap
+    relevant:
+    - kanji: 考え
+    - kana: アイデア
+    num_relevant: 1
+  - query: member   # loanword-trap
+    relevant:
+    - kana: メンバー
+    - kanji: 会員
+    - kanji: 一員
+    num_relevant: 1
+  - query: news   # loanword-trap
+    relevant:
+    - kana: ニュース
+    - kanji: 知らせ
+    num_relevant: 1
+  - query: message   # loanword-trap
+    relevant:
+    - kanji: 伝言
+    - kana: メッセージ
+    num_relevant: 1
+  - query: trouble   # loanword-trap
+    relevant:
+    - kanji: 困難
+    - kanji: 問題
+    - kanji: 迷惑
+    - kana: トラブル
+    num_relevant: 1
+  - query: to check   # loanword-trap
+    relevant:
+    - kanji: 確かめる
+    - kanji: 確認
+    - kanji: 調べる
+    num_relevant: 1
+  - query: speed   # loanword-trap
+    relevant:
+    - kanji: 速度
+    - kanji: 速さ
+    - kana: スピード
+    num_relevant: 1
+  - query: mansion   # loanword-trap
+    relevant:
+    - kanji: 屋敷
+    - kanji: 豪邸
+    num_relevant: 1
+  - query: apartment   # loanword-trap
+    relevant:
+    - kana: アパート
+    - kana: マンション
+    num_relevant: 1
+  - query: outlet   # loanword-trap
+    relevant:
+    - kana: コンセント
+  - query: steering wheel   # loanword-trap
+    relevant:
+    - kana: ハンドル
+  - query: part-time job   # loanword-trap
+    relevant:
+    - kana: アルバイト
+    - kana: バイト
+    num_relevant: 1
+  - query: restaurant   # loanword-trap
+    relevant:
+    - kana: レストラン
+    - kanji: 料理店
+    - kanji: 食堂
+    num_relevant: 1
+  # ===== kana-everyday: everyday words normally written in kana (labels use the JMdict main form) (22 queries) =====
+  - query: thank you   # kana-everyday
+    relevant:
+    - kanji: 有難う
+    - kanji: 有難うございます
+    num_relevant: 1
+  - query: sorry   # kana-everyday
+    relevant:
+    - kanji: 済みません
+    - kanji: 御免なさい
+    - kanji: 申し訳ない
+    - kana: すいません
+    num_relevant: 1
+  - query: please   # kana-everyday
+    relevant:
+    - kanji: 下さい
+    - kana: どうぞ
+    - kanji: お願いします
+    num_relevant: 1
+  - query: hello   # kana-everyday
+    relevant:
+    - kana: こんにちは
+  - query: goodbye   # kana-everyday
+    relevant:
+    - kana: さようなら
+    - kana: バイバイ
+    - kana: さよなら
+    num_relevant: 1
+  - query: good morning   # kana-everyday
+    relevant:
+    - kanji: お早う
+    - kanji: お早うございます
+    num_relevant: 1
+  - query: good night   # kana-everyday
+    relevant:
+    - kanji: お休みなさい
+    - kanji: お休み
+    num_relevant: 1
+  - query: welcome   # kana-everyday
+    relevant:
+    - kana: いらっしゃいませ
+    - kana: ようこそ
+    - kanji: 歓迎
+    num_relevant: 1
+  - query: congratulations   # kana-everyday
+    relevant:
+    - kanji: 御目出度う
+    - kanji: おめでとう御座います
+    num_relevant: 1
+  - query: okay   # kana-everyday
+    relevant:
+    - kanji: 大丈夫
+  - query: everyone   # kana-everyday
+    relevant:
+    - kanji: 皆
+  - query: why   # kana-everyday
+    relevant:
+    - kanji: 何故
+    - kanji: 如何して
+    - kanji: 何で
+      kana: なんで
+    num_relevant: 1
+  - query: where   # kana-everyday
+    relevant:
+    - kanji: 何処
+  - query: when   # kana-everyday
+    relevant:
+    - kanji: 何時
+      kana: いつ
+  - query: apple   # kana-everyday
+    relevant:
+    - kanji: 林檎
+  - query: onion   # kana-everyday
+    relevant:
+    - kanji: 玉ねぎ
+  - query: kettle   # kana-everyday
+    relevant:
+    - kanji: 薬缶
+  - query: sneeze   # kana-everyday
+    relevant:
+    - kanji: 嚏
+  - query: yawn   # kana-everyday
+    relevant:
+    - kanji: 欠伸
+  - query: hiccup   # kana-everyday
+    relevant:
+    - kanji: 吃逆
+  - query: bruise   # kana-everyday
+    relevant:
+    - kanji: 痣
+    - kanji: 打撲
+    num_relevant: 1
+  - query: snack   # kana-everyday
+    relevant:
+    - kanji: お八つ
+    - kanji: お菓子
+    - kanji: 間食
+    num_relevant: 1
+  # ===== phrase: multi-word queries / set expressions (31 queries) =====
+  - query: to catch a cold   # phrase
+    relevant:
+    - kanji: 風邪をひく
+  - query: rainy season   # phrase
+    relevant:
+    - kanji: 梅雨
+  - query: "to brush one's teeth"   # phrase
+    relevant:
+    - kanji: 歯を磨く
+    - kanji: 磨く
+    num_relevant: 1
+  - query: to make a phone call   # phrase
+    relevant:
+    - kanji: 電話
+    - kanji: 電話をかける
+    num_relevant: 1
+  - query: to fall asleep   # phrase
+    relevant:
+    - kanji: 寝る
+    - kanji: 眠る
+    - kanji: 寝付く
+    num_relevant: 1
+  - query: to fall in love   # phrase
+    relevant:
+    - kanji: 恋に落ちる
+    - kanji: 惚れる
+    num_relevant: 1
+  - query: to quit a job   # phrase
+    relevant:
+    - kanji: 辞める
+  - query: to retire   # phrase
+    relevant:
+    - kanji: 引退
+    - kanji: 退職
+    - kanji: 辞める
+    num_relevant: 1
+  - query: to take a bath   # phrase
+    relevant:
+    - kanji: お風呂に入る
+    - kanji: 風呂
+    num_relevant: 1
+  - query: to take a shower   # phrase
+    relevant:
+    - kanji: シャワーを浴びる
+  - query: to take care of   # phrase
+    relevant:
+    - kanji: 世話
+    - kanji: 面倒を見る
+    - kanji: 世話をする
+    num_relevant: 1
+  - query: take care   # phrase
+    relevant:
+    - kanji: お大事に
+    - kanji: 気をつける
+    num_relevant: 1
+  - query: to be careful   # phrase
+    relevant:
+    - kanji: 気をつける
+    - kanji: 注意
+    num_relevant: 1
+  - query: to get on   # phrase
+    relevant:
+    - kanji: 乗る
+  - query: to get off   # phrase
+    relevant:
+    - kanji: 降りる
+  - query: to lock the door   # phrase
+    relevant:
+    - kanji: 鍵をかける
+    - kanji: 閉める
+    num_relevant: 1
+  - query: on time   # phrase
+    relevant:
+    - kanji: 時間通り
+  - query: just in case   # phrase
+    relevant:
+    - kanji: 念のため
+  - query: as much as possible   # phrase
+    relevant:
+    - kanji: 出来るだけ
+    - kanji: 成るべく
+    num_relevant: 1
+  - query: no problem   # phrase
+    relevant:
+    - kanji: 大丈夫
+    - kanji: 問題ない
+    num_relevant: 1
+  - query: "it can't be helped"   # phrase
+    relevant:
+    - kanji: 仕方がない
+    - kanji: 仕様がない
+    num_relevant: 1
+  - query: supermarket   # phrase
+    relevant:
+    - kana: スーパー
+    - kana: スーパーマーケット
+    num_relevant: 1
+  - query: "driver's license"   # phrase
+    relevant:
+    - kanji: 運転免許
+    - kanji: 運転免許証
+    - kanji: 免許証
+    num_relevant: 1
+  - query: entrance exam   # phrase
+    relevant:
+    - kanji: 入試
+    - kanji: 入学試験
+    num_relevant: 1
+  - query: jet lag   # phrase
+    relevant:
+    - kanji: 時差ぼけ
+  - query: picky eater   # phrase
+    relevant:
+    - kanji: 偏食家
+    - kanji: 好き嫌い
+    num_relevant: 1
+  - query: to sleep soundly   # phrase
+    relevant:
+    - kana: ぐっすり
+    - kanji: 熟睡
+    num_relevant: 1
+  - query: to feel sick   # phrase
+    relevant:
+    - kanji: 気持ち悪い
+    - kanji: 吐き気
+    num_relevant: 1
+  - query: to grow old   # phrase
+    relevant:
+    - kanji: 年をとる
+    - kanji: 老いる
+    num_relevant: 1
+  - query: to be interested in   # phrase
+    relevant:
+    - kanji: 興味
+    - kanji: 関心
+    - kanji: 興味を持つ
+    num_relevant: 1
+  - query: "it's about time"   # phrase
+    relevant:
+    - kana: そろそろ
+  # ===== verb: verbs (39 queries) =====
+  - query: to love   # verb
+    relevant:
+    - kanji: 愛する
+    - kanji: 大好き
+    num_relevant: 1
+  - query: to like   # verb
+    relevant:
+    - kanji: 好き
+    - kanji: 好む
+    num_relevant: 1
+  - query: to hate   # verb
+    relevant:
+    - kanji: 嫌い
+    - kanji: 憎む
+    - kanji: 嫌う
+    num_relevant: 1
+  - query: to hope   # verb
+    relevant:
+    - kanji: 望む
+    - kanji: 願う
+    num_relevant: 1
+  - query: to arrive   # verb
+    relevant:
+    - kanji: 着く
+    - kanji: 到着
+    num_relevant: 1
+  - query: to go home   # verb
+    relevant:
+    - kanji: 帰る
+    - kanji: 帰宅
+    num_relevant: 1
+  - query: to visit   # verb
+    relevant:
+    - kanji: 訪ねる
+    - kanji: 訪問
+    - kanji: 訪れる
+    num_relevant: 1
+  - query: to pay   # verb
+    relevant:
+    - kanji: 払う
+    - kanji: 支払う
+    num_relevant: 1
+  - query: to cost   # verb
+    relevant:
+    - kanji: 掛かる
+  - query: to measure   # verb
+    relevant:
+    - kanji: 計る
+  - query: to smile   # verb
+    relevant:
+    - kanji: 微笑む
+    - kanji: 笑う
+    num_relevant: 1
+  - query: to shout   # verb
+    relevant:
+    - kanji: 叫ぶ
+    - kanji: 怒鳴る
+    num_relevant: 1
+  - query: to breathe   # verb
+    relevant:
+    - kanji: 呼吸
+    - kanji: 息
+      kana: いき
+    - kanji: 息をする
+    num_relevant: 1
+  - query: to jump   # verb
+    relevant:
+    - kanji: 飛ぶ
+    - kana: ジャンプ
+    num_relevant: 1
+  - query: to burn   # verb
+    relevant:
+    - kanji: 燃える
+    - kanji: 燃やす
+    - kanji: 焼く
+    num_relevant: 1
+  - query: to touch   # verb
+    relevant:
+    - kanji: 触る
+    - kanji: 触れる
+    num_relevant: 1
+  - query: to date   # verb
+    relevant:
+    - kanji: 付き合う
+    - kana: デート
+    num_relevant: 1
+  - query: to be late   # verb
+    relevant:
+    - kanji: 遅れる
+    - kanji: 遅刻
+    num_relevant: 1
+  - query: to be in time   # verb
+    relevant:
+    - kanji: 間に合う
+  - query: to start   # verb
+    relevant:
+    - kanji: 始める
+    - kanji: 始まる
+    - kanji: 開始
+    num_relevant: 1
+  - query: to continue   # verb
+    relevant:
+    - kanji: 続ける
+    - kanji: 続く
+    num_relevant: 1
+  - query: to end   # verb
+    relevant:
+    - kanji: 終わる
+    - kanji: 終える
+    num_relevant: 1
+  - query: to arrest   # verb
+    relevant:
+    - kanji: 逮捕
+    - kanji: 捕まえる
+    num_relevant: 1
+  - query: to attack   # verb
+    relevant:
+    - kanji: 攻撃
+    - kanji: 襲う
+    num_relevant: 1
+  - query: to fight   # verb
+    relevant:
+    - kanji: 戦う
+    - kanji: 喧嘩
+    num_relevant: 1
+  - query: to discuss   # verb
+    relevant:
+    - kanji: 話し合う
+    - kanji: 議論
+    num_relevant: 1
+  - query: to refuse   # verb
+    relevant:
+    - kanji: 断る
+    - kanji: 拒否
+    num_relevant: 1
+  - query: to allow   # verb
+    relevant:
+    - kanji: 許す
+    - kanji: 許可
+    num_relevant: 1
+  - query: to complain   # verb
+    relevant:
+    - kanji: 文句
+    - kanji: 愚痴
+    - kanji: 文句を言う
+    - kanji: 愚痴る
+    num_relevant: 1
+  - query: to prepare   # verb
+    relevant:
+    - kanji: 準備
+    - kanji: 用意
+    - kanji: 備える
+    num_relevant: 1
+  - query: to try   # verb
+    relevant:
+    - kanji: 試す
+    - kanji: 挑戦
+    num_relevant: 1
+  - query: to study   # verb
+    relevant:
+    - kanji: 勉強
+    - kanji: 学ぶ
+    num_relevant: 1
+  - query: to notice   # verb
+    relevant:
+    - kanji: 気づく
+    - kanji: 気がつく
+    num_relevant: 1
+  - query: to expect   # verb
+    relevant:
+    - kanji: 期待
+    - kanji: 予想
+    num_relevant: 1
+  - query: to need   # verb
+    relevant:
+    - kanji: 要る
+    - kanji: 必要
+    num_relevant: 1
+  - query: to become   # verb
+    relevant:
+    - kanji: 成る
+  - query: to boil   # verb
+    relevant:
+    - kanji: 沸かす
+    - kanji: 茹でる
+    - kanji: 煮る
+    - kanji: 沸く
+    num_relevant: 1
+  - query: to smell   # verb
+    relevant:
+    - kanji: 匂う
+    - kanji: 嗅ぐ
+    num_relevant: 1
+  - query: to share   # verb
+    relevant:
+    - kanji: 分ける
+    - kanji: 共有
+    num_relevant: 1
+  # ===== adjective: adjectives / states (44 queries) =====
+  - query: empty   # adjective
+    relevant:
+    - kanji: 空
+      kana: から
+    - kanji: 空っぽ
+    num_relevant: 1
+  - query: full   # adjective
+    relevant:
+    - kanji: 一杯
+    - kanji: 満員
+    num_relevant: 1
+  - query: hungry   # adjective
+    relevant:
+    - kanji: 空腹
+    - kanji: お腹が空く
+    - kanji: 腹が減る
+    num_relevant: 1
+  - query: thirsty   # adjective
+    relevant:
+    - kanji: 喉が渇く
+  - query: sick   # adjective
+    relevant:
+    - kanji: 病気
+    - kanji: 気分が悪い
+    num_relevant: 1
+  - query: painful   # adjective
+    relevant:
+    - kanji: 痛い
+    - kanji: 辛い
+      kana: つらい
+    num_relevant: 1
+  - query: careful   # adjective
+    relevant:
+    - kanji: 注意深い
+    - kanji: 慎重
+    num_relevant: 1
+  - query: polite   # adjective
+    relevant:
+    - kanji: 丁寧
+    - kanji: 礼儀正しい
+    num_relevant: 1
+  - query: rude   # adjective
+    relevant:
+    - kanji: 失礼
+    - kanji: 無礼
+    num_relevant: 1
+  - query: honest   # adjective
+    relevant:
+    - kanji: 正直
+    - kanji: 素直
+    num_relevant: 1
+  - query: funny   # adjective
+    relevant:
+    - kanji: 面白い
+    - kanji: 可笑しい
+    num_relevant: 1
+  - query: strange   # adjective
+    relevant:
+    - kanji: 変
+    - kanji: 可笑しい
+    - kanji: 不思議
+    num_relevant: 1
+  - query: afraid   # adjective
+    relevant:
+    - kanji: 怖い
+    - kanji: 恐れる
+    num_relevant: 1
+  - query: proud   # adjective
+    relevant:
+    - kanji: 誇り
+    - kanji: 誇らしい
+    - kanji: 自慢
+    num_relevant: 1
+  - query: shy   # adjective
+    relevant:
+    - kanji: 内気
+    - kanji: 人見知り
+    num_relevant: 1
+  - query: nervous   # adjective
+    relevant:
+    - kanji: 緊張
+    - kanji: 不安
+    num_relevant: 1
+  - query: relieved   # adjective
+    relevant:
+    - kanji: 安心
+    - kana: ほっと
+    num_relevant: 1
+  - query: surprised   # adjective
+    relevant:
+    - kanji: 驚く
+    - kanji: 吃驚
+    num_relevant: 1
+  - query: disappointed   # adjective
+    relevant:
+    - kana: がっかり
+    - kanji: 失望
+    num_relevant: 1
+  - query: excited   # adjective
+    relevant:
+    - kana: わくわく
+    - kanji: 興奮
+    - kanji: 盛り上がる
+    num_relevant: 1
+  - query: gentle   # adjective
+    relevant:
+    - kanji: 優しい
+    - kanji: 穏やか
+    num_relevant: 1
+  - query: severe   # adjective
+    relevant:
+    - kanji: 厳しい
+    - kanji: 酷い
+    - kanji: 深刻
+    num_relevant: 1
+  - query: terrible   # adjective
+    relevant:
+    - kanji: 酷い
+    - kanji: 最悪
+    num_relevant: 1
+  - query: great   # adjective
+    relevant:
+    - kanji: 素晴らしい
+    - kanji: 凄い
+    - kanji: 偉い
+    num_relevant: 1
+  - query: nice   # adjective
+    relevant:
+    - kanji: 素敵
+    - kanji: 良い
+    - kanji: 優しい
+    num_relevant: 1
+  - query: cute   # adjective
+    relevant:
+    - kanji: 可愛い
+  - query: handsome   # adjective
+    relevant:
+    - kanji: 格好いい
+    - kana: ハンサム
+    num_relevant: 1
+  - query: clean   # adjective
+    relevant:
+    - kanji: 綺麗
+    - kanji: 清潔
+    num_relevant: 1
+  - query: simple   # adjective
+    relevant:
+    - kanji: 簡単
+    - kanji: 単純
+    - kana: シンプル
+    num_relevant: 1
+  - query: troublesome   # adjective
+    relevant:
+    - kanji: 面倒
+    - kanji: 面倒くさい
+    - kanji: 厄介
+    num_relevant: 1
+  - query: annoying   # adjective
+    relevant:
+    - kanji: 鬱陶しい
+    - kanji: 迷惑
+    - kana: ウザイ
+    num_relevant: 1
+  - query: noisy   # adjective
+    relevant:
+    - kanji: 煩い
+    - kanji: 騒がしい
+    num_relevant: 1
+  - query: raw   # adjective
+    relevant:
+    - kanji: 生
+      kana: なま
+  - query: tasty   # adjective
+    relevant:
+    - kanji: 美味しい
+    - kanji: 上手い
+    num_relevant: 1
+  - query: disgusting   # adjective
+    relevant:
+    - kanji: 気持ち悪い
+    - kanji: 不味い
+    num_relevant: 1
+  - query: stubborn   # adjective
+    relevant:
+    - kanji: 頑固
+    - kanji: 意地っ張り
+    num_relevant: 1
+  - query: lazy   # adjective
+    relevant:
+    - kanji: 怠惰
+    - kanji: 怠け者
+    num_relevant: 1
+  - query: clumsy   # adjective
+    relevant:
+    - kanji: 不器用
+    - kana: ドジ
+    num_relevant: 1
+  - query: stingy   # adjective
+    relevant:
+    - kana: ケチ
+  - query: generous   # adjective
+    relevant:
+    - kanji: 寛大
+    - kanji: 気前がいい
+    num_relevant: 1
+  - query: selfish   # adjective
+    relevant:
+    - kanji: 自分勝手
+    - kanji: 我儘
+    - kanji: 利己的
+    num_relevant: 1
+  - query: different   # adjective
+    relevant:
+    - kanji: 違う
+    - kanji: 別
+    num_relevant: 1
+  - query: similar   # adjective
+    relevant:
+    - kanji: 似る
+    - kanji: 同様
+    num_relevant: 1
+  - query: fluent   # adjective
+    relevant:
+    - kanji: 流暢
+    - kana: ペラペラ
+    num_relevant: 1
+  # ===== adverb: adverbs and function-like expressions (37 queries) =====
+  - query: probably   # adverb
+    relevant:
+    - kanji: 多分
+    - kanji: 恐らく
+    num_relevant: 1
+  - query: maybe   # adverb
+    relevant:
+    - kanji: 多分
+    - kanji: かも知れない
+    num_relevant: 1
+  - query: certainly   # adverb
+    relevant:
+    - kanji: 確かに
+    - kanji: 必ず
+    - kanji: 勿論
+    num_relevant: 1
+  - query: surely   # adverb
+    relevant:
+    - kanji: 屹度
+    - kanji: 確かに
+    num_relevant: 1
+  - query: definitely   # adverb
+    relevant:
+    - kanji: 絶対
+    - kanji: 必ず
+    - kanji: 確かに
+    num_relevant: 1
+  - query: completely   # adverb
+    relevant:
+    - kanji: 完全
+    - kanji: 全く
+    - kana: すっかり
+    num_relevant: 1
+  - query: not at all   # adverb
+    relevant:
+    - kanji: 全然
+    - kanji: 全く
+    num_relevant: 1
+  - query: really   # adverb
+    relevant:
+    - kanji: 本当に
+    - kanji: 本当
+    num_relevant: 1
+  - query: very   # adverb
+    relevant:
+    - kanji: 迚も
+    - kanji: 非常に
+    - kanji: 大変
+    num_relevant: 1
+  - query: a lot   # adverb
+    relevant:
+    - kanji: 沢山
+    - kanji: 一杯
+    num_relevant: 1
+  - query: many   # adverb
+    relevant:
+    - kanji: 多い
+    - kanji: 沢山
+    num_relevant: 1
+  - query: a little   # adverb
+    relevant:
+    - kanji: 少し
+    - kanji: 一寸
+      kana: ちょっと
+    num_relevant: 1
+  - query: almost   # adverb
+    relevant:
+    - kanji: 殆ど
+    - kanji: 略
+      kana: ほぼ
+    num_relevant: 1
+  - query: always   # adverb
+    relevant:
+    - kanji: 何時も
+    - kanji: 常に
+    num_relevant: 1
+  - query: often   # adverb
+    relevant:
+    - kanji: 良く
+    - kanji: 屡々
+    num_relevant: 1
+  - query: never   # adverb
+    relevant:
+    - kanji: 決して
+    - kanji: 絶対
+    num_relevant: 1
+  - query: already   # adverb
+    relevant:
+    - kana: もう
+    - kanji: 既に
+    num_relevant: 1
+  - query: still   # adverb
+    relevant:
+    - kanji: 未だ
+      kana: まだ
+  - query: soon   # adverb
+    relevant:
+    - kanji: 直ぐ
+    - kanji: もう直ぐ
+    - kanji: 間もなく
+    num_relevant: 1
+  - query: immediately   # adverb
+    relevant:
+    - kanji: 直ぐ
+    - kanji: 直ちに
+    - kanji: 早速
+    num_relevant: 1
+  - query: exactly   # adverb
+    relevant:
+    - kanji: 丁度
+    - kana: ぴったり
+    num_relevant: 1
+  - query: as expected   # adverb
+    relevant:
+    - kanji: 矢張り
+    - kanji: 矢っ張り
+    num_relevant: 1
+  - query: occasionally   # adverb
+    relevant:
+    - kanji: 偶に
+    - kanji: 時々
+    num_relevant: 1
+  - query: gradually   # adverb
+    relevant:
+    - kanji: 段々
+    - kanji: 徐々に
+    - kanji: 次第に
+    num_relevant: 1
+  - query: properly   # adverb
+    relevant:
+    - kana: ちゃんと
+    - kana: きちんと
+    num_relevant: 1
+  - query: all the time   # adverb
+    relevant:
+    - kana: ずっと
+    - kanji: 何時も
+    num_relevant: 1
+  - query: fairly   # adverb
+    relevant:
+    - kanji: 可也
+    - kanji: 結構
+    num_relevant: 1
+  - query: quite   # adverb
+    relevant:
+    - kanji: 可也
+    - kanji: 結構
+    - kanji: 中々
+    num_relevant: 1
+  - query: leisurely   # adverb
+    relevant:
+    - kana: のんびり
+    - kana: ゆっくり
+    num_relevant: 1
+  - query: at last   # adverb
+    relevant:
+    - kanji: 遂に
+    - kanji: 漸と
+    - kanji: 漸く
+    num_relevant: 1
+  - query: at least   # adverb
+    relevant:
+    - kanji: 少なくとも
+    - kana: せめて
+    num_relevant: 1
+  - query: in other words   # adverb
+    relevant:
+    - kanji: 詰まり
+    - kanji: 即ち
+    num_relevant: 1
+  - query: by the way   # adverb
+    relevant:
+    - kanji: 所で
+    - kanji: そう言えば
+    num_relevant: 1
+  - query: anyway   # adverb
+    relevant:
+    - kanji: 兎に角
+    - kanji: 兎も角
+    num_relevant: 1
+  - query: alone   # adverb
+    relevant:
+    - kanji: 一人
+  - query: everything   # adverb
+    relevant:
+    - kanji: 全部
+    - kanji: 全て
+    - kanji: 何もかも
+    num_relevant: 1
+  - query: by accident   # adverb
+    relevant:
+    - kanji: 偶然
+    - kanji: 偶々
+    num_relevant: 1
+  # ===== noun: everyday and mid-frequency nouns (58 queries) =====
+  - query: meal   # noun
+    relevant:
+    - kanji: 食事
+    - kanji: ご飯
+    num_relevant: 1
+  - query: breakfast   # noun
+    relevant:
+    - kanji: 朝ごはん
+    - kanji: 朝食
+    num_relevant: 1
+  - query: dinner   # noun
+    relevant:
+    - kanji: 晩御飯
+    - kanji: 夕食
+    - kanji: 夕飯
+    num_relevant: 1
+  - query: alcohol   # noun
+    relevant:
+    - kanji: お酒
+    - kanji: 酒
+    - kana: アルコール
+    num_relevant: 1
+  - query: doctor   # noun
+    relevant:
+    - kanji: 医者
+    - kanji: 医師
+    num_relevant: 1
+  - query: injury   # noun
+    relevant:
+    - kanji: 怪我
+  - query: wound   # noun
+    relevant:
+    - kanji: 傷
+    - kanji: 怪我
+    num_relevant: 1
+  - query: holiday   # noun
+    relevant:
+    - kanji: 休み
+    - kanji: 休日
+    - kanji: 祝日
+    num_relevant: 1
+  - query: vacation   # noun
+    relevant:
+    - kanji: 休み
+    - kanji: 休暇
+    num_relevant: 1
+  - query: sign   # noun
+    relevant:
+    - kanji: 看板
+    - kanji: 標識
+    - kanji: 印
+      kana: しるし
+    - kana: サイン
+    num_relevant: 1
+  - query: signal   # noun
+    relevant:
+    - kanji: 信号
+    - kanji: 合図
+    num_relevant: 1
+  - query: mistake   # noun
+    relevant:
+    - kanji: 間違い
+    - kana: ミス
+    - kanji: 誤り
+    num_relevant: 1
+  - query: truth   # noun
+    relevant:
+    - kanji: 真実
+    - kanji: 本当
+    num_relevant: 1
+  - query: rule   # noun
+    relevant:
+    - kanji: 規則
+    - kana: ルール
+    - kanji: 決まり
+    num_relevant: 1
+  - query: energy   # noun
+    relevant:
+    - kana: エネルギー
+    - kanji: 元気
+    - kanji: 活力
+    num_relevant: 1
+  - query: living   # noun
+    relevant:
+    - kanji: 生活
+    - kanji: 暮らし
+    num_relevant: 1
+  - query: age   # noun
+    relevant:
+    - kanji: 年齢
+    - kanji: 年
+      kana: とし
+    - kanji: 時代
+    num_relevant: 1
+  - query: elderly person   # noun
+    relevant:
+    - kanji: 老人
+    - kanji: お年寄り
+    - kanji: 高齢者
+    num_relevant: 1
+  - query: baby   # noun
+    relevant:
+    - kanji: 赤ちゃん
+    - kanji: 赤ん坊
+    num_relevant: 1
+  - query: husband   # noun
+    relevant:
+    - kanji: 夫
+      kana: おっと
+    - kanji: 主人
+    - kanji: 旦那
+    num_relevant: 1
+  - query: wife   # noun
+    relevant:
+    - kanji: 妻
+    - kanji: 奥さん
+    - kanji: 家内
+    num_relevant: 1
+  - query: customer   # noun
+    relevant:
+    - kanji: 客
+    - kanji: お客さん
+    - kanji: 顧客
+    num_relevant: 1
+  - query: stranger   # noun
+    relevant:
+    - kanji: 他人
+  - query: people   # noun
+    relevant:
+    - kanji: 人々
+    - kanji: 人
+      kana: ひと
+    num_relevant: 1
+  - query: love   # noun
+    relevant:
+    - kanji: 愛
+    - kanji: 恋
+    - kanji: 愛情
+    num_relevant: 1
+  - query: hope   # noun
+    relevant:
+    - kanji: 希望
+    - kanji: 望み
+    num_relevant: 1
+  - query: wish   # noun
+    relevant:
+    - kanji: 願い
+    - kanji: 望み
+    num_relevant: 1
+  - query: goal   # noun
+    relevant:
+    - kanji: 目標
+    - kana: ゴール
+    - kanji: 目的
+    num_relevant: 1
+  - query: effect   # noun
+    relevant:
+    - kanji: 効果
+    - kanji: 影響
+    - kanji: 結果
+    num_relevant: 1
+  - query: opportunity   # noun
+    relevant:
+    - kanji: 機会
+    - kana: チャンス
+    num_relevant: 1
+  - query: chance   # noun
+    relevant:
+    - kanji: 機会
+    - kana: チャンス
+    - kanji: 偶然
+    - kanji: 可能性
+    num_relevant: 1
+  - query: job   # noun
+    relevant:
+    - kanji: 仕事
+    - kanji: 職
+    num_relevant: 1
+  - query: office   # noun
+    relevant:
+    - kanji: 事務所
+    - kana: オフィス
+    - kanji: 会社
+    num_relevant: 1
+  - query: meeting   # noun
+    relevant:
+    - kanji: 会議
+    - kanji: 打ち合わせ
+    num_relevant: 1
+  - query: business   # noun
+    relevant:
+    - kanji: 商売
+    - kana: ビジネス
+    - kanji: 事業
+    - kanji: 仕事
+    num_relevant: 1
+  - query: criminal   # noun
+    relevant:
+    - kanji: 犯人
+    - kanji: 犯罪者
+    num_relevant: 1
+  - query: quarrel   # noun
+    relevant:
+    - kanji: 喧嘩
+    - kanji: 口論
+    num_relevant: 1
+  - query: room   # noun
+    relevant:
+    - kanji: 部屋
+  - query: beach   # noun
+    relevant:
+    - kanji: 浜辺
+    - kana: ビーチ
+    - kanji: 海岸
+    num_relevant: 1
+  - query: end   # noun
+    relevant:
+    - kanji: 終わり
+    - kanji: 最後
+    num_relevant: 1
+  - query: center   # noun
+    relevant:
+    - kanji: 中心
+    - kanji: 真ん中
+    - kana: センター
+    num_relevant: 1
+  - query: inside   # noun
+    relevant:
+    - kanji: 中
+      kana: なか
+    - kanji: 内側
+    num_relevant: 1
+  - query: bag   # noun
+    relevant:
+    - kanji: 鞄
+    - kanji: 袋
+    - kana: バッグ
+    num_relevant: 1
+  - query: purse   # noun
+    relevant:
+    - kanji: 財布
+    - kana: ハンドバッグ
+    num_relevant: 1
+  - query: heater   # noun
+    relevant:
+    - kanji: 暖房
+    - kana: ヒーター
+    - kana: ストーブ
+    num_relevant: 1
+  - query: stove   # noun
+    relevant:
+    - kana: ストーブ
+    - kanji: 焜炉
+    num_relevant: 1
+  - query: toilet   # noun
+    relevant:
+    - kana: トイレ
+    - kanji: お手洗い
+    - kanji: 便所
+    num_relevant: 1
+  - query: bathroom   # noun
+    relevant:
+    - kana: トイレ
+    - kanji: お手洗い
+    - kanji: 浴室
+    - kanji: 風呂場
+    num_relevant: 1
+  - query: test   # noun
+    relevant:
+    - kana: テスト
+    - kanji: 試験
+    num_relevant: 1
+  - query: class   # noun
+    relevant:
+    - kanji: 授業
+    - kana: クラス
+    num_relevant: 1
+  - query: lesson   # noun
+    relevant:
+    - kanji: 授業
+    - kana: レッスン
+    - kanji: 教訓
+    num_relevant: 1
+  - query: temperature   # noun
+    relevant:
+    - kanji: 温度
+    - kanji: 気温
+    - kanji: 体温
+    num_relevant: 1
+  - query: stomach   # noun
+    relevant:
+    - kanji: 胃
+    - kanji: お腹
+    num_relevant: 1
+  - query: string   # noun
+    relevant:
+    - kanji: 紐
+    - kanji: 糸
+    num_relevant: 1
+  - query: art   # noun
+    relevant:
+    - kanji: 芸術
+    - kanji: 美術
+    num_relevant: 1
+  - query: language   # noun
+    relevant:
+    - kanji: 言語
+    - kanji: 言葉
+    num_relevant: 1
+  - query: smell   # noun
+    relevant:
+    - kanji: 匂い
+  - query: fee   # noun
+    relevant:
+    - kanji: 料金
+    - kanji: 手数料
+    num_relevant: 1
